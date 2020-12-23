@@ -120,6 +120,8 @@
 
 /*! exports provided: default, BUpload */
 
+/*! exports provided: default, Store, createLogger, createNamespacedHelpers, install, mapActions, mapGetters, mapMutations, mapState */
+
 /*! exports provided: t */
 
 /*! no static exports found */
@@ -134,6 +136,10 @@
 
 /*!********************************************!*\
   !*** ./node_modules/buefy/dist/esm/tag.js ***!
+  \********************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/vuex/dist/vuex.esm.js ***!
   \********************************************/
 
 /*!*********************************************!*\
