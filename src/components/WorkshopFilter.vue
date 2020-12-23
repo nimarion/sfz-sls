@@ -288,6 +288,10 @@ export default {
       this.isImageModalActive = false;
     }
   },
+  created() {
+    this.requestedWorkshops.push.apply(this.requestedWorkshops, this.workshops);
+    this.loadFilterProps();
+  },
   watch: {
     workshops: function(newValue, oldValue) {
       if (oldValue.length == 0 && newValue.length != 0) {

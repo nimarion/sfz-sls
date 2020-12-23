@@ -2,7 +2,7 @@
   <section
     style="content-visibility: auto"
     class="hero"
-    v-if="board_members.length > 0"
+    v-if="this.$store.getters.board_members.length > 0"
   >
     <div class="hero-body has-text-centered">
       <div class="content container box">
@@ -11,7 +11,7 @@
         <div class="section">
           <div class="row columns is-multiline">
             <div
-              v-for="item in board_members"
+              v-for="item in this.$store.getters.board_members"
               :key="item.name"
               class="column is-4"
             >
@@ -30,18 +30,3 @@
     </div>
   </section>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      board_members: []
-    };
-  },
-  async created() {
-    fetch("/vorstand.json")
-      .then(response => response.json())
-      .then(data => (this.board_members = data));
-  }
-};
-</script>

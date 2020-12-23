@@ -13,8 +13,15 @@
           <!--Cards-->
           <div class="container">
             <div class="section">
-              <div class="row columns is-multiline" v-if="news.length > 0">
-                <div v-for="item in news" :key="item.title" class="column is-4">
+              <div
+                class="row columns is-multiline"
+                v-if="this.$store.getters.news.length > 0"
+              >
+                <div
+                  v-for="item in this.$store.getters.news"
+                  :key="item.title"
+                  class="column is-4"
+                >
                   <div class="card large">
                     <div class="card-image is-16by9">
                       <b-image
@@ -48,11 +55,6 @@
 </template>
 <script>
 export default {
-  data() {
-    return {
-      news: []
-    };
-  },
   metaInfo() {
     return {
       title: "SFZ - Neuigkeiten",
@@ -70,11 +72,6 @@ export default {
         { name: "robots", content: "index,follow" }
       ]
     };
-  },
-  async created() {
-    fetch("/news/news.json?time=" + new Date().getTime())
-      .then(response => response.json())
-      .then(data => (this.news = data));
   },
   computed: {
     getNewsLink() {

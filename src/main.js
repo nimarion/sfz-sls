@@ -19,6 +19,7 @@ import App from "./App.vue";
 import router from "./router";
 import VueMeta from "vue-meta";
 import VueFriendlyIframe from "vue-friendly-iframe";
+import { store } from "./store";
 
 Vue.use(VueMeta);
 Vue.use(VueFriendlyIframe);
@@ -42,5 +43,9 @@ Vue.config.productionTip = false;
 
 new Vue({
   router,
+  store,
+  beforeCreate() {
+    this.$store.dispatch("init");
+  },
   render: h => h(App)
 }).$mount("#app");

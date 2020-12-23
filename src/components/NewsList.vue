@@ -1,7 +1,11 @@
 <template>
   <section class="container">
-    <div class="columns features" v-if="news.length > 0">
-      <div class="column is-4" v-for="item in news" :key="item.title">
+    <div class="columns features" v-if="this.$store.getters.news.length > 0">
+      <div
+        class="column is-4"
+        v-for="item in this.$store.getters.news.slice(0, 3)"
+        :key="item.title"
+      >
         <div class="card is-shady">
           <div class="card-image has-text-centered is-16by9">
             <b-image
@@ -27,11 +31,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      news: []
-    };
-  },
   computed: {
     getNewsLink() {
       return item =>
@@ -40,11 +39,6 @@ export default {
         "/" +
         encodeURIComponent(`${item.title}`);
     }
-  },
-  async created() {
-    fetch("/news/news.json?time=" + new Date().getTime())
-      .then(response => response.json())
-      .then(data => (this.news = data.slice(0, 3)));
   }
 };
 </script>

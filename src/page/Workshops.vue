@@ -10,7 +10,10 @@
         </div>
         <br />
         <br />
-        <WorkshopFilter :workshops="workshops" :isElearning="false" />
+        <WorkshopFilter
+          :workshops="this.$store.getters.workshops"
+          :isElearning="false"
+        />
       </div>
     </section>
   </content>
@@ -21,11 +24,6 @@ import WorkshopFilter from "../components/WorkshopFilter.vue";
 export default {
   components: {
     WorkshopFilter
-  },
-  data() {
-    return {
-      workshops: []
-    };
   },
   metaInfo() {
     return {
@@ -44,11 +42,6 @@ export default {
         { name: "robots", content: "index,follow" }
       ]
     };
-  },
-  async created() {
-    fetch("/workshops.json?time=" + new Date().getTime())
-      .then(response => response.json())
-      .then(data => (this.workshops = data));
   }
 };
 </script>

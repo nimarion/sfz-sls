@@ -9,7 +9,10 @@
           <p id="title" class="title">Schülerlabore</p>
         </div>
         <br />
-        <card-list v-on:openModal="openLabModal" :data="labs"></card-list>
+        <card-list
+          v-on:openModal="openLabModal"
+          :data="this.$store.getters.labs"
+        ></card-list>
       </div>
       <lab-modal
         v-if="clickedLab != null && isImageModalActive"
@@ -32,7 +35,6 @@ export default {
   },
   data() {
     return {
-      labs: [],
       clickedLab: null,
       isImageModalActive: false
     };
@@ -63,11 +65,6 @@ export default {
     closeEvent() {
       this.isImageModalActive = false;
     }
-  },
-  async created() {
-    fetch("/labs.json?time=" + new Date().getTime())
-      .then(response => response.json())
-      .then(data => (this.labs = data));
   }
 };
 </script>

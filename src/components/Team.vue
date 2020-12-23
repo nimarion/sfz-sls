@@ -1,8 +1,15 @@
 <template>
   <div class="container">
     <div class="section">
-      <div class="row columns is-multiline" v-if="team.length > 0">
-        <div v-for="card in team" :key="card.name" class="column is-4">
+      <div
+        class="row columns is-multiline"
+        v-if="this.$store.getters.employees.length > 0"
+      >
+        <div
+          v-for="card in this.$store.getters.employees"
+          :key="card.name"
+          class="column is-4"
+        >
           <div class="card large">
             <!-- 266x400 -->
             <div class="card-image is-1by1">
@@ -23,18 +30,3 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      team: []
-    };
-  },
-  async created() {
-    fetch("/employees.json")
-      .then(response => response.json())
-      .then(data => (this.team = data));
-  }
-};
-</script>
