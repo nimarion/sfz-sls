@@ -1,0 +1,19 @@
+{
+    "name": "SFZ - Vue",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "..",
+        "args": {
+            "VARIANT": "14"
+        }
+    },
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/zsh"
+    },
+    "extensions": [
+        "octref.vetur"
+    ],
+    "forwardPorts": [
+        8080
+    ],
+}
