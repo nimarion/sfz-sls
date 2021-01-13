@@ -99,8 +99,20 @@ export default {
     terser: true,
     sourceMap: true,
   },
+  pwa: {
+    meta: {
+      title: 'Schülerforschungszentrum Saarlouis',
+      author: 'Schülerforschungszentrum Saarlouis',
+    },
+    manifest: {
+      name: 'Schülerforschungszentrum Saarlouis',
+      short_name: 'SFZ',
+      lang: 'de',
+      display: 'browser'
+    },
+  },
   plugins: ['~plugins/iframe'],
-  modules: [['nuxt-buefy', { css: true, materialDesignIcons: false }], ['@nuxtjs/sitemap']],
+  modules: [['nuxt-buefy', { css: true, materialDesignIcons: false }], ['@nuxtjs/sitemap'], ['@nuxtjs/pwa']],
   sitemap: {
     hostname: 'https://sfz-sls.de/',
     gzip: true,

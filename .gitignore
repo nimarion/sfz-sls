@@ -166,4 +166,7 @@ docs/_book
 # TODO: where does this rule come from?
 test/
 
+### PWA ###
+sw.*
+
 # End of https://www.toptal.com/developers/gitignore/api/vue,git,node,vscode,dotenv,visualstudiocode,nuxtjs
