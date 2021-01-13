@@ -51,7 +51,7 @@
       </section>
       <footer class="modal-card-foot">
         <div class="content container" v-if="isElearning && video == null">
-          <b-button type="is-primary" @click="startWorkshop" outlined
+          <b-button type="is-primary" tag="nuxt-link" :to=workshopLink outlined
             >Workshop starten</b-button
           >
 
@@ -94,7 +94,8 @@ export default {
       body:
         "Hallo!%20%0D%0AIch%20m%C3%B6chte%20gerne%20f%C3%BCr%20meine%20Klasse%20den%20" +
         this.name +
-        "-Workshop%20buchen.%20%0D%0ADatum%3A%20%0D%0AZeit%3A%20%0D%0ASchule%3A%20%0D%0AKlasse%3A%20%0D%0AAnzahl%20der%20SuS%3A"
+        "-Workshop%20buchen.%20%0D%0ADatum%3A%20%0D%0AZeit%3A%20%0D%0ASchule%3A%20%0D%0AKlasse%3A%20%0D%0AAnzahl%20der%20SuS%3A",
+      workshopLink: "/workshop/" + this.name
     };
   },
   methods: {
@@ -110,9 +111,6 @@ export default {
           "-Kurs&body=" +
           this.body
       );
-    },
-    startWorkshop() {
-      this.$router.push({ path: "/workshop/" + this.name });
     }
   }
 };

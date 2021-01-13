@@ -5,9 +5,8 @@
         <div class="column is-6 is-narrow">
           <div class="container">
             <h1 class="title is-size-1">404</h1>
-            <h1 class="subtitle">
-              Die Seite existiert nicht
-            </h1>
+            <h1 v-if="isWorkshop" class="subtitle">Der Workshop {{ workshopName }} existiert nicht</h1>
+            <h1 v-else class="subtitle">Die Seite {{ siteName }} existiert nicht</h1>
           </div>
         </div>
         <div class="column is-6">
@@ -20,3 +19,35 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: ["error"],
+  layout(context) {
+    if (
+      window.location.pathname.startsWith("/workshops/") &&
+      window.location.pathname.split("/")[2].length > 0
+    ) {
+      return "error-layout";
+    }
+    return "default";
+  },
+  computed: {
+    isWorkshop() {
+      if (
+        window.location.pathname.startsWith("/workshops/") &&
+        window.location.pathname.split("/")[2].length > 0
+      ) {
+        return true;
+      }
+      return false;
+    },
+    workshopName(){
+      return decodeURIComponent(window.location.pathname.split("/")[2]);
+    },
+    siteName(){
+      return decodeURIComponent(window.location.pathname)
+    }
+  },
+};
+</script>
