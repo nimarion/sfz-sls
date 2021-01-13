@@ -1,0 +1,14 @@
+{
+    "name": "SFZ - Vue",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/zsh"
+    },
+    "extensions": [
+        "octref.vetur",
+        "dbaeumer.vscode-eslint"
+    ]
+}
