@@ -27,6 +27,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'keywords', content: 'Schülerforschungszentrum, Schule, Forschen, MINT, Informatik, Physik, Workshops, Elearing' },
       {
         hid: "og:title",
         name: "og:title",
@@ -85,7 +86,7 @@ export default {
       {
         hid: "description",
         name: "description",
-        content: "Das Schülerforschungszentrum bietet allen Schülerinnen und Schülern einen Ort, wo sie als ganze Klasse Workshops  an selbst gewählten Themen aus dem MINT-Bereich unterstützt forschen können. ",
+        content: "Das Schülerforschungszentrum bietet allen Schülerinnen und Schülern einen Ort, wo sie als ganze Klasse Workshops an selbst gewählten Themen aus dem MINT-Bereich unterstützt forschen können.",
       },
       {
         hid: "robots",

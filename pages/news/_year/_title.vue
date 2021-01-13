@@ -72,7 +72,7 @@ export default {
   },
   methods: {
     sendTo404() {
-      this.$router.push({ path: "/404/" });
+      $nuxt.error({message: "Der Artikel " + this.$route.params.title + " existiert nicht", statusCode: 404});
     },
     fetchContent(markdownUrl) {
       fetch(window.location.origin + "/news/" + markdownUrl)
