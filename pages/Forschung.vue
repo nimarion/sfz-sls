@@ -33,12 +33,23 @@ import CardList from "~/components/CardList.vue";
 export default {
   components: {
     LabModal,
-    CardList
+    CardList,
+  },
+  head: {
+    title: "Schülerprojekte",
+    meta: [
+      {
+        hid: "description",
+        name: "description",
+        content:
+          "Projekte von Schülerinnen und Schülern am Schülerforschungszentrum Saarlouis",
+      },
+    ],
   },
   data() {
     return {
       clickedLab: null,
-      isImageModalActive: false
+      isImageModalActive: false,
     };
   },
   methods: {
@@ -48,7 +59,7 @@ export default {
     },
     closeEvent() {
       this.isImageModalActive = false;
-    }
-  }
+    },
+  },
 };
 </script>

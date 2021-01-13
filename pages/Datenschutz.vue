@@ -336,3 +336,10 @@
     </div>
   </section>
 </template>
+<script>
+export default {
+  head: {
+    title: "Datenschutz",
+  },
+}
+</script>

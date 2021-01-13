@@ -24,5 +24,15 @@ export default {
   components: {
     WorkshopFilter
   },
+  head: {
+    title: "E-Learning",
+    meta: [
+      {
+        hid: "description",
+        name: "description",
+        content: "Das E-Learning Angebot des Schülerforschungszentrum Saarlouis",
+      },
+    ],
+  },
 };
 </script>

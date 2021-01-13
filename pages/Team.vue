@@ -43,3 +43,18 @@
     </section>
   </content>
 </template>
+
+<script>
+export default {
+  head: {
+    title: "Team",
+    meta: [
+      {
+        hid: "description",
+        name: "description",
+        content: "Unser Team am Schülerforschungszentrum Saarlouis",
+      },
+    ],
+  },
+};
+</script>

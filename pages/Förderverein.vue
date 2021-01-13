@@ -45,7 +45,10 @@ export default {
     Sponsors,
     Donation,
     Board
-  }
+  },
+  head: {
+    title: "Förderverein",
+  },
 };
 </script>
 

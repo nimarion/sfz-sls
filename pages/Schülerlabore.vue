@@ -30,12 +30,15 @@ import CardList from "~/components/CardList.vue";
 export default {
   components: {
     LabModal,
-    CardList
+    CardList,
+  },
+  head: {
+    title: "Schülerlabore",
   },
   data() {
     return {
       clickedLab: null,
-      isImageModalActive: false
+      isImageModalActive: false,
     };
   },
   methods: {
@@ -45,7 +48,7 @@ export default {
     },
     closeEvent() {
       this.isImageModalActive = false;
-    }
-  }
+    },
+  },
 };
 </script>

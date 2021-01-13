@@ -90,3 +90,10 @@
     </div>
   </section>
 </template>
+<script>
+export default {
+  head: {
+    title: "Impressum",
+  },
+}
+</script>

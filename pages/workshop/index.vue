@@ -23,6 +23,16 @@ import WorkshopFilter from "~/components/WorkshopFilter.vue";
 export default {
   components: {
     WorkshopFilter
-  }
+  },
+  head: {
+    title: "Workshops",
+     meta: [
+      {
+        hid: "description",
+        name: "description",
+        content: "Unser Workshop Angebot am Schülerforschungszentrum Saarlouis",
+      },
+    ],
+  },
 };
 </script>
