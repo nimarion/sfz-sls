@@ -3,7 +3,9 @@
     <section id="hero-background" class="hero is-fullheight-with-navbar">
       <div class="hero-body">
         <div class="content container box">
-          <h1 class="title">Förderverein</h1>
+          <h1 class="title">
+            Förderverein
+          </h1>
           <p>
             Unsere Angebote sollen generell kostenlos für Schüler sein. Deshalb
             haben wir einen Förderverein eingerichtet, der durch die eingehenden
@@ -17,12 +19,12 @@
             <strong>Bankverbindung</strong>
           </h2>
           <p>
-            <br />Vereinigte Volksbank eG, Kaiser-Friedrich-Ring 7-13, 66740
-            Saarlouis <br />Kontonummer: 3212740003, Bankleitzahl: 591 90 200
-            <br />IBAN: DE15 5909 2000 3212 7400 03 <br />BIC: GENODE51SB2
+            <br>Vereinigte Volksbank eG, Kaiser-Friedrich-Ring 7-13, 66740
+            Saarlouis <br>Kontonummer: 3212740003, Bankleitzahl: 591 90 200
+            <br>IBAN: DE15 5909 2000 3212 7400 03 <br>BIC: GENODE51SB2
           </p>
 
-          <br />
+          <br>
 
           <a class="button" href="Beitragsordnung.pdf">Beitragsordnung</a>
           <a class="button" href="Satzung.pdf">Satzung</a>
@@ -37,9 +39,9 @@
 </template>
 
 <script>
-import Sponsors from "~/components/Sponsors.vue";
-import Donation from "~/components/Donation.vue";
-import Board from "~/components/Board.vue";
+import Sponsors from '~/components/Sponsors.vue'
+import Donation from '~/components/Donation.vue'
+import Board from '~/components/Board.vue'
 export default {
   components: {
     Sponsors,
@@ -47,9 +49,9 @@ export default {
     Board
   },
   head: {
-    title: "Förderverein",
-  },
-};
+    title: 'Förderverein'
+  }
+}
 </script>
 
 <style scoped>

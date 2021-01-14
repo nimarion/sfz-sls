@@ -6,49 +6,51 @@
     >
       <div class="hero-header">
         <div class="container has-text-centered" style="top: 20px">
-          <p id="title" class="title">Schülerlabore</p>
+          <p id="title" class="title">
+            Schülerlabore
+          </p>
         </div>
-        <br />
+        <br>
         <card-list
-          v-on:openModal="openLabModal"
           :data="this.$store.getters.labs"
-        ></card-list>
+          @openModal="openLabModal"
+        />
       </div>
       <lab-modal
         v-if="clickedLab != null && isImageModalActive"
-        v-on:onChange="closeEvent"
         :website="clickedLab.website"
         :name="clickedLab.title"
         :desc="clickedLab.description"
-      ></lab-modal>
+        @onChange="closeEvent"
+      />
     </section>
   </content>
 </template>
 <script>
-import LabModal from "~/components/LabModal.vue";
-import CardList from "~/components/CardList.vue";
+import LabModal from '~/components/LabModal.vue'
+import CardList from '~/components/CardList.vue'
 export default {
   components: {
     LabModal,
-    CardList,
+    CardList
   },
-  head: {
-    title: "Schülerlabore",
-  },
-  data() {
+  data () {
     return {
       clickedLab: null,
-      isImageModalActive: false,
-    };
+      isImageModalActive: false
+    }
+  },
+  head: {
+    title: 'Schülerlabore'
   },
   methods: {
-    openLabModal(item) {
-      this.clickedLab = item;
-      this.isImageModalActive = true;
+    openLabModal (item) {
+      this.clickedLab = item
+      this.isImageModalActive = true
     },
-    closeEvent() {
-      this.isImageModalActive = false;
-    },
-  },
-};
+    closeEvent () {
+      this.isImageModalActive = false
+    }
+  }
+}
 </script>

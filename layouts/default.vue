@@ -1,27 +1,27 @@
 <template>
-    <div v-if="$nuxt.isOnline" id="app">
-      <Navbar />
-      <Nuxt />
-      <Footer />
-    </div>
-    <Drawing v-else />
+  <div v-if="$nuxt.isOnline" id="app">
+    <Navbar />
+    <Nuxt />
+    <Footer />
+  </div>
+  <Drawing v-else />
 </template>
 
 <script>
-import Footer from "~/components/Footer.vue";
-import Navbar from "~/components/Navbar.vue";
-import Drawing from "~/components/Drawing.vue";
+import Footer from '~/components/Footer.vue'
+import Navbar from '~/components/Navbar.vue'
+import Drawing from '~/components/Drawing.vue'
 export default {
-  name: "App",
+  name: 'App',
   components: {
     Footer,
     Navbar,
-    Drawing,
+    Drawing
   },
-  mounted() {
-    this.$store.dispatch("init");
-  },
-};
+  mounted () {
+    this.$store.dispatch('init')
+  }
+}
 </script>
 
 <style>

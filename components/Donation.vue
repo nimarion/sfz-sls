@@ -25,14 +25,15 @@
                     rel="noreferrer"
                     inverted
                     expanded
-                    >Jetzt spenden!</b-button
                   >
+                    Jetzt spenden!
+                  </b-button>
                 </div>
               </div>
             </div>
           </div>
           <div class="column is-6">
-            <b-image :src="require('~/assets/undraw_science.svg')"></b-image>
+            <b-image :src="require('~/assets/undraw_science.svg')" />
           </div>
         </div>
       </div>

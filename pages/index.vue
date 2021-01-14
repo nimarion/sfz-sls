@@ -20,10 +20,10 @@
 </template>
 
 <script>
-import News from "~/components/NewsList.vue";
-import Sponsors from "~/components/Sponsors.vue";
-import Contact from "~/components/Contact.vue";
-import Donation from "~/components/Donation.vue";
+import News from '~/components/NewsList.vue'
+import Sponsors from '~/components/Sponsors.vue'
+import Contact from '~/components/Contact.vue'
+import Donation from '~/components/Donation.vue'
 
 export default {
   components: {
@@ -32,5 +32,5 @@ export default {
     Contact,
     Donation
   }
-};
+}
 </script>

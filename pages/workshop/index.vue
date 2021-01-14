@@ -6,33 +6,35 @@
     >
       <div class="hero-header">
         <div class="container has-text-centered" style="top: 20px">
-          <p id="title" class="title">Workshops für Schulklassen und -kurse</p>
+          <p id="title" class="title">
+            Workshops für Schulklassen und -kurse
+          </p>
         </div>
-        <br />
-        <br />
+        <br>
+        <br>
         <WorkshopFilter
           :workshops="this.$store.getters.workshops"
-          :isElearning="false"
+          :is-elearning="false"
         />
       </div>
     </section>
   </content>
 </template>
 <script>
-import WorkshopFilter from "~/components/WorkshopFilter.vue";
+import WorkshopFilter from '~/components/WorkshopFilter.vue'
 export default {
   components: {
     WorkshopFilter
   },
   head: {
-    title: "Workshops",
-     meta: [
+    title: 'Workshops',
+    meta: [
       {
-        hid: "description",
-        name: "description",
-        content: "Unser Workshop Angebot am Schülerforschungszentrum Saarlouis",
-      },
-    ],
-  },
-};
+        hid: 'description',
+        name: 'description',
+        content: 'Unser Workshop Angebot am Schülerforschungszentrum Saarlouis'
+      }
+    ]
+  }
+}
 </script>

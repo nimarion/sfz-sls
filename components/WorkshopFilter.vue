@@ -1,6 +1,6 @@
 <template>
   <section>
-    <b-sidebar type="is-light" :fullheight="true" v-model="open">
+    <b-sidebar v-model="open" type="is-light" :fullheight="true">
       <div class="p-1">
         <b-image :src="require('~/assets/undraw_select_option.svg')" />
         <!-- Klassenstufe -->
@@ -11,7 +11,7 @@
             :max="12"
             :step="1"
             ticks
-          ></b-slider>
+          />
         </b-field>
         <b-field>
           <p class="content">
@@ -20,14 +20,14 @@
           </p>
         </b-field>
         <!-- Dauer -->
-        <b-field label="Dauer des Workshops" v-if="!isElearning">
+        <b-field v-if="!isElearning" label="Dauer des Workshops">
           <b-slider
             v-model="selectedTimeRange"
             :min="1"
             :max="maxDuration"
             :step="1"
             ticks
-          ></b-slider>
+          />
         </b-field>
         <b-field v-if="!isElearning">
           <p class="content">
@@ -36,11 +36,11 @@
           </p>
         </b-field>
         <!-- Gruppengröße -->
-        <b-field label="Gruppengröße" v-if="!isElearning">
+        <b-field v-if="!isElearning" label="Gruppengröße">
           <b-numberinput
             v-model="selectedParticipants"
             :min="0"
-          ></b-numberinput>
+          />
         </b-field>
 
         <!-- Schulfach -->
@@ -50,7 +50,7 @@
             multiple
             aria-role="list"
           >
-            <b-button class="button is-primary" type="button" slot="trigger">
+            <b-button slot="trigger" class="button is-primary" type="button">
               <span>Ausgewählte ({{ selectedSchoolSubjects.length }})</span>
             </b-button>
 
@@ -72,9 +72,9 @@
         </b-field>
 
         <!-- Schülerlabor -->
-        <b-field label="Schülerlabor" v-if="!isElearning && labs.length > 0">
+        <b-field v-if="!isElearning && labs.length > 0" label="Schülerlabor">
           <b-dropdown v-model="selectedLabs" multiple aria-role="list">
-            <b-button class="button is-primary" type="button" slot="trigger">
+            <b-button slot="trigger" class="button is-primary" type="button">
               <span>Ausgewählte ({{ selectedLabs.length }})</span>
             </b-button>
 
@@ -97,20 +97,22 @@
       </div>
     </b-sidebar>
 
-    <b-button @click="open = true">Workshops filtern</b-button>
+    <b-button @click="open = true">
+      Workshops filtern
+    </b-button>
     <div class="hero-body">
       <!--Cards-->
       <div class="container">
         <div class="section">
           <div
-            class="row columns is-multiline"
             v-if="requestedWorkshops.length > 0"
+            class="row columns is-multiline"
           >
             <div
-              @click="openWorkshopModal(item)"
               v-for="item in requestedWorkshops"
               :key="item.name"
               class="column is-4"
+              @click="openWorkshopModal(item)"
             >
               <div class="card large">
                 <div class="card-image is-16by9">
@@ -126,16 +128,18 @@
                 <div class="card-content">
                   <div class="media">
                     <div class="media-content">
-                      <p class="title is-4 no-padding">{{ item.name }}</p>
+                      <p class="title is-4 no-padding">
+                        {{ item.name }}
+                      </p>
                     </div>
                   </div>
                   <div class="content">
                     {{
                       item.description.split(" ").length >= 25
                         ? item.description
-                            .split(" ")
-                            .slice(0, 25)
-                            .join(" ") + "..."
+                          .split(" ")
+                          .slice(0, 25)
+                          .join(" ") + "..."
                         : item.description
                     }}
                   </div>
@@ -148,30 +152,33 @@
     </div>
     <workshop-modal
       v-if="clickedWorkshop != null && isImageModalActive"
-      v-on:onChange="closeEvent"
       :img="clickedWorkshop.image"
       :name="clickedWorkshop.name"
       :desc="clickedWorkshop.description"
-      :maxParticipants="clickedWorkshop.maxParticipants"
+      :max-participants="clickedWorkshop.maxParticipants"
       :duration="clickedWorkshop.duration"
-      :minClass="clickedWorkshop.minClass"
-      :schoolSubject="clickedWorkshop.schoolSubject"
+      :min-class="clickedWorkshop.minClass"
+      :school-subject="clickedWorkshop.schoolSubject"
       :lab="clickedWorkshop.lab"
-      :isElearning="isElearning"
+      :is-elearning="isElearning"
       :video="clickedWorkshop.video"
-    ></workshop-modal>
+      @onChange="closeEvent"
+    />
   </section>
 </template>
 
 <script>
-import WorkshopModal from "../components/WorkshopModal.vue";
+import WorkshopModal from '../components/WorkshopModal.vue'
 
 export default {
   components: {
     WorkshopModal
   },
-  props: ["workshops", "isElearning"],
-  data() {
+  props: {
+    workshops: { type: Array, default: null },
+    isElearning: Boolean
+  },
+  data () {
     return {
       selectedSchoolSubjects: [],
       selectedLabs: [],
@@ -185,50 +192,80 @@ export default {
       isImageModalActive: false,
       clickedWorkshop: null,
       maxDuration: 1
-    };
+    }
+  },
+  watch: {
+    workshops (newValue, oldValue) {
+      if (oldValue.length === 0 && newValue.length !== 0) {
+        this.requestedWorkshops.push.apply(
+          this.requestedWorkshops,
+          this.workshops
+        )
+        this.loadFilterProps()
+      }
+    },
+    selectedSchoolSubjects () {
+      this.loadRequestedWorkshops()
+    },
+    seletecClassLevel () {
+      this.loadRequestedWorkshops()
+    },
+    selectedTimeRange () {
+      this.loadRequestedWorkshops()
+    },
+    selectedParticipants () {
+      this.loadRequestedWorkshops()
+    },
+    selectedLabs () {
+      this.loadRequestedWorkshops()
+    }
+  },
+  created () {
+    this.requestedWorkshops.push.apply(this.requestedWorkshops, this.workshops)
+    this.loadFilterProps()
   },
   methods: {
-    loadFilterProps() {
+    loadFilterProps () {
       this.maxDuration = Math.max.apply(
         Math,
-        this.workshops.map(function(item) {
-          return item.duration;
+        this.workshops.map(function (item) {
+          return item.duration
         })
-      );
+      )
       this.schoolSubject = [
         ...new Set(this.workshops.flatMap(item => item.schoolSubject))
-      ];
-      this.labs = [...new Set(this.workshops.flatMap(item => item.lab))];
+      ]
+      this.labs = [...new Set(this.workshops.flatMap(item => item.lab))]
     },
-    loadRequestedWorkshops() {
-      this.requestedWorkshops.length = 0;
+    loadRequestedWorkshops () {
+      this.requestedWorkshops.length = 0
       for (let i = 0; i < this.workshops.length; i++) {
-        const workshop = this.workshops[i];
+        const workshop = this.workshops[i]
 
         const isSubject =
-          this.selectedSchoolSubjects.length == 0
+          this.selectedSchoolSubjects.length === 0
             ? true
             : this.selectedSchoolSubjects.some(item =>
-                workshop.schoolSubject.includes(item)
-              );
-        const isClassLevel = workshop.minClass <= this.seletecClassLevel;
+              workshop.schoolSubject.includes(item)
+            )
+        const isClassLevel = workshop.minClass <= this.seletecClassLevel
 
         const isParticipants =
           this.selectedParticipants <= workshop.maxParticipants ||
-          this.selectedParticipants == 0 ||
-          workshop.maxParticipants == 0;
+          this.selectedParticipants === 0 ||
+          workshop.maxParticipants === 0
 
         const isLab =
-          this.selectedLabs.length == 0
+          this.selectedLabs.length === 0
             ? true
-            : this.selectedLabs.some(item => item == workshop.lab);
+            : this.selectedLabs.some(item => item === workshop.lab)
 
         const isDuration =
           this.isElearning ||
-          (this.selectedTimeRange[0] == 1 && this.selectedTimeRange[1] == 1) ||
+          (this.selectedTimeRange[0] === 1 && this.selectedTimeRange[1] === 1) ||
           (workshop.duration - this.selectedTimeRange[0]) *
             (workshop.duration - this.selectedTimeRange[1]) <=
-            0;
+            0
 
         if (
           isSubject &&
@@ -237,49 +274,19 @@ export default {
           isParticipants &&
           isLab
         ) {
-          this.requestedWorkshops.push(workshop);
+          this.requestedWorkshops.push(workshop)
         }
       }
     },
-    openWorkshopModal(item) {
-      this.clickedWorkshop = item;
-      this.isImageModalActive = true;
+    openWorkshopModal (item) {
+      this.clickedWorkshop = item
+      this.isImageModalActive = true
     },
-    closeEvent() {
-      this.isImageModalActive = false;
-    }
-  },
-  created() {
-    this.requestedWorkshops.push.apply(this.requestedWorkshops, this.workshops);
-    this.loadFilterProps();
-  },
-  watch: {
-    workshops: function(newValue, oldValue) {
-      if (oldValue.length == 0 && newValue.length != 0) {
-        this.requestedWorkshops.push.apply(
-          this.requestedWorkshops,
-          this.workshops
-        );
-        this.loadFilterProps();
-      }
-    },
-    selectedSchoolSubjects: function() {
-      this.loadRequestedWorkshops();
-    },
-    seletecClassLevel: function() {
-      this.loadRequestedWorkshops();
-    },
-    selectedTimeRange: function() {
-      this.loadRequestedWorkshops();
-    },
-    selectedParticipants: function() {
-      this.loadRequestedWorkshops();
-    },
-    selectedLabs: function() {
-      this.loadRequestedWorkshops();
+    closeEvent () {
+      this.isImageModalActive = false
     }
   }
-};
+}
 </script>
 
 <style>

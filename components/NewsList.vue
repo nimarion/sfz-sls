@@ -1,10 +1,10 @@
 <template>
   <section class="container">
-    <div class="columns features" v-if="this.$store.getters.news.length > 0">
+    <div v-if="this.$store.getters.news.length > 0" class="columns features">
       <div
-        class="column is-4"
         v-for="item in this.$store.getters.news.slice(0, 3)"
         :key="item.title"
+        class="column is-4"
       >
         <div class="card is-shady">
           <div class="card-image has-text-centered is-16by9">
@@ -12,7 +12,7 @@
               :src="item.image"
               :alt="item.title"
               ratio="16by9"
-            ></b-image>
+            />
           </div>
           <div class="card-content">
             <div class="content">
@@ -32,15 +32,15 @@
 <script>
 export default {
   computed: {
-    getNewsLink() {
+    getNewsLink () {
       return item =>
-        "news/" +
-        `${item.date}`.split(" ")[2] +
-        "/" +
-        encodeURIComponent(`${item.title}`);
+        'news/' +
+        `${item.date}`.split(' ')[2] +
+        '/' +
+        encodeURIComponent(`${item.title}`)
     }
   }
-};
+}
 </script>
 
 <style scoped>

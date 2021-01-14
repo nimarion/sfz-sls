@@ -12,16 +12,18 @@
                 >
                   <h2>
                     Schülerforschungszentrum
-                    <br />Saarlouis
+                    <br>Saarlouis
                   </h2>
                   <p>
                     c/o Benjamin Brück
-                    <br />St. Nazairer-Allee 6 <br />D-66740 Saarlouis
-                    <br />
-                    <br />
-                    <a id="button" class="button" href="mailto:info@sfz-sls.de"
-                      >Nachricht schreiben</a
-                    >
+                    <br>St. Nazairer-Allee 6 <br>D-66740 Saarlouis
+                    <br>
+                    <br>
+                    <a
+                      id="button"
+                      class="button"
+                      href="mailto:info@sfz-sls.de"
+                    >Nachricht schreiben</a>
                   </p>
                 </div>
               </div>
@@ -32,12 +34,13 @@
                   </h2>
                   <p>
                     c/o Landratsamt Saarlouis
-                    <br />Kaiser-Wilhelm-Straße 4 – 6 <br />D-66740 Saarlouis
-                    <br />
-                    <br />
-                    <a class="button" href="mailto:foerderverein@sfz-sls.de"
-                      >Nachricht schreiben</a
-                    >
+                    <br>Kaiser-Wilhelm-Straße 4 – 6 <br>D-66740 Saarlouis
+                    <br>
+                    <br>
+                    <a
+                      class="button"
+                      href="mailto:foerderverein@sfz-sls.de"
+                    >Nachricht schreiben</a>
                   </p>
                 </div>
               </div>

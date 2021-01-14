@@ -3,14 +3,16 @@
     <section id="hero-background" class="hero">
       <div class="hero-body">
         <div class="container has-text-centered">
-          <p id="title" class="title">Unser Team</p>
+          <p id="title" class="title">
+            Unser Team
+          </p>
         </div>
       </div>
       <div class="container">
         <div class="section">
           <div
-            class="row columns is-multiline"
             v-if="this.$store.getters.employees.length > 0"
+            class="row columns is-multiline"
           >
             <div
               v-for="card in this.$store.getters.employees"
@@ -24,16 +26,22 @@
                     :src="card.img"
                     :alt="card.name"
                     ratio="1by1"
-                  ></b-image>
+                  />
                 </div>
                 <div class="card-content">
                   <div class="media">
                     <div class="media-content">
-                      <p class="title is-4">{{ card.name }}</p>
-                      <p class="subtitle is-6">{{ card.position }}</p>
+                      <p class="title is-4">
+                        {{ card.name }}
+                      </p>
+                      <p class="subtitle is-6">
+                        {{ card.position }}
+                      </p>
                     </div>
                   </div>
-                  <div class="content">{{ card.desc }}</div>
+                  <div class="content">
+                    {{ card.desc }}
+                  </div>
                 </div>
               </div>
             </div>
@@ -47,14 +55,14 @@
 <script>
 export default {
   head: {
-    title: "Team",
+    title: 'Team',
     meta: [
       {
-        hid: "description",
-        name: "description",
-        content: "Unser Team am Schülerforschungszentrum Saarlouis",
-      },
-    ],
-  },
-};
+        hid: 'description',
+        name: 'description',
+        content: 'Unser Team am Schülerforschungszentrum Saarlouis'
+      }
+    ]
+  }
+}
 </script>

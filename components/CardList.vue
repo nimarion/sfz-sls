@@ -3,12 +3,12 @@
     <!--Cards-->
     <div class="container">
       <div class="section">
-        <div class="row columns is-multiline" v-if="data.length > 0">
+        <div v-if="data.length > 0" class="row columns is-multiline">
           <div
-            @click="openLabModal(item)"
             v-for="item in data"
             :key="item.title"
             class="column is-4"
+            @click="openLabModal(item)"
           >
             <div class="card large">
               <div class="card-image is-1by1">
@@ -16,20 +16,19 @@
                   :src-fallback="require('~/assets/background.jpg')"
                   ratio="1by1"
                   :src="item.image"
-                ></b-image>
+                />
               </div>
               <div class="card-content">
                 <div class="media">
                   <div class="media-content">
-                    <p class="title is-4 no-padding">{{ item.title }}</p>
+                    <p class="title is-4 no-padding">
+                      {{ item.title }}
+                    </p>
                   </div>
                 </div>
                 <div class="content">
                   {{
-                    item.description
-                      .split(" ")
-                      .slice(0, 24)
-                      .join(" ") + "..."
+                    item.description.split(" ").slice(0, 24).join(" ") + "..."
                   }}
                 </div>
                 <p>
@@ -46,11 +45,16 @@
 
 <script>
 export default {
-  props: ["data"],
+  props: {
+    data: {
+      type: Array,
+      default: null
+    }
+  },
   methods: {
-    openLabModal(item) {
-      this.$emit("openModal", item);
+    openLabModal (item) {
+      this.$emit('openModal', item)
     }
   }
-};
+}
 </script>

@@ -11,55 +11,55 @@
             Saarlouis
           </p>
         </div>
-        <br />
+        <br>
         <card-list
-          v-on:openModal="openLabModal"
           :data="this.$store.getters.projects"
-        ></card-list>
+          @openModal="openLabModal"
+        />
       </div>
       <lab-modal
         v-if="clickedLab != null && isImageModalActive"
-        v-on:onChange="closeEvent"
         :website="clickedLab.website"
         :name="clickedLab.title"
         :desc="clickedLab.description"
-      ></lab-modal>
+        @onChange="closeEvent"
+      />
     </section>
   </content>
 </template>
 <script>
-import LabModal from "~/components/LabModal.vue";
-import CardList from "~/components/CardList.vue";
+import LabModal from '~/components/LabModal.vue'
+import CardList from '~/components/CardList.vue'
 export default {
   components: {
     LabModal,
-    CardList,
+    CardList
   },
-  head: {
-    title: "Schülerprojekte",
-    meta: [
-      {
-        hid: "description",
-        name: "description",
-        content:
-          "Projekte von Schülerinnen und Schülern am Schülerforschungszentrum Saarlouis",
-      },
-    ],
-  },
-  data() {
+  data () {
     return {
       clickedLab: null,
-      isImageModalActive: false,
-    };
+      isImageModalActive: false
+    }
+  },
+  head: {
+    title: 'Schülerprojekte',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'Projekte von Schülerinnen und Schülern am Schülerforschungszentrum Saarlouis'
+      }
+    ]
   },
   methods: {
-    openLabModal(item) {
-      this.clickedLab = item;
-      this.isImageModalActive = true;
+    openLabModal (item) {
+      this.clickedLab = item
+      this.isImageModalActive = true
     },
-    closeEvent() {
-      this.isImageModalActive = false;
-    },
-  },
-};
+    closeEvent () {
+      this.isImageModalActive = false
+    }
+  }
+}
 </script>

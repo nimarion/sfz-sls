@@ -1,12 +1,14 @@
 <template>
   <section
+    v-if="this.$store.getters.board_members.length > 0"
     style="content-visibility: auto"
     class="hero"
-    v-if="this.$store.getters.board_members.length > 0"
   >
     <div class="hero-body has-text-centered">
       <div class="content container box">
-        <p class="title">Unser Vorstand</p>
+        <p class="title">
+          Unser Vorstand
+        </p>
 
         <div class="section">
           <div class="row columns is-multiline">

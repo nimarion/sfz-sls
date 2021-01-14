@@ -7,8 +7,12 @@
     "
   >
     <div class="columns has-text-centered">
-      <NuxtLink  to="/impressum" class="column">Impressum</NuxtLink>
-      <NuxtLink  to="/datenschutz" class="column">Datenschutz</NuxtLink>
+      <NuxtLink to="/impressum" class="column">
+        Impressum
+      </NuxtLink>
+      <NuxtLink to="/datenschutz" class="column">
+        Datenschutz
+      </NuxtLink>
       <div class="column">
         <a href="mailto:info@sfz-sls.de">info@sfz-sls.de</a>
       </div>

@@ -6,7 +6,7 @@
           :src="require('~/assets/NavbarLogo.webp')"
           :webp-fallback="require('~/assets/NavbarLogo.png')"
           alt="Schülerforschungszentrum Saarlouis"
-        ></b-image>
+        />
       </b-navbar-item>
     </template>
 
@@ -15,41 +15,47 @@
         id="navbar-text"
         tag="nuxt-link"
         to="/forschung"
-        >Forschung</b-navbar-item
       >
+        Forschung
+      </b-navbar-item>
       <b-navbar-item
         id="navbar-text"
         tag="nuxt-link"
         to="/workshop"
-        >Workshops</b-navbar-item
       >
+        Workshops
+      </b-navbar-item>
       <b-navbar-item
         id="navbar-text"
         tag="nuxt-link"
         to="/e-learning"
-        >E-Learning</b-navbar-item
       >
+        E-Learning
+      </b-navbar-item>
       <b-navbar-item
         id="navbar-text"
         tag="nuxt-link"
         to="/schülerlabore"
-        >Schülerlabore</b-navbar-item
       >
+        Schülerlabore
+      </b-navbar-item>
 
       <b-navbar-dropdown class="is-hidden-mobile" label="Über uns">
         <b-navbar-item
           id="navbar-text"
           tag="nuxt-link"
           to="/förderverein"
-          >Förderverein</b-navbar-item
         >
+          Förderverein
+        </b-navbar-item>
 
         <b-navbar-item
           id="navbar-text"
           tag="nuxt-link"
           to="/team"
-          >Team</b-navbar-item
         >
+          Team
+        </b-navbar-item>
       </b-navbar-dropdown>
 
       <div class="is-hidden-tablet">
@@ -57,22 +63,24 @@
           id="navbar-text"
           tag="nuxt-link"
           to="/förderverein"
-          >Förderverein</b-navbar-item
         >
+          Förderverein
+        </b-navbar-item>
 
         <b-navbar-item
           id="navbar-text"
           tag="nuxt-link"
           to="/team"
-          >Team</b-navbar-item
         >
+          Team
+        </b-navbar-item>
       </div>
 
       <b-navbar-item href="https://www.kreis-saarlouis.de/">
         <b-image
           :src="require('~/assets/landkreis.png')"
           alt="Landkreis Saarlouis"
-        ></b-image>
+        />
       </b-navbar-item>
     </template>
   </b-navbar>

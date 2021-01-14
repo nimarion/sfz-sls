@@ -6,20 +6,20 @@
 
         <h2>Angaben gem&auml;&szlig; &sect; 5 TMG</h2>
         <p>
-          Sch&uuml;lerforschungszentrum Saarlouis<br />
-          St. Nazairer-Allee 6<br />
+          Sch&uuml;lerforschungszentrum Saarlouis<br>
+          St. Nazairer-Allee 6<br>
           66740 Saarlouis
         </p>
 
         <p>
-          <strong>Vertreten durch:</strong><br />
+          <strong>Vertreten durch:</strong><br>
           Benjamin Br&uuml;ck
         </p>
 
         <h2>Kontakt</h2>
         <p>
-          Telefon: 06831 444-460<br />
-          Telefax: 06831 444-460<br />
+          Telefon: 06831 444-460<br>
+          Telefax: 06831 444-460<br>
           E-Mail: foerderverein@sfz-sls.de
         </p>
 
@@ -93,7 +93,7 @@
 <script>
 export default {
   head: {
-    title: "Impressum",
-  },
+    title: 'Impressum'
+  }
 }
 </script>
