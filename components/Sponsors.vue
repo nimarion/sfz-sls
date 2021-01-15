@@ -2,9 +2,9 @@
   <section class="hero has-text-centered" style="content-visibility: auto">
     <div class="hero-body">
       <div class="container">
-        <div v-if="this.$store.getters.sponsors.length > 0" class="columns">
+        <div v-if="sponsors.length > 0" class="columns">
           <div
-            v-for="item in this.$store.getters.sponsors"
+            v-for="item in sponsors"
             :key="item.name"
             class="column"
           >
@@ -17,3 +17,14 @@
     </div>
   </section>
 </template>
+<script lang="ts">
+import { Component, Vue, namespace } from 'nuxt-property-decorator'
+import { Sponsor } from '~/interfaces/Sponsors'
+
+const main = namespace('main')
+@Component
+export default class Sponsors extends Vue {
+  @main.State
+  public sponsors!: Array<Sponsor>;
+}
+</script>

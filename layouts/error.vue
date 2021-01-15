@@ -30,9 +30,15 @@
   </div>
 </template>
 
-<script>
-export default {
-  layout (context) {
+<script lang="ts">
+import { NuxtError } from '@nuxt/types'
+import { Component, Prop, Vue } from 'nuxt-property-decorator'
+
+@Component
+export default class Error extends Vue {
+  @Prop({ required: true }) readonly error!: NuxtError;
+
+  layout () {
     if (
       window.location.pathname.startsWith('/workshops/') &&
       window.location.pathname.split('/')[2].length > 0
@@ -40,32 +46,25 @@ export default {
       return 'error-layout'
     }
     return 'default'
-  },
-  props: {
-    error: {
-      type: Object,
-      default: null
-    }
-  },
-  computed: {
-    isWorkshop () {
-      if (
-        window.location.pathname.startsWith('/workshops/') &&
-        window.location.pathname.split('/')[2].length > 0
-      ) {
-        return true
-      }
-      return false
-    },
-    isNews () {
-      return window.location.pathname.startsWith('/news/')
-    },
-    workshopName () {
-      return decodeURIComponent(window.location.pathname.split('/')[2])
-    },
-    siteName () {
-      return decodeURIComponent(window.location.pathname)
-    }
+  }
+
+  get isWorkshop (): boolean {
+    return (
+      window.location.pathname.startsWith('/workshops/') &&
+      window.location.pathname.split('/')[2].length > 0
+    )
+  }
+
+  get isNews (): boolean {
+    return window.location.pathname.startsWith('/news/')
+  }
+
+  get workshopName (): string {
+    return decodeURIComponent(window.location.pathname.split('/')[2])
+  }
+
+  get siteName (): string {
+    return decodeURIComponent(window.location.pathname)
   }
 }
 </script>

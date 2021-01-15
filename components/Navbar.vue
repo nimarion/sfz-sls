@@ -12,28 +12,24 @@
 
     <template slot="end">
       <b-navbar-item
-        id="navbar-text"
         tag="nuxt-link"
         to="/forschung"
       >
         Forschung
       </b-navbar-item>
       <b-navbar-item
-        id="navbar-text"
         tag="nuxt-link"
         to="/workshop"
       >
         Workshops
       </b-navbar-item>
       <b-navbar-item
-        id="navbar-text"
         tag="nuxt-link"
         to="/e-learning"
       >
         E-Learning
       </b-navbar-item>
       <b-navbar-item
-        id="navbar-text"
         tag="nuxt-link"
         to="/schülerlabore"
       >
@@ -42,7 +38,6 @@
 
       <b-navbar-dropdown class="is-hidden-mobile" label="Über uns">
         <b-navbar-item
-          id="navbar-text"
           tag="nuxt-link"
           to="/förderverein"
         >
@@ -50,7 +45,6 @@
         </b-navbar-item>
 
         <b-navbar-item
-          id="navbar-text"
           tag="nuxt-link"
           to="/team"
         >
@@ -60,7 +54,6 @@
 
       <div class="is-hidden-tablet">
         <b-navbar-item
-          id="navbar-text"
           tag="nuxt-link"
           to="/förderverein"
         >
@@ -68,7 +61,6 @@
         </b-navbar-item>
 
         <b-navbar-item
-          id="navbar-text"
           tag="nuxt-link"
           to="/team"
         >

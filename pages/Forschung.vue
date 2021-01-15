@@ -13,13 +13,12 @@
         </div>
         <br>
         <card-list
-          :data="this.$store.getters.projects"
+          :data="projects"
           @openModal="openLabModal"
         />
       </div>
       <lab-modal
         v-if="clickedLab != null && isImageModalActive"
-        :website="clickedLab.website"
         :name="clickedLab.title"
         :desc="clickedLab.description"
         @onChange="closeEvent"
@@ -27,39 +26,46 @@
     </section>
   </content>
 </template>
-<script>
+<script lang="ts">
+import { Component, Vue, namespace } from 'nuxt-property-decorator'
 import LabModal from '~/components/LabModal.vue'
 import CardList from '~/components/CardList.vue'
-export default {
+import { Project } from '~/interfaces/Project'
+
+const main = namespace('main')
+@Component({
   components: {
     LabModal,
     CardList
   },
-  data () {
+  head () {
     return {
-      clickedLab: null,
-      isImageModalActive: false
+      title: 'Schülerprojekte',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content:
+            'Projekte von Schülerinnen und Schülern am Schülerforschungszentrum Saarlouis'
+        }
+      ]
     }
-  },
-  head: {
-    title: 'Schülerprojekte',
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-        content:
-          'Projekte von Schülerinnen und Schülern am Schülerforschungszentrum Saarlouis'
-      }
-    ]
-  },
-  methods: {
-    openLabModal (item) {
-      this.clickedLab = item
-      this.isImageModalActive = true
-    },
-    closeEvent () {
-      this.isImageModalActive = false
-    }
+  }
+})
+export default class Forschung extends Vue {
+  clickedLab: Project = null;
+  isImageModalActive: boolean = false;
+
+  @main.State
+  public projects!: Array<Project>;
+
+  public openLabModal (item: Project): void {
+    this.clickedLab = item
+    this.isImageModalActive = true
+  }
+
+  public closeEvent (): void {
+    this.isImageModalActive = false
   }
 }
 </script>

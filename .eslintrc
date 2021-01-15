@@ -1,8 +1,0 @@
-  {
-    "extends": [
-      "@nuxtjs"
-    ],
-    "globals": {
-      "$nuxt": "readonly"
-    }
-  }

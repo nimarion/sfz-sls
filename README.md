@@ -1,4 +1,5 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e3135f3e-8851-4db4-9c8b-2651a21769cf/deploy-status)](https://sfz-sls.netlify.app)
+![ts](https://badgen.net/badge/Built%20With/TypeScript/blue)
 <a href="https://bulma.io">
   <img src="https://bulma.io/images/made-with-bulma.png" alt="Made with Bulma"  height="20">
 </a>
@@ -21,18 +22,15 @@ npm install
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+npm run dev
 ```
 
 ### Compiles and minifies for production
 ```
-npm run build
+npm run build && npm run generate
 ```
 
 ### Lints and fixes files
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
