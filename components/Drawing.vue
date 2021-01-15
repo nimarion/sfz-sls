@@ -2,7 +2,7 @@
   <section>
     <div style="max-width: 700px;" class="container has-text-centered">
       <h1 class="title">
-        Du bist aktuell nicht mit Internet verbunden.
+        Du bist aktuell nicht mit dem Internet verbunden.
       </h1>
     </div>
     <br>

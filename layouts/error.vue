@@ -14,7 +14,7 @@
               {{
                 isNews
                   ? error.message
-                  : "Die Seite " + siteName + "existiert nicht"
+                  : "Die Seite " + siteName + " existiert nicht"
               }}
             </h1>
           </div>
