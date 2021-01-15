@@ -117,7 +117,8 @@ export default {
       name: 'Schülerforschungszentrum Saarlouis',
       short_name: 'SFZ',
       lang: 'de',
-      display: 'browser'
+      display: 'browser',
+      theme_color: '#ffffff'
     }
   },
   plugins: ['~plugins/iframe'],
