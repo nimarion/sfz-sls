@@ -10,23 +10,12 @@
       </div>
       <div class="container">
         <div class="section">
-          <div
-            v-if="this.$store.getters.employees.length > 0"
-            class="row columns is-multiline"
-          >
-            <div
-              v-for="card in this.$store.getters.employees"
-              :key="card.name"
-              class="column is-4"
-            >
+          <div v-if="employees.length > 0" class="row columns is-multiline">
+            <div v-for="card in employees" :key="card.name" class="column is-4">
               <div class="card large">
                 <!-- 266x400 -->
                 <div class="card-image is-1by1">
-                  <b-image
-                    :src="card.img"
-                    :alt="card.name"
-                    ratio="1by1"
-                  />
+                  <b-image :src="card.img" :alt="card.name" ratio="1by1" />
                 </div>
                 <div class="card-content">
                   <div class="media">
@@ -52,17 +41,28 @@
   </content>
 </template>
 
-<script>
-export default {
-  head: {
-    title: 'Team',
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'Unser Team am Schülerforschungszentrum Saarlouis'
-      }
-    ]
+<script lang="ts">
+import { Component, Vue, namespace } from 'nuxt-property-decorator'
+import { Employee } from '~/interfaces/Employee'
+
+const main = namespace('main')
+
+@Component({
+  head () {
+    return {
+      title: 'Team',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Unser Team am Schülerforschungszentrum Saarlouis'
+        }
+      ]
+    }
   }
+})
+export default class Team extends Vue {
+  @main.State
+  public employees!: Array<Employee>;
 }
 </script>

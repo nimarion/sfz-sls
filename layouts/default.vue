@@ -7,19 +7,28 @@
   <Drawing v-else />
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue, namespace } from 'nuxt-property-decorator'
+
 import Footer from '~/components/Footer.vue'
 import Navbar from '~/components/Navbar.vue'
 import Drawing from '~/components/Drawing.vue'
-export default {
-  name: 'App',
+
+const test = namespace('main')
+
+@Component({
   components: {
     Footer,
     Navbar,
     Drawing
-  },
+  }
+})
+export default class App extends Vue {
+  @test.Mutation
+  public initialiseStore!: (data: object) => void
+
   mounted () {
-    this.$store.dispatch('init')
+    this.initialiseStore({})
   }
 }
 </script>

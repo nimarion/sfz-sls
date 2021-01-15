@@ -95,73 +95,45 @@
   </b-modal>
 </template>
 
-<script>
-export default {
-  props: {
-    name: {
-      type: String,
-      default: null
-    },
-    desc: {
-      type: String,
-      default: null
-    },
-    img: {
-      type: String,
-      default: null
-    },
-    duration: {
-      type: Number,
-      default: null
-    },
-    schoolSubject: {
-      type: String,
-      default: null
-    },
-    minClass: {
-      type: Number,
-      default: null
-    },
-    maxParticipants: {
-      type: Number,
-      default: null
-    },
-    active: Boolean,
-    isElearning: Boolean,
-    lab: {
-      type: String,
-      default: null
-    },
-    video: {
-      type: String,
-      default: null
-    }
-  },
-  data () {
-    return {
-      isActive: true,
-      address: 'info@sfz-sls.de',
-      body:
-        'Hallo!%20%0D%0AIch%20m%C3%B6chte%20gerne%20f%C3%BCr%20meine%20Klasse%20den%20' +
+<script lang="ts">
+import { Component, Prop, Vue } from 'nuxt-property-decorator'
+
+@Component
+export default class WorkshopModal extends Vue {
+  @Prop({ required: true }) readonly name!: string;
+  @Prop({ required: true }) readonly desc!: string;
+  @Prop({ required: true }) readonly img!: string;
+  @Prop({ required: true }) readonly duration!: number;
+  @Prop({ required: true }) readonly schoolSubject!: string;
+  @Prop({ required: true }) readonly minClass!: number;
+  @Prop({ required: true }) readonly maxParticipants!: number;
+  @Prop({ required: true }) readonly active!: boolean;
+  @Prop({ required: true }) readonly isElearning!: string;
+  @Prop({ required: true }) readonly lab!: string;
+  @Prop({ required: false }) readonly video!: string;
+
+  isActive: boolean = true;
+  address: string = 'info@sfz-sls.de';
+  body: string =
+    'Hallo!%20%0D%0AIch%20m%C3%B6chte%20gerne%20f%C3%BCr%20meine%20Klasse%20den%20' +
+    this.name +
+    '-Workshop%20buchen.%20%0D%0ADatum%3A%20%0D%0AZeit%3A%20%0D%0ASchule%3A%20%0D%0AKlasse%3A%20%0D%0AAnzahl%20der%20SuS%3A';
+
+  workshopLink: string = '/workshop/' + this.name;
+
+  public closeModel (): void {
+    this.$emit('onChange', 'hi from child')
+  }
+
+  public openMailClient (): void {
+    window.open(
+      'mailto:' +
+        this.address +
+        '?subject=' +
         this.name +
-        '-Workshop%20buchen.%20%0D%0ADatum%3A%20%0D%0AZeit%3A%20%0D%0ASchule%3A%20%0D%0AKlasse%3A%20%0D%0AAnzahl%20der%20SuS%3A',
-      workshopLink: '/workshop/' + this.name
-    }
-  },
-  methods: {
-    closeModel () {
-      this.$emit('onChange', 'hi from child')
-    },
-    openMailClient () {
-      window.open(
-        'mailto:' +
-          this.address +
-          '?subject=' +
-          this.name +
-          '-Kurs&body=' +
-          this.body
-      )
-    }
+        '-Kurs&body=' +
+        this.body
+    )
   }
 }
 </script>

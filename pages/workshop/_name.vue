@@ -14,40 +14,35 @@
     </div>
   </div>
 </template>
-<script>
-export default {
-  data () {
-    return {
-      url:
-        window.location.origin +
-        '/workshops/' +
-        encodeURIComponent(this.$route.params.name) +
-        '/index.html?cache=' +
-        new Date().getTime(),
-      iframeLoading: true
-    }
-  },
-  mounted () {
-    // Add CSS rules
-    document.documentElement.style.height = '100%'
-    document.getElementById('__nuxt').style.height = '100%'
-    document.getElementById('__layout').style.height = '100%'
-    document.getElementsByTagName('body')[0].style.height = '100%'
-    document.getElementById('app').style.height = '100%'
-  },
-  beforeDestroy () {
-    // Delete CSS rules
-    document.documentElement.style.height = ''
-    document.getElementById('__nuxt').style.height = ''
-    document.getElementById('__layout').style.height = ''
-    document.getElementsByTagName('body')[0].style.height = ''
-    document.getElementById('app').style.height = ''
-  },
-  methods: {
-    onLoad () {
-      this.iframeLoading = false
-    }
-  }
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+
+@Component
+export default class ELearning extends Vue {
+      url: string = window.location.origin + '/workshops/' + encodeURIComponent(this.$route.params.name) + '/index.html?cache=' + new Date().getTime();
+      iframeLoading: boolean = true;
+
+      mounted () {
+        // Add CSS rules
+        document.documentElement.style.height = '100%';
+        (document.getElementById('__nuxt') as HTMLElement).style.height = '100%';
+        (document.getElementById('__layout') as HTMLElement).style.height = '100%';
+        (document.getElementsByTagName('body')[0] as HTMLElement).style.height = '100%';
+        (document.getElementById('app') as HTMLElement).style.height = '100%'
+      }
+
+      beforeDestroy () {
+        // Delete CSS rules
+        document.documentElement.style.height = '';
+        (document.getElementById('__nuxt') as HTMLElement).style.height = '';
+        (document.getElementById('__layout') as HTMLElement).style.height = '';
+        (document.getElementsByTagName('body')[0] as HTMLElement).style.height = '';
+        (document.getElementById('app') as HTMLElement).style.height = ''
+      }
+
+      public onLoad (): void {
+        this.iframeLoading = false
+      }
 }
 </script>
 

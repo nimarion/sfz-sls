@@ -43,18 +43,15 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    data: {
-      type: Array,
-      default: null
-    }
-  },
-  methods: {
-    openLabModal (item) {
-      this.$emit('openModal', item)
-    }
+<script lang="ts">
+import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import { Project } from '~/interfaces/Project'
+
+@Component
+export default class LabModal extends Vue {
+  @Prop({ required: true }) readonly data!: Array<Project>;
+  public openLabModal (item: Project): void {
+    this.$emit('openModal', item)
   }
 }
 </script>

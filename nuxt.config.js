@@ -98,10 +98,15 @@ export default {
   build: {
     parallel: true,
     terser: true,
-    sourceMap: true
+    sourceMap: true,
+    typescript: {
+      typeCheck: {
+        eslint: true
+      }
+    }
   },
   buildModules: [
-    '@nuxtjs/eslint-module'
+    '@nuxt/typescript-build'
   ],
   pwa: {
     meta: {

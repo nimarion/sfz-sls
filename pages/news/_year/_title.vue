@@ -44,23 +44,25 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
 import snarkdown from 'snarkdown'
+import { News } from '~/interfaces/News'
 
-export default {
-  data () {
-    return {
-      date: null,
-      author: null,
-      image: null,
-      htmlContent: null
-    }
-  },
+@Component
+export default class NewsView extends Vue {
+  date: string = '';
+  author: string = '';
+  image: string = '';
+  htmlContent: string = '';
+
   created () {
     fetch('/news/news.json?time=' + new Date().getTime())
       .then(response => response.json())
       .then(data =>
-        data.filter(element => element.title === this.$route.params.title)
+        data.filter(
+          (element: News) => element.title === this.$route.params.title
+        )
       )
       .then((data) => {
         this.date = data[0].date
@@ -69,27 +71,33 @@ export default {
         this.fetchContent(data[0].markdown)
       })
       .then(() => {
-        if (this.date == null || this.author == null) {
+        if (this.date === '' || this.author === '') {
           this.sendTo404()
         }
       })
       .catch(() => this.sendTo404())
-  },
-  methods: {
-    sendTo404 () {
-      $nuxt.error({
-        message: 'Der Artikel ' + this.$route.params.title + ' existiert nicht',
-        statusCode: 404
-      })
-    },
-    fetchContent (markdownUrl) {
-      fetch(window.location.origin + '/news/' + markdownUrl)
-        .then(response => response.text())
-        .then((data) => {
+  }
+
+  public sendTo404 (): void {
+    this.$nuxt.error({
+      message: 'Der Artikel ' + this.$route.params.title + ' existiert nicht',
+      statusCode: 404
+    })
+  }
+
+  public fetchContent (markdownUrl: string): void {
+    fetch(window.location.origin + '/news/' + markdownUrl)
+      .then(response => response.text())
+      .then((data) => {
+        if (data.length !== 0) {
           this.htmlContent = snarkdown(data)
-        })
-        .catch(() => this.sendTo404())
-    }
+        } else {
+          this.sendTo404()
+        }
+      })
+      .catch(() => {
+        this.sendTo404()
+      })
   }
 }
 </script>

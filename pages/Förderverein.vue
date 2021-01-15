@@ -38,20 +38,26 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
 import Sponsors from '~/components/Sponsors.vue'
 import Donation from '~/components/Donation.vue'
 import Board from '~/components/Board.vue'
-export default {
+@Component({
   components: {
     Sponsors,
     Donation,
     Board
   },
-  head: {
-    title: 'Förderverein'
+  head () {
+    return {
+      title: 'Förderverein'
+
+    }
   }
-}
+})
+export default class Förderverein extends Vue {}
+
 </script>
 
 <style scoped>

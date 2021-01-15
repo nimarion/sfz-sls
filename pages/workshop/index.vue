@@ -13,28 +13,38 @@
         <br>
         <br>
         <WorkshopFilter
-          :workshops="this.$store.getters.workshops"
+          :workshops="workshops"
           :is-elearning="false"
         />
       </div>
     </section>
   </content>
 </template>
-<script>
+<script lang="ts">
+import { Component, Vue, namespace } from 'nuxt-property-decorator'
 import WorkshopFilter from '~/components/WorkshopFilter.vue'
-export default {
+import { Workshop } from '~/interfaces/Workshop'
+
+const main = namespace('main')
+@Component({
   components: {
     WorkshopFilter
   },
-  head: {
-    title: 'Workshops',
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'Unser Workshop Angebot am Schülerforschungszentrum Saarlouis'
-      }
-    ]
+  head () {
+    return {
+      title: 'Workshops',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Unser Workshop Angebot am Schülerforschungszentrum Saarlouis'
+        }
+      ]
+    }
   }
+})
+export default class WorkshopPage extends Vue {
+  @main.State
+  public workshops!: Array<Workshop>;
 }
 </script>

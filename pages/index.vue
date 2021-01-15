@@ -12,25 +12,27 @@
         </div>
       </div>
     </section>
-    <News />
+    <NewsList />
     <Donation />
     <Contact class="is-hidden-mobile" />
     <Sponsors />
   </content>
 </template>
 
-<script>
-import News from '~/components/NewsList.vue'
+<script lang="ts">
+import { Vue, Component } from 'nuxt-property-decorator'
+import NewsList from '~/components/NewsList.vue'
 import Sponsors from '~/components/Sponsors.vue'
 import Contact from '~/components/Contact.vue'
 import Donation from '~/components/Donation.vue'
 
-export default {
+@Component({
   components: {
-    News,
+    NewsList,
     Sponsors,
     Contact,
     Donation
   }
-}
+})
+export default class Startpgag extends Vue {}
 </script>

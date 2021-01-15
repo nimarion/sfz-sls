@@ -1,6 +1,6 @@
 <template>
   <section
-    v-if="this.$store.getters.board_members.length > 0"
+    v-if="boardMembers.length > 0"
     style="content-visibility: auto"
     class="hero"
   >
@@ -13,7 +13,7 @@
         <div class="section">
           <div class="row columns is-multiline">
             <div
-              v-for="item in this.$store.getters.board_members"
+              v-for="item in boardMembers"
               :key="item.name"
               class="column is-4"
             >
@@ -32,3 +32,15 @@
     </div>
   </section>
 </template>
+
+<script lang="ts">
+import { Component, Vue, namespace } from 'nuxt-property-decorator'
+import { BoardMember } from '~/interfaces/BoardMember'
+
+const main = namespace('main')
+@Component
+export default class Board extends Vue {
+  @main.State
+  public boardMembers!: Array<BoardMember>;
+}
+</script>
