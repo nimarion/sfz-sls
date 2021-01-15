@@ -1,7 +1,7 @@
 {
   "name": "Schülerforschungszentrum Saarlouis",
   "short_name": "SFZ",
-  "description": "[![Netlify Status](https://api.netlify.com/api/v1/badges/e3135f3e-8851-4db4-9c8b-2651a21769cf/deploy-status)](https://sfz-sls.netlify.app) <a href=\"https://bulma.io\">   <img src=\"https://bulma.io/images/made-with-bulma.png\" alt=\"Made with Bulma\"  height=\"20\"> </a>",
+  "description": "[![Netlify Status](https://api.netlify.com/api/v1/badges/e3135f3e-8851-4db4-9c8b-2651a21769cf/deploy-status)](https://sfz-sls.netlify.app) ![ts](https://badgen.net/badge/Built%20With/TypeScript/blue) <a href=\"https://bulma.io\">   <img src=\"https://bulma.io/images/made-with-bulma.png\" alt=\"Made with Bulma\"  height=\"20\"> </a>",
   "icons": [
     {
       "src": "/www/_nuxt/icons/icon_64x64.138876.png",
@@ -49,5 +49,6 @@
   "start_url": "/www/?standalone=true",
   "display": "browser",
   "background_color": "#ffffff",
+  "theme_color": "#ffffff",
   "lang": "de"
 }
