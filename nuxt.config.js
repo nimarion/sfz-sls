@@ -126,5 +126,8 @@ export default {
   sitemap: {
     hostname: 'https://sfz-sls.de/',
     gzip: true
+  },
+  generate: {
+    fallback: '404.html'
   }
 }
