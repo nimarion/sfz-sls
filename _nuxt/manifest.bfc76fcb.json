@@ -1,0 +1,54 @@
+{
+  "name": "Schülerforschungszentrum Saarlouis",
+  "short_name": "SFZ",
+  "description": "[![Netlify Status](https://api.netlify.com/api/v1/badges/e3135f3e-8851-4db4-9c8b-2651a21769cf/deploy-status)](https://sfz-sls.netlify.app) ![ts](https://badgen.net/badge/Built%20With/TypeScript/blue) <a href=\"https://bulma.io\">   <img src=\"https://bulma.io/images/made-with-bulma.png\" alt=\"Made with Bulma\"  height=\"20\"> </a>",
+  "icons": [
+    {
+      "src": "/www/_nuxt/icons/icon_64x64.138876.png",
+      "sizes": "64x64",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/www/_nuxt/icons/icon_120x120.138876.png",
+      "sizes": "120x120",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/www/_nuxt/icons/icon_144x144.138876.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/www/_nuxt/icons/icon_152x152.138876.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/www/_nuxt/icons/icon_192x192.138876.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/www/_nuxt/icons/icon_384x384.138876.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/www/_nuxt/icons/icon_512x512.138876.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/www/?standalone=true",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "lang": "de"
+}
