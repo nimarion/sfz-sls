@@ -106,7 +106,8 @@ export default {
     }
   },
   buildModules: [
-    '@nuxt/typescript-build'
+    '@nuxt/typescript-build',
+    '@nuxtjs/fontawesome'
   ],
   pwa: {
     meta: {
@@ -122,7 +123,17 @@ export default {
     }
   },
   plugins: ['~plugins/iframe'],
-  modules: [['nuxt-buefy', { css: true, materialDesignIcons: false }], ['@nuxtjs/sitemap'], ['@nuxtjs/pwa']],
+  modules: [['nuxt-buefy', {
+    css: true,
+    defaultIconPack: 'fas',
+    defaultIconComponent: 'FontAwesomeIcon',
+    materialDesignIcons: false
+  }], ['@nuxtjs/sitemap'], ['@nuxtjs/pwa']],
+  fontawesome: {
+    icons: {
+      solid: ['faPlus', 'faMinus']
+    }
+  },
   sitemap: {
     hostname: 'https://sfz-sls.de/',
     gzip: true
