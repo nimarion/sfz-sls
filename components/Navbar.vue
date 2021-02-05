@@ -11,60 +11,48 @@
     </template>
 
     <template slot="end">
-      <b-navbar-item
-        tag="nuxt-link"
-        to="/forschung"
-      >
+      <b-navbar-item tag="nuxt-link" to="/forschung">
         Forschung
       </b-navbar-item>
-      <b-navbar-item
-        tag="nuxt-link"
-        to="/workshop"
-      >
+      <b-navbar-item tag="nuxt-link" to="/workshop">
         Workshops
       </b-navbar-item>
-      <b-navbar-item
-        tag="nuxt-link"
-        to="/e-learning"
-      >
+      <b-navbar-item tag="nuxt-link" to="/e-learning">
         E-Learning
       </b-navbar-item>
-      <b-navbar-item
-        tag="nuxt-link"
-        to="/schülerlabore"
-      >
+      <b-navbar-item tag="nuxt-link" to="/schülerlabore">
         Schülerlabore
       </b-navbar-item>
 
-      <b-navbar-dropdown class="is-hidden-mobile" label="Über uns">
-        <b-navbar-item
-          tag="nuxt-link"
-          to="/förderverein"
-        >
+      <b-navbar-dropdown class="is-hidden-mobile" label="Mehr">
+        <b-navbar-item tag="nuxt-link" to="/förderverein">
           Förderverein
         </b-navbar-item>
 
-        <b-navbar-item
-          tag="nuxt-link"
-          to="/team"
-        >
+        <b-navbar-item tag="nuxt-link" to="/team">
           Team
+        </b-navbar-item>
+        <b-navbar-item tag="nuxt-link" to="/links">
+          Links
+        </b-navbar-item>
+        <b-navbar-item tag="nuxt-link" to="/downloads">
+          Downloads
         </b-navbar-item>
       </b-navbar-dropdown>
 
       <div class="is-hidden-tablet">
-        <b-navbar-item
-          tag="nuxt-link"
-          to="/förderverein"
-        >
+        <b-navbar-item tag="nuxt-link" to="/förderverein">
           Förderverein
         </b-navbar-item>
 
-        <b-navbar-item
-          tag="nuxt-link"
-          to="/team"
-        >
+        <b-navbar-item tag="nuxt-link" to="/team">
           Team
+        </b-navbar-item>
+        <b-navbar-item tag="nuxt-link" to="/links">
+          Links
+        </b-navbar-item>
+        <b-navbar-item tag="nuxt-link" to="/downloads">
+          Downloads
         </b-navbar-item>
       </div>
 

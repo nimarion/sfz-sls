@@ -6,6 +6,7 @@ import { Lab } from '~/interfaces/Lab'
 import { Workshop } from '~/interfaces/Workshop'
 import { News } from '~/interfaces/News'
 import { BoardMember } from '~/interfaces/BoardMember'
+import { Link } from '~/interfaces/Links'
 
 @Module({
   name: 'main',
@@ -21,6 +22,8 @@ export default class Main extends VuexModule {
   elearning: Array<Workshop> = [];
   projects: Array<Project> = [];
   workshops: Array<Workshop> = [];
+  links: Array<Link> = [];
+  downloads: Array<Link> = [];
 
   @Mutation
   initialiseStore () {
@@ -49,5 +52,11 @@ export default class Main extends VuexModule {
     fetch('/workshops.json?time=' + date)
       .then(response => response.json())
       .then(data => (this.workshops = data))
+    fetch('/links.json')
+      .then(response => response.json())
+      .then(data => (this.links = data))
+    fetch('/downloads.json')
+      .then(response => response.json())
+      .then(data => (this.downloads = data))
   }
 }
