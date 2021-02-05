@@ -169,4 +169,8 @@ test/
 ### PWA ###
 sw.*
 
+### CUSTOM ###
+
+static/experiments/*
+
 # End of https://www.toptal.com/developers/gitignore/api/vue,git,node,vscode,dotenv,visualstudiocode,nuxtjs

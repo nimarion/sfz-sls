@@ -1,0 +1,152 @@
+<template>
+  <section>
+    <p class="title">
+      {{ currentExperiment.name }}
+    </p>
+    <b-steps v-model="activeStep">
+      <b-step-item
+        v-if="currentExperiment.experiment"
+        step="1"
+        label="Materialien"
+        :clickable="true"
+      >
+        <div style="text-align: left">
+          <div class="columns is-vcentered">
+            <div class="column is-offset-1">
+              <p class="title">
+                Du brauchst:
+              </p>
+              <li v-for="item in currentExperiment.materials" :key="item">
+                {{ item }}
+              </li>
+            </div>
+            <div class="column is-two-thirds">
+              <video
+                :src="currentExperiment.materialVideo"
+                type="video/mp4"
+                controls
+              />
+            </div>
+          </div>
+        </div>
+      </b-step-item>
+
+      <b-step-item
+        :step="currentExperiment.experiment ? 2 : 1"
+        label="Durchführung"
+        :clickable="true"
+      >
+        <div style="text-align: left">
+          <div class="columns is-vcentered">
+            <div class="column is-offset-1">
+              <p class="title">
+                Durchführung:
+              </p>
+              <li
+                v-for="item in currentExperiment.implementation"
+                :key="item"
+              >
+                {{ item }}
+              </li>
+            </div>
+            <div class="column is-two-thirds">
+              <video
+                :src="currentExperiment.implementationVideo"
+                type="video/mp4"
+                controls
+              />
+            </div>
+          </div>
+        </div>
+      </b-step-item>
+
+      <b-step-item
+        v-if="!currentExperiment.experiment"
+        :step="2"
+        label="Spiel"
+        :clickable="true"
+      >
+        <component :is="currentExperiment.component" />
+      </b-step-item>
+
+      <b-step-item
+        :visible="currentExperiment.experiment"
+        :step="3"
+        label="Ergebnis"
+        :clickable="true"
+        disabled
+      >
+        <div>
+          <div class="columns">
+            <div
+              v-for="item in currentExperiment.answers"
+              :key="item.answer"
+              class="column"
+            >
+              <img :src="item.img" width="200px">
+              <p>{{ item.answer }}</p>
+            </div>
+          </div>
+          <b-button type="is-primary">
+            Bestätigen
+          </b-button>
+        </div>
+      </b-step-item>
+      <b-step-item
+        v-if="currentExperiment.experiment"
+        :step="4"
+        label="Auflösung"
+        :clickable="true"
+        disabled
+      >
+        <div class="columns is-vcentered">
+          <div class="column is-three-fifths is-offset-one-fifth">
+            <video
+              :src="currentExperiment.solutionVideo"
+              type="video/mp4"
+              controls
+            />
+          </div>
+        </div>
+      </b-step-item>
+    </b-steps>
+  </section>
+</template>
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+import data from '~/assets/experiments.json'
+import { Experiment } from '~/interfaces/Experiment'
+
+/** Games */
+import WebGame from '~/components/experiments/WebGame.vue'
+import ChimpGame from '~/components/experiments/ChimpGame.vue'
+import PuzzleGame from '~/components/experiments/PuzzleGame.vue'
+import SolitaireGame from '~/components/experiments/SolitaireGame.vue'
+import WageGame from '~/components/experiments/WageGame.vue'
+
+@Component({
+  components: {
+    WebGame,
+    ChimpGame,
+    PuzzleGame,
+    SolitaireGame,
+    WageGame
+  }
+})
+export default class Experiments extends Vue {
+  activeStep: number = 0;
+  experiments: Array<Experiment> = data;
+  currentExperiment: Experiment = this.experiments[
+    parseInt(this.$route.params.index)
+  ];
+
+  created () {
+    if (parseInt(this.$route.params.index) >= this.experiments.length) {
+      this.$nuxt.error({
+        message: '',
+        statusCode: 404
+      })
+    }
+  }
+}
+</script>
