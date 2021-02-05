@@ -1,6 +1,7 @@
 export interface Answer {
     answer: string;
     img: string;
+    solution: boolean;
 }
 
 export interface Experiment {

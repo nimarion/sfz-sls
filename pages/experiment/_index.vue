@@ -42,10 +42,7 @@
               <p class="title">
                 Durchführung:
               </p>
-              <li
-                v-for="item in currentExperiment.implementation"
-                :key="item"
-              >
+              <li v-for="item in currentExperiment.implementation" :key="item">
                 {{ item }}
               </li>
             </div>
@@ -82,14 +79,12 @@
               v-for="item in currentExperiment.answers"
               :key="item.answer"
               class="column"
+              @click="checkAnswer(item)"
             >
               <img :src="item.img" width="200px">
               <p>{{ item.answer }}</p>
             </div>
           </div>
-          <b-button type="is-primary">
-            Bestätigen
-          </b-button>
         </div>
       </b-step-item>
       <b-step-item
@@ -114,8 +109,9 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { SnackbarProgrammatic as Snackbar } from 'buefy'
 import data from '~/assets/experiments.json'
-import { Experiment } from '~/interfaces/Experiment'
+import { Answer, Experiment } from '~/interfaces/Experiment'
 
 /** Games */
 import WebGame from '~/components/experiments/WebGame.vue'
@@ -147,6 +143,10 @@ export default class Experiments extends Vue {
         statusCode: 404
       })
     }
+  }
+
+  public checkAnswer (item: Answer): void {
+    Snackbar.open(item.solution ? 'Die Antwort ist richtig!' : 'Die Antwort ist falsch')
   }
 }
 </script>

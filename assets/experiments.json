@@ -19,19 +19,23 @@
         "answers": [
             {
                 "answer": "Die Kerze erlischt, der Wasserstand im Glas steigt.",
-                "img": "experiments/Kerze_Loesung2.png"
+                "img": "experiments/Kerze_Loesung2.png",
+                "solution": true
             },
             {
                 "answer": "Die Kerze erlischt, der Wasserstand im Glas bleibt gleich.",
-                "img": "experiments/Kerze_Loesung1.png"
+                "img": "experiments/Kerze_Loesung1.png",
+                "solution": false
             },
             {
                 "answer": "Die Kerze erlischt, der Wasserstand im Glas sinkt.",
-                "img": "experiments/Kerze_Loesung3.png"
+                "img": "experiments/Kerze_Loesung3.png",
+                "solution": false
             },
             {
                 "answer": "Die Flamme der Kerze wird wesentlich größer.",
-                "img": "experiments/Kerze_Loesung4.png"
+                "img": "experiments/Kerze_Loesung4.png",
+                "solution": false
             }
         ],
         "materialVideo": "experiments/Teelicht_Materialien1.mp4",
@@ -53,19 +57,23 @@
         "answers": [
             {
                 "answer": "Der Wasserstrahl verändert sich nicht.",
-                "img": "experiments/Wasser_Loesung1.png"
+                "img": "experiments/Wasser_Loesung1.png",
+                "solution": false
             },
             {
                 "answer": "Der Wasserstrahl biegt sich vom Luftballon weg.",
-                "img": "experiments/Wasser_Loesung2.png"
+                "img": "experiments/Wasser_Loesung2.png",
+                "solution": false
             },
             {
                 "answer": "Das Wasser spritzt in alle Richtungen.",
-                "img": "experiments/Wasser_Loesung3.png"
+                "img": "experiments/Wasser_Loesung3.png",
+                "solution": false
             },
             {
                 "answer": "Der Wasserstrahl biegt sich zum Luftballon hin.",
-                "img": "experiments/Wasser_Loesung4.png"
+                "img": "experiments/Wasser_Loesung4.png",
+                "solution": true
             }
         ],
         "materialVideo": "experiments/Wasserstrahl_Materialien.mp4",
@@ -88,19 +96,23 @@
         "answers": [
             {
                 "answer": "Das Boot bewegt sich gar nicht.",
-                "img": "experiments/Schiffchen_Loesung1.png"
+                "img": "experiments/Schiffchen_Loesung1.png",
+                "solution": false
             },
             {
-                "answer": "Das Boot fährt nach vorne..",
-                "img": "experiments/Schiffchen_Loesung2.png"
+                "answer": "Das Boot fährt nach vorne.",
+                "img": "experiments/Schiffchen_Loesung2.png",
+                "solution": true
             },
             {
                 "answer": "Das Boot geht unter.",
-                "img": "experiments/Schiffchen_Loesung3.png"
+                "img": "experiments/Schiffchen_Loesung3.png",
+                "solution": false
             },
             {
                 "answer": "Das Boot fährt rückwärts.",
-                "img": "experiments/Schiffchen_Loesung4.png"
+                "img": "experiments/Schiffchen_Loesung4.png",
+                "solution": false
             }
         ],
         "materialVideo": "experiments/Schiffchen_Materialien.mp4",
@@ -126,19 +138,23 @@
         "answers": [
             {
                 "answer": "Die Flamme lässt sich bei beiden Hindernissen nicht ausblasen.",
-                "img": "experiments/Wind_Loesung1.png"
+                "img": "experiments/Wind_Loesung1.png",
+                "solution": false
             },
             {
                 "answer": "Die Flamme wird bei beiden Hindernissen ausgeblasen.",
-                "img": "experiments/Wind_Loesung2.png"
+                "img": "experiments/Wind_Loesung2.png",
+                "solution": false
             },
             {
                 "answer": "Die Flamme wird nur beim quaderförmigen Hinderniss ausgeblasen",
-                "img": "experiments/Wind_Loesung3.png"
+                "img": "experiments/Wind_Loesung3.png",
+                "solution": false
             },
             {
                 "answer": "Die Flamme wird nur beim zylinderförmigen Hinderniss ausgeblasen",
-                "img": "experiments/Wind_Loesung4.png"
+                "img": "experiments/Wind_Loesung4.png",
+                "solution": true
             }
         ],
         "materialVideo": "experiments/Kerze_Materialien1.mp4",
@@ -161,19 +177,23 @@
         "answers": [
             {
                 "answer": "Die Münze bleibt unbewegt liegen.",
-                "img": "experiments/Muenze_Loesung1.png"
+                "img": "experiments/Muenze_Loesung1.png",
+                "solution": false
             },
             {
                 "answer": "Die Münze klappert auf der Flaschenöffnung",
-                "img": "experiments/Muenze_Loesung2.png"
+                "img": "experiments/Muenze_Loesung2.png",
+                "solution": true
             },
             {
                 "answer": "Die Münze beginnt, sich auf der Stelle zu drehen.",
-                "img": "experiments/Muenze_Loesung3.png"
+                "img": "experiments/Muenze_Loesung3.png",
+                "solution": false
             },
             {
                 "answer": "Die Münze schießt nach oben.",
-                "img": "experiments/Muenze_Loesung4.png"
+                "img": "experiments/Muenze_Loesung4.png",
+                "solution": false
             }
         ],
         "materialVideo": "experiments/Muenze_Materialien.mp4",
