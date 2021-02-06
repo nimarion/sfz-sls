@@ -131,7 +131,7 @@ export default {
   }], ['@nuxtjs/sitemap'], ['@nuxtjs/pwa']],
   fontawesome: {
     icons: {
-      solid: ['faPlus', 'faMinus', 'faFileDownload']
+      solid: ['faPlus', 'faMinus', 'faFileDownload', 'faAngleLeft', 'faAngleRight']
     }
   },
   sitemap: {
