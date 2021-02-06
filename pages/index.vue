@@ -32,6 +32,18 @@ import Donation from '~/components/Donation.vue'
     Sponsors,
     Contact,
     Donation
+  },
+  head () {
+    return {
+      title: 'Schülerforschungszentrum Saarlouis',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Das Schülerforschungszentrum bietet allen Schülerinnen und Schülern einen Ort, wo sie als ganze Klasse Workshops an selbst gewählten Themen aus dem MINT-Bereich unterstützt forschen können.'
+        }
+      ]
+    }
   }
 })
 export default class Startpgag extends Vue {}

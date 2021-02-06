@@ -84,11 +84,6 @@ export default {
         content: 'summary_large_image'
       },
       {
-        hid: 'description',
-        name: 'description',
-        content: 'Das Schülerforschungszentrum bietet allen Schülerinnen und Schülern einen Ort, wo sie als ganze Klasse Workshops an selbst gewählten Themen aus dem MINT-Bereich unterstützt forschen können.'
-      },
-      {
         hid: 'robots',
         name: 'robots',
         content: 'index,follow'

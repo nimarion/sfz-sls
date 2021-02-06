@@ -10,6 +10,18 @@ const main = namespace('main')
 @Component({
   components: {
     LinkList
+  },
+  head () {
+    return {
+      title: 'Downloads',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Hier findest du interessante Sachen zum downloaden'
+        }
+      ]
+    }
   }
 })
 export default class Downloads extends Vue {
