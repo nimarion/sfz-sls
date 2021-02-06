@@ -1,7 +1,7 @@
 <template>
   <section id="hero-background" class="hero is-fullheight-with-navbar">
     <div class="hero-body">
-      <div class="content container box">
+      <div class="content container box" style="padding: unset; padding-top: 1.25rem">
         <h1 class="title">
           {{ name }}
         </h1>
@@ -11,7 +11,7 @@
           :key="item.name"
           :href="item.link"
         >
-          <b-button size="is-medium" :icon-right="name.toLowerCase().includes('download') ? 'file-download' : ''">{{ item.name }}</b-button>
+          <b-button style="white-space: normal" size="is-medium" :icon-right="name.toLowerCase().includes('download') ? 'file-download' : ''">{{ item.name }}</b-button>
           <br>
           <br>
         </a>
