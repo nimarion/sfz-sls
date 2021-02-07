@@ -13,7 +13,7 @@ const main = namespace('main')
   },
   head () {
     return {
-      title: 'Links',
+      title: 'Links & Downloads',
       meta: [
         {
           hid: 'description',

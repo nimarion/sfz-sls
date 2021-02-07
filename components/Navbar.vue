@@ -33,10 +33,7 @@
           Team
         </b-navbar-item>
         <b-navbar-item tag="nuxt-link" to="/links">
-          Links
-        </b-navbar-item>
-        <b-navbar-item tag="nuxt-link" to="/downloads">
-          Downloads
+          Links &#38; Downloads
         </b-navbar-item>
       </b-navbar-dropdown>
 
@@ -49,10 +46,7 @@
           Team
         </b-navbar-item>
         <b-navbar-item tag="nuxt-link" to="/links">
-          Links
-        </b-navbar-item>
-        <b-navbar-item tag="nuxt-link" to="/downloads">
-          Downloads
+          Links &#38; Downloads
         </b-navbar-item>
       </div>
 

@@ -23,7 +23,6 @@ export default class Main extends VuexModule {
   projects: Array<Project> = [];
   workshops: Array<Workshop> = [];
   links: Array<Link> = [];
-  downloads: Array<Link> = [];
 
   @Mutation
   initialiseStore () {
@@ -55,8 +54,5 @@ export default class Main extends VuexModule {
     fetch('/links.json')
       .then(response => response.json())
       .then(data => (this.links = data))
-    fetch('/downloads.json')
-      .then(response => response.json())
-      .then(data => (this.downloads = data))
   }
 }
