@@ -2,14 +2,21 @@
   <link-list name="Links" :links="links" />
 </template>
 <script lang="ts">
-import { Vue, Component, namespace } from 'nuxt-property-decorator'
+import Vue from 'vue'
 import LinkList from '~/components/LinkList.vue'
-import { Link } from '~/interfaces/Links'
-
-const main = namespace('main')
-@Component({
+export default Vue.extend({
   components: {
     LinkList
+  },
+  data () {
+    return {
+      links: []
+    }
+  },
+  async fetch () {
+    this.links = await fetch(
+      '/links.json'
+    ).then(res => res.json())
   },
   head () {
     return {
@@ -24,8 +31,4 @@ const main = namespace('main')
     }
   }
 })
-export default class Downloads extends Vue {
-  @main.State
-  public links!: Array<Link>;
-}
 </script>

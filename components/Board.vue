@@ -32,15 +32,18 @@
     </div>
   </section>
 </template>
-
 <script lang="ts">
-import { Component, Vue, namespace } from 'nuxt-property-decorator'
-import { BoardMember } from '~/interfaces/BoardMember'
-
-const main = namespace('main')
-@Component
-export default class Board extends Vue {
-  @main.State
-  public boardMembers!: Array<BoardMember>;
-}
+import Vue from 'vue'
+export default Vue.extend({
+  data () {
+    return {
+      boardMembers: []
+    }
+  },
+  async fetch () {
+    this.boardMembers = await fetch(
+      '/vorstand.json'
+    ).then(res => res.json())
+  }
+})
 </script>

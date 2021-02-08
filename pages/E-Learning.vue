@@ -13,7 +13,7 @@
         <br>
         <br>
         <WorkshopFilter
-          :workshops="elearning"
+          :workshops="workshops"
           :is-elearning="true"
         />
       </div>
@@ -22,11 +22,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, namespace } from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator'
 import WorkshopFilter from '~/components/WorkshopFilter.vue'
 import { Workshop } from '~/interfaces/Workshop'
 
-const main = namespace('main')
 @Component({
   components: {
     WorkshopFilter
@@ -50,9 +49,6 @@ const main = namespace('main')
   }
 })
 export default class ELearning extends Vue {
-  @main.State
-  public elearning!: Array<Workshop>;
-
   async asyncData (context: any) {
     const post = await fetch('/elearning.json')
     const jsonData = await post.json()
@@ -83,7 +79,7 @@ export default class ELearning extends Vue {
       position++
     }
     jsonLd.numberOfItems = await jsonLd.itemListElement.length
-    return { jsonLd }
+    return { jsonLd, workshops }
   }
 }
 </script>

@@ -21,14 +21,21 @@
   </content>
 </template>
 <script lang="ts">
-import { Component, Vue, namespace } from 'nuxt-property-decorator'
+import Vue from 'vue'
 import WorkshopFilter from '~/components/WorkshopFilter.vue'
-import { Workshop } from '~/interfaces/Workshop'
-
-const main = namespace('main')
-@Component({
+export default Vue.extend({
   components: {
     WorkshopFilter
+  },
+  data () {
+    return {
+      workshops: []
+    }
+  },
+  async fetch () {
+    this.workshops = await fetch(
+      '/workshops.json'
+    ).then(res => res.json())
   },
   head () {
     return {
@@ -43,8 +50,4 @@ const main = namespace('main')
     }
   }
 })
-export default class WorkshopPage extends Vue {
-  @main.State
-  public workshops!: Array<Workshop>;
-}
 </script>

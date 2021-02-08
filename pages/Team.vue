@@ -13,7 +13,6 @@
           <div v-if="employees.length > 0" class="row columns is-multiline">
             <div v-for="card in employees" :key="card.name" class="column is-4">
               <div class="card large">
-                <!-- 266x400 -->
                 <div class="card-image is-1by1">
                   <b-image :src="card.img" :alt="card.name" ratio="1by1" />
                 </div>
@@ -40,14 +39,19 @@
     </section>
   </content>
 </template>
-
 <script lang="ts">
-import { Component, Vue, namespace } from 'nuxt-property-decorator'
-import { Employee } from '~/interfaces/Employee'
-
-const main = namespace('main')
-
-@Component({
+import Vue from 'vue'
+export default Vue.extend({
+  data () {
+    return {
+      employees: []
+    }
+  },
+  async fetch () {
+    this.employees = await fetch(
+      '/employees.json'
+    ).then(res => res.json())
+  },
   head () {
     return {
       title: 'Team',
@@ -61,8 +65,4 @@ const main = namespace('main')
     }
   }
 })
-export default class Team extends Vue {
-  @main.State
-  public employees!: Array<Employee>;
-}
 </script>

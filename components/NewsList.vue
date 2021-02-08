@@ -24,26 +24,31 @@
     </div>
   </section>
 </template>
-
 <script lang="ts">
-import { Vue, Component, namespace } from 'nuxt-property-decorator'
+import Vue from 'vue'
 import { News } from '~/interfaces/News'
-
-const main = namespace('main')
-@Component
-export default class NewsList extends Vue {
-  @main.State
-  public news!: Array<News>;
-
-  getNewsLink (item: News): string {
-    return (
-      'news/' +
+export default Vue.extend({
+  data () {
+    return {
+      news: []
+    }
+  },
+  async fetch () {
+    this.news = await fetch(
+      '/news/news.json'
+    ).then(res => res.json())
+  },
+  methods: {
+    getNewsLink (item: News): string {
+      return (
+        'news/' +
       `${item.date}`.split(' ')[2] +
       '/' +
       encodeURIComponent(`${item.title}`)
-    )
+      )
+    }
   }
-}
+})
 </script>
 
 <style scoped>

@@ -27,16 +27,26 @@
   </content>
 </template>
 <script lang="ts">
-import { Component, Vue, namespace } from 'nuxt-property-decorator'
+import Vue from 'vue'
 import LabModal from '~/components/LabModal.vue'
 import CardList from '~/components/CardList.vue'
 import { Project } from '~/interfaces/Project'
-
-const main = namespace('main')
-@Component({
+export default Vue.extend({
   components: {
     LabModal,
     CardList
+  },
+  data () {
+    return {
+      projects: [],
+      clickedLab: null,
+      isImageModalActive: false
+    }
+  },
+  async fetch () {
+    this.projects = await fetch(
+      '/forschung.json'
+    ).then(res => res.json())
   },
   head () {
     return {
@@ -50,22 +60,15 @@ const main = namespace('main')
         }
       ]
     }
+  },
+  methods: {
+    openLabModal (item: Project): void {
+      this.clickedLab = item
+      this.isImageModalActive = true
+    },
+    closeEvent (): void {
+      this.isImageModalActive = false
+    }
   }
 })
-export default class Forschung extends Vue {
-  clickedLab: Project = null;
-  isImageModalActive: boolean = false;
-
-  @main.State
-  public projects!: Array<Project>;
-
-  public openLabModal (item: Project): void {
-    this.clickedLab = item
-    this.isImageModalActive = true
-  }
-
-  public closeEvent (): void {
-    this.isImageModalActive = false
-  }
-}
 </script>

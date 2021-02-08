@@ -24,37 +24,40 @@
   </content>
 </template>
 <script lang="ts">
-import { Component, Vue, namespace } from 'nuxt-property-decorator'
+import Vue from 'vue'
 import LabModal from '~/components/LabModal.vue'
 import CardList from '~/components/CardList.vue'
 import { Lab } from '~/interfaces/Lab'
-
-const main = namespace('main')
-@Component({
+export default Vue.extend({
   components: {
     LabModal,
     CardList
+  },
+  data () {
+    return {
+      clickedLab: null,
+      isImageModalActive: false,
+      labs: []
+    }
+  },
+  async fetch () {
+    this.labs = await fetch(
+      '/labs.json'
+    ).then(res => res.json())
   },
   head () {
     return {
       title: 'Schülerlabore'
     }
+  },
+  methods: {
+    openLabModal (item: Lab): void {
+      this.clickedLab = item
+      this.isImageModalActive = true
+    },
+    closeEvent (): void {
+      this.isImageModalActive = false
+    }
   }
 })
-export default class WorkshopFilter extends Vue {
-  clickedLab: Lab = null;
-  isImageModalActive: boolean = false;
-
-  @main.State
-  public labs!: Array<Lab>;
-
-  public openLabModal (item: Lab): void {
-    this.clickedLab = item
-    this.isImageModalActive = true
-  }
-
-  public closeEvent (): void {
-    this.isImageModalActive = false
-  }
-}
 </script>
