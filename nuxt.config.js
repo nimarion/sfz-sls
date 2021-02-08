@@ -107,7 +107,8 @@ export default {
   pwa: {
     meta: {
       title: 'Schülerforschungszentrum Saarlouis',
-      author: 'Schülerforschungszentrum Saarlouis'
+      author: 'Schülerforschungszentrum Saarlouis',
+      description: ''
     },
     manifest: {
       name: 'Schülerforschungszentrum Saarlouis',

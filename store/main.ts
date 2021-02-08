@@ -1,6 +1,5 @@
 import { Module, VuexModule, Mutation } from 'vuex-module-decorators'
 import { Employee } from '~/interfaces/Employee'
-import { Sponsor } from '~/interfaces/Sponsors'
 import { Project } from '~/interfaces/Project'
 import { Lab } from '~/interfaces/Lab'
 import { Workshop } from '~/interfaces/Workshop'
@@ -16,7 +15,6 @@ import { Link } from '~/interfaces/Links'
 export default class Main extends VuexModule {
   boardMembers: Array<BoardMember> = [];
   news: Array<News> = [];
-  sponsors: Array<Sponsor> = [];
   employees: Array<Employee> = [];
   labs: Array<Lab> = [];
   elearning: Array<Workshop> = [];
@@ -33,9 +31,6 @@ export default class Main extends VuexModule {
     fetch('/news/news.json?time=' + date)
       .then(response => response.json())
       .then(data => (this.news = data))
-    fetch('/sponsors.json')
-      .then(response => response.json())
-      .then(data => (this.sponsors = data))
     fetch('/employees.json')
       .then(response => response.json())
       .then(data => (this.employees = data))

@@ -9,7 +9,7 @@
             class="column"
           >
             <a :href="item.url">
-              <b-image :src="item.img" :alt="item.name" ratio="3by1" />
+              <b-image :src="require('~/assets/sponsors/' + item.img)" :alt="item.name" ratio="3by1" />
             </a>
           </div>
         </div>
@@ -18,13 +18,14 @@
   </section>
 </template>
 <script lang="ts">
-import { Component, Vue, namespace } from 'nuxt-property-decorator'
-import { Sponsor } from '~/interfaces/Sponsors'
+import Vue from 'vue'
+import data from '~/assets/sponsors.json'
 
-const main = namespace('main')
-@Component
-export default class Sponsors extends Vue {
-  @main.State
-  public sponsors!: Array<Sponsor>;
-}
+export default Vue.extend({
+  data () {
+    return {
+      sponsors: data
+    }
+  }
+})
 </script>

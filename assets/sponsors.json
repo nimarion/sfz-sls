@@ -1,0 +1,32 @@
+[
+    {
+        "name": "MESAAR",
+        "url": "http://www.stiftung-mesaar.de/",
+        "img": "mesaar.png"
+    },
+    {
+        "name": "IHK Saarland",
+        "url": "http://www.saarland.ihk.de/",
+        "img": "ihk.png"
+    },
+    {
+        "name": "Landkreis Saarlouis",
+        "url": "http://www.kreis-saarlouis.de/",
+        "img": "lksaarlouis.png"
+    },
+    {
+        "name": "VSE Stiftung",
+        "url": "https://www.vse.de/vse-gruppe/verantwortung/vse-stiftung.html",
+        "img": "vse.png"
+    },
+    {
+        "name": "Peter und Luise Hager Stiftung",
+        "url": "https://hagerstiftung.de/index.php/de/",
+        "img": "hager.png"
+    },
+    {
+        "name": "Dillinger Hütte",
+        "url": "https://www.dillinger.de/",
+        "img": "dillinger-huette.png"
+    }
+]
