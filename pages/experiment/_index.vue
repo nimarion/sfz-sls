@@ -23,6 +23,7 @@
             <div class="column is-two-thirds">
               <video
                 :src="currentExperiment.materialVideo"
+                :poster="require('~/assets/background.jpg')"
                 type="video/mp4"
                 controls
               />
@@ -49,6 +50,7 @@
             <div class="column is-two-thirds">
               <video
                 :src="currentExperiment.implementationVideo"
+                :poster="require('~/assets/background.jpg')"
                 type="video/mp4"
                 controls
               />
@@ -79,12 +81,15 @@
               v-for="item in currentExperiment.answers"
               :key="item.answer"
               class="column"
-              @click="checkAnswer(item)"
+              @click="setAnswer(item)"
             >
               <img :src="item.img" width="200px">
               <p>{{ item.answer }}</p>
             </div>
           </div>
+          <b-button type="is-primary" @click="checkAnswer">
+            Antwort prüfen
+          </b-button>
         </div>
       </b-step-item>
       <b-step-item
@@ -98,6 +103,7 @@
           <div class="column is-three-fifths is-offset-one-fifth">
             <video
               :src="currentExperiment.solutionVideo"
+              :poster="require('~/assets/background.jpg')"
               type="video/mp4"
               controls
             />
@@ -108,10 +114,9 @@
   </section>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import Vue from 'vue'
 import { SnackbarProgrammatic as Snackbar } from 'buefy'
 import data from '~/assets/experiments.json'
-import { Answer, Experiment } from '~/interfaces/Experiment'
 
 /** Games */
 import WebGame from '~/components/experiments/WebGame.vue'
@@ -119,23 +124,24 @@ import ChimpGame from '~/components/experiments/ChimpGame.vue'
 import PuzzleGame from '~/components/experiments/PuzzleGame.vue'
 import SolitaireGame from '~/components/experiments/SolitaireGame.vue'
 import WageGame from '~/components/experiments/WageGame.vue'
+import { Answer } from '~/interfaces/Experiment'
 
-@Component({
+export default Vue.extend({
   components: {
     WebGame,
     ChimpGame,
     PuzzleGame,
     SolitaireGame,
     WageGame
-  }
-})
-export default class Experiments extends Vue {
-  activeStep: number = 0;
-  experiments: Array<Experiment> = data;
-  currentExperiment: Experiment = this.experiments[
-    parseInt(this.$route.params.index)
-  ];
-
+  },
+  data () {
+    return {
+      activeStep: 0,
+      experiments: data,
+      clickedAnswer: null,
+      currentExperiment: data[parseInt(this.$route.params.index)]
+    }
+  },
   created () {
     if (parseInt(this.$route.params.index) >= this.experiments.length) {
       this.$nuxt.error({
@@ -143,10 +149,24 @@ export default class Experiments extends Vue {
         statusCode: 404
       })
     }
+  },
+  methods: {
+    setAnswer (item: Answer): void {
+      this.clickedAnswer = item
+    },
+    checkAnswer (): void {
+      if (this.clickedAnswer == null) {
+        Snackbar.open({ position: 'is-top', message: 'Du hast noch keine Antwort ausgewählt' })
+      } else {
+        Snackbar.open({
+          position: 'is-top',
+          message:
+          this.clickedAnswer.solution
+            ? 'Die Antwort ist richtig!'
+            : 'Die Antwort ist falsch'
+        })
+      }
+    }
   }
-
-  public checkAnswer (item: Answer): void {
-    Snackbar.open(item.solution ? 'Die Antwort ist richtig!' : 'Die Antwort ist falsch')
-  }
-}
+})
 </script>
