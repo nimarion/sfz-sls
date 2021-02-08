@@ -41,12 +41,49 @@ const main = namespace('main')
           content:
             'Das E-Learning Angebot des Schülerforschungszentrum Saarlouis'
         }
-      ]
+      ],
+      script: [{
+        innerHTML: JSON.stringify((this as any).jsonLd),
+        type: 'application/ld+json'
+      }]
     }
   }
 })
 export default class ELearning extends Vue {
   @main.State
   public elearning!: Array<Workshop>;
+
+  async asyncData (context: any) {
+    const post = await fetch('/elearning.json')
+    const jsonData = await post.json()
+    const workshops: Array<Workshop> = jsonData
+    const jsonLd: any = {
+      '@context': 'http://schema.org',
+      '@type': 'ItemList',
+      numberOfItems: '0',
+      itemListElement: []
+    }
+    let position = 1
+    for (let i = 0; i < workshops.length; i++) {
+      if (workshops[i].video == null) {
+        const obj = {
+          '@type': 'Course',
+          position,
+          url: 'https://sfz-sls.de/workshop/' + workshops[i].name,
+          name: workshops[i].name,
+          description: workshops[i].name,
+          provider: {
+            '@type': 'Organization',
+            name: 'Schülerforschungszentrum Saarlouis',
+            sameAs: 'https://sfz-sls.de/'
+          }
+        }
+        jsonLd.itemListElement.push(obj)
+      }
+      position++
+    }
+    jsonLd.numberOfItems = await jsonLd.itemListElement.length
+    return { jsonLd }
+  }
 }
 </script>

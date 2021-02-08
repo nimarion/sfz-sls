@@ -9,7 +9,6 @@
                 <div class="columns">
                   <div class="column is-8 is-offset-2">
                     <b-image
-                      :src-fallback="require('@/assets/background.jpg')"
                       :src="image"
                       ratio="16by9"
                     />
@@ -43,18 +42,36 @@
     </div>
   </div>
 </template>
-
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import Vue from 'vue'
 import snarkdown from 'snarkdown'
 import { News } from '~/interfaces/News'
 
-@Component
-export default class NewsView extends Vue {
-  date: string = '';
-  author: string = '';
-  image: string = '';
-  htmlContent: string = '';
+export default Vue.extend({
+  data () {
+    return {
+      date: '',
+      author: '',
+      image: '',
+      htmlContent: ''
+    }
+  },
+  head () {
+    return {
+      title: this.$route.params.title,
+      script: [{
+        innerHTML: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'NewsArticle',
+          headline: this.$route.params.title,
+          image: [
+            (this as any).image
+          ]
+        }),
+        type: 'application/ld+json'
+      }]
+    }
+  },
 
   created () {
     fetch('/news/news.json?time=' + new Date().getTime())
@@ -76,30 +93,31 @@ export default class NewsView extends Vue {
         }
       })
       .catch(() => this.sendTo404())
-  }
+  },
 
-  public sendTo404 (): void {
-    this.$nuxt.error({
-      message: 'Der Artikel ' + this.$route.params.title + ' existiert nicht',
-      statusCode: 404
-    })
-  }
-
-  public fetchContent (markdownUrl: string): void {
-    fetch(window.location.origin + '/news/' + markdownUrl)
-      .then(response => response.text())
-      .then((data) => {
-        if (data.length !== 0) {
-          this.htmlContent = snarkdown(data)
-        } else {
+  methods: {
+    fetchContent (markdownUrl: string): void {
+      fetch(window.location.origin + '/news/' + markdownUrl)
+        .then(response => response.text())
+        .then((data) => {
+          if (data.length !== 0) {
+            this.htmlContent = snarkdown(data)
+          } else {
+            this.sendTo404()
+          }
+        })
+        .catch(() => {
           this.sendTo404()
-        }
+        })
+    },
+    sendTo404 (): void {
+      this.$nuxt.error({
+        message: 'Der Artikel ' + this.$route.params.title + ' existiert nicht',
+        statusCode: 404
       })
-      .catch(() => {
-        this.sendTo404()
-      })
+    }
   }
-}
+})
 </script>
 
 <style>

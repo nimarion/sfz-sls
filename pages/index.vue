@@ -42,9 +42,20 @@ import Donation from '~/components/Donation.vue'
           name: 'description',
           content: 'Das Schülerforschungszentrum bietet allen Schülerinnen und Schülern einen Ort, wo sie als ganze Klasse Workshops an selbst gewählten Themen aus dem MINT-Bereich unterstützt forschen können.'
         }
-      ]
+      ],
+      script: [{
+        innerHTML: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Organization',
+          name: 'Schülerforschungszentrum Saarlouis',
+          email: 'info(at)sfz-sls.de',
+          url: 'https://sfz-sls.de/',
+          logo: 'https://sfz-sls.de/logo.png'
+        }),
+        type: 'application/ld+json'
+      }]
     }
   }
 })
-export default class Startpgag extends Vue {}
+export default class Startpage extends Vue {}
 </script>

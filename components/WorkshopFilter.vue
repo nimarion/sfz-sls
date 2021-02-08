@@ -109,6 +109,7 @@
               v-for="item in requestedWorkshops"
               :key="item.name"
               class="column is-4"
+              :href="isElearning ? 'https://sfz-sls.de/workshop/' + item.name: ' '"
               @click="openWorkshopModal(item)"
             >
               <div class="card large">
