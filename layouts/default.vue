@@ -6,31 +6,18 @@
   </div>
   <Drawing v-else />
 </template>
-
 <script lang="ts">
-import { Component, Vue, namespace } from 'nuxt-property-decorator'
-
+import Vue from 'vue'
 import Footer from '~/components/Footer.vue'
 import Navbar from '~/components/Navbar.vue'
 import Drawing from '~/components/Drawing.vue'
-
-const test = namespace('main')
-
-@Component({
+export default Vue.extend({
   components: {
     Footer,
     Navbar,
     Drawing
   }
 })
-export default class App extends Vue {
-  @test.Mutation
-  public initialiseStore!: (data: object) => void
-
-  mounted () {
-    this.initialiseStore({})
-  }
-}
 </script>
 
 <style>

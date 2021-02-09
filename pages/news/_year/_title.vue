@@ -8,10 +8,7 @@
               <div class="card-content">
                 <div class="columns">
                   <div class="column is-8 is-offset-2">
-                    <b-image
-                      :src="image"
-                      ratio="16by9"
-                    />
+                    <b-image :src="image" ratio="16by9" />
                   </div>
                 </div>
                 <div class="media">
@@ -48,73 +45,43 @@ import snarkdown from 'snarkdown'
 import { News } from '~/interfaces/News'
 
 export default Vue.extend({
-  data () {
-    return {
-      date: '',
-      author: '',
-      image: '',
-      htmlContent: ''
+  async asyncData (context: any) {
+    const articles = await fetch('/news/news.json?time=' + new Date().getTime())
+      .then(response => response.json())
+      .then(data =>
+        data.filter((element: News) => element.title === context.params.title)
+      )
+    if (articles.length === 0) {
+      context.error({
+        message: 'Der Artikel ' + context.params.title + ' existiert nicht',
+        statusCode: 404
+      })
+      return
     }
+    const date = articles[0].date
+    const author = articles[0].author
+    const image = location.origin + articles[0].image
+    const htmlContent = await fetch(
+      window.location.origin + '/news/' + articles[0].markdown
+    )
+      .then(response => response.text())
+      .then(data => snarkdown(data))
+    return { date, author, image, htmlContent }
   },
   head () {
     return {
       title: this.$route.params.title,
-      script: [{
-        innerHTML: JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'NewsArticle',
-          headline: this.$route.params.title,
-          image: [
-            (this as any).image
-          ]
-        }),
-        type: 'application/ld+json'
-      }]
-    }
-  },
-
-  created () {
-    fetch('/news/news.json?time=' + new Date().getTime())
-      .then(response => response.json())
-      .then(data =>
-        data.filter(
-          (element: News) => element.title === this.$route.params.title
-        )
-      )
-      .then((data) => {
-        this.date = data[0].date
-        this.author = data[0].author
-        this.image = location.origin + data[0].image
-        this.fetchContent(data[0].markdown)
-      })
-      .then(() => {
-        if (this.date === '' || this.author === '') {
-          this.sendTo404()
+      script: [
+        {
+          innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'NewsArticle',
+            headline: this.$route.params.title,
+            image: [(this as any).image]
+          }),
+          type: 'application/ld+json'
         }
-      })
-      .catch(() => this.sendTo404())
-  },
-
-  methods: {
-    fetchContent (markdownUrl: string): void {
-      fetch(window.location.origin + '/news/' + markdownUrl)
-        .then(response => response.text())
-        .then((data) => {
-          if (data.length !== 0) {
-            this.htmlContent = snarkdown(data)
-          } else {
-            this.sendTo404()
-          }
-        })
-        .catch(() => {
-          this.sendTo404()
-        })
-    },
-    sendTo404 (): void {
-      this.$nuxt.error({
-        message: 'Der Artikel ' + this.$route.params.title + ' existiert nicht',
-        statusCode: 404
-      })
+      ]
     }
   }
 })
