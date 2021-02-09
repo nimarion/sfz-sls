@@ -24,6 +24,10 @@ export default Vue.extend({
     const jsonData = await post.json()
     const workshops: Array<Workshop> = jsonData
     const found = workshops.filter(item => item.name.toLowerCase() === context.params.name.toLowerCase())
+    if (found.length === 0) {
+      context.error({ statusCode: 404 })
+      return
+    }
     const description = found[0].description
     return { description }
   },
@@ -31,8 +35,7 @@ export default Vue.extend({
   data () {
     return {
       url: window.location.origin + '/workshops/' + encodeURIComponent(this.$route.params.name) + '/index.html?cache=' + new Date().getTime(),
-      iframeLoading: true,
-      description: ''
+      iframeLoading: true
     }
   },
   head () {
