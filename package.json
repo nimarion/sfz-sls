@@ -10,6 +10,7 @@
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@nuxtjs/fontawesome": "^1.1.2",
+    "axios": "^0.21.1",
     "nuxt": "^2.14.12",
     "nuxt-buefy": "^0.4.4",
     "nuxt-property-decorator": "^2.8.8"

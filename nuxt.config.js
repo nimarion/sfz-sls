@@ -1,3 +1,5 @@
+const axios = require('axios')
+
 export default {
   target: 'static',
   telemetry: false,
@@ -132,7 +134,25 @@ export default {
   },
   sitemap: {
     hostname: 'https://sfz-sls.de/',
-    gzip: true
+    gzip: true,
+    routes: async () => {
+      const links = []
+      await axios.get('https://sfz-sls.de/elearning.json').then((res) => {
+        res.data.forEach((element) => {
+          links.push('/workshop/' + element.name)
+        })
+      })
+      await axios.get('https://sfz-sls.de/news/news.json').then((res) => {
+        res.data.forEach((element) => {
+          links.push('/news/' + element.date.split(' ')[2] + '/' + element.title)
+        })
+      })
+      links.push({
+        url: '/elearning',
+        changefreq: 'monthly'
+      })
+      return links
+    }
   },
   generate: {
     fallback: '404.html'
