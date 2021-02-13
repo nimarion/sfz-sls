@@ -13,7 +13,8 @@
     "axios": "^0.21.1",
     "nuxt": "^2.14.12",
     "nuxt-buefy": "^0.4.4",
-    "nuxt-property-decorator": "^2.8.8"
+    "nuxt-property-decorator": "^2.8.8",
+    "phaser": "^3.52.0"
   },
   "devDependencies": {
     "@nuxt/types": "^2.14.12",
@@ -22,6 +23,7 @@
     "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/pwa": "^3.3.4",
     "@nuxtjs/sitemap": "^2.4.0",
+    "@nuxtjs/svg": "^0.1.12",
     "eslint": "^7.17.0",
     "snarkdown": "^2.0.0",
     "vue-friendly-iframe": "^0.19.0",

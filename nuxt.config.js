@@ -104,7 +104,8 @@ export default {
   },
   buildModules: [
     '@nuxt/typescript-build',
-    '@nuxtjs/fontawesome'
+    '@nuxtjs/fontawesome',
+    '@nuxtjs/svg'
   ],
   pwa: {
     meta: {
