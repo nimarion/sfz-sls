@@ -1,7 +1,7 @@
 <template>
   <div v-if="$nuxt.isOnline" id="app">
     <Navbar />
-    <Nuxt keep-alive />
+    <Nuxt />
     <Footer />
   </div>
   <Drawing v-else />

@@ -107,7 +107,6 @@ export default class WorkshopModal extends Vue {
   @Prop({ required: true }) readonly schoolSubject!: string;
   @Prop({ required: true }) readonly minClass!: number;
   @Prop({ required: true }) readonly maxParticipants!: number;
-  @Prop({ required: true }) readonly active!: boolean;
   @Prop({ required: true }) readonly isElearning!: string;
   @Prop({ required: true }) readonly lab!: string;
   @Prop({ required: false }) readonly video!: string;
