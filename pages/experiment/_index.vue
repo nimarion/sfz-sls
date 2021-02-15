@@ -139,7 +139,10 @@ export default Vue.extend({
       activeStep: 0,
       experiments: data,
       clickedAnswer: null,
-      currentExperiment: data[parseInt(this.$route.params.index)]
+      currentExperiment: data.filter(
+        item =>
+          item.name.toLowerCase() === this.$route.params.index.toLowerCase()
+      )[0]
     }
   },
   created () {
@@ -156,12 +159,14 @@ export default Vue.extend({
     },
     checkAnswer (): void {
       if (this.clickedAnswer == null) {
-        Snackbar.open({ position: 'is-top', message: 'Du hast noch keine Antwort ausgewählt' })
+        Snackbar.open({
+          position: 'is-top',
+          message: 'Du hast noch keine Antwort ausgewählt'
+        })
       } else {
         Snackbar.open({
           position: 'is-top',
-          message:
-          this.clickedAnswer.solution
+          message: this.clickedAnswer.solution
             ? 'Die Antwort ist richtig!'
             : 'Die Antwort ist falsch'
         })

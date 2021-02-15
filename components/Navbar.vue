@@ -24,6 +24,31 @@
         Schülerlabore
       </b-navbar-item>
 
+      <b-navbar-dropdown class="is-hidden-mobile" label="Forschertag">
+        <b-navbar-item>
+          <strong>Experimente</strong>
+        </b-navbar-item>
+        <b-navbar-item
+          v-for="item in getExperiments"
+          :key="item.name"
+          tag="nuxt-link"
+          :to="'/experiment/' + item.name"
+        >
+          {{ item.name }}
+        </b-navbar-item>
+        <b-navbar-item>
+          <strong>Spiele</strong>
+        </b-navbar-item>
+        <b-navbar-item
+          v-for="item in getGames"
+          :key="item.name"
+          tag="nuxt-link"
+          :to="'/experiment/' + item.name"
+        >
+          {{ item.name }}
+        </b-navbar-item>
+      </b-navbar-dropdown>
+
       <b-navbar-dropdown class="is-hidden-mobile" label="Mehr">
         <b-navbar-item tag="nuxt-link" to="/förderverein">
           Förderverein
@@ -59,6 +84,25 @@
     </template>
   </b-navbar>
 </template>
+<script lang="ts">
+import Vue from 'vue'
+import data from '~/assets/experiments.json'
+export default Vue.extend({
+  data () {
+    return {
+      experiments: data
+    }
+  },
+  computed: {
+    getExperiments () {
+      return data.filter(item => item.experiment)
+    },
+    getGames () {
+      return data.filter(item => !item.experiment)
+    }
+  }
+})
+</script>
 
 <style>
 .navbar-item img {

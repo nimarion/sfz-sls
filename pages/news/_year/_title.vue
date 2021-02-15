@@ -4,7 +4,7 @@
       <div v-if="htmlContent != null" class="container">
         <section class="articles">
           <div class="column is-8 is-offset-2">
-            <div class="card article">
+            <div class="card article" style="background-color: white">
               <div class="card-content">
                 <div class="columns">
                   <div class="column is-8 is-offset-2">
