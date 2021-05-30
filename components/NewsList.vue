@@ -34,9 +34,8 @@ export default Vue.extend({
     }
   },
   async fetch () {
-    this.news = await fetch(
-      '/news/news.json'
-    ).then(res => res.json())
+    const ms = Date.now();
+    this.news = await fetch("/news/news.json" + "?dummy="+ms).then((res) => res.json());
   },
   methods: {
     getNewsLink (item: News): string {
