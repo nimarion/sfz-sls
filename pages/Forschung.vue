@@ -21,6 +21,7 @@
         v-if="clickedLab != null && isImageModalActive"
         :name="clickedLab.title"
         :desc="clickedLab.description"
+        :website="clickedLab.website"
         @onChange="closeEvent"
       />
     </section>
