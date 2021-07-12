@@ -18,7 +18,7 @@
 
         <h2>Kontakt</h2>
         <p>
-          Telefon: 06831 444-460<br>
+          Telefon: 06831 444-423<br>
           Telefax: 06831 444-460<br>
           E-Mail: foerderverein@sfz-sls.de
         </p>
