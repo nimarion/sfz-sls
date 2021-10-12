@@ -1,5 +1,4 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e3135f3e-8851-4db4-9c8b-2651a21769cf/deploy-status)](https://sfz-sls.netlify.app)
-![ts](https://badgen.net/badge/Built%20With/TypeScript/blue)
 <a href="https://bulma.io">
   <img src="https://bulma.io/images/made-with-bulma.png" alt="Made with Bulma"  height="20">
 </a>
