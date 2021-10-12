@@ -9,6 +9,3 @@ Allow: /workshop
 Allow: /e-learning
 Allow: /förderverein
 Disallow: /workshops/
-
-Sitemap: https://sfz-sls.de/sitemap.xml.gz
-
