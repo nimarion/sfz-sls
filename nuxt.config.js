@@ -6,6 +6,7 @@ import modules from "./config/modules";
 
 export default {
   target: "static",
+  srcDir: "src/",
   ssr: false,
   router: {
     base: process.env.NODE_ENV === "github" ? "/www/" : "/",

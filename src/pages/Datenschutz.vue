@@ -2,9 +2,7 @@
   <section id="hero-background" class="hero is-fullheight-with-navbar">
     <div class="hero-body">
       <div class="content container box" style="text-align: left">
-        <p class="title">
-          Datenschutz
-        </p>
+        <p class="title">Datenschutz</p>
 
         <h1>Datenschutz&shy;erkl&auml;rung</h1>
         <h2>1. Datenschutz auf einen Blick</h2>
@@ -87,9 +85,9 @@
         </p>
         <p>Wir setzen folgenden Hoster ein:</p>
         <p>
-          inexio Beteiligungs GmbH<br>
-          Am Saaraltarm 1<br>
-          66740 Saarlouis<br>
+          inexio Beteiligungs GmbH<br />
+          Am Saaraltarm 1<br />
+          66740 Saarlouis<br />
           Deutschland
         </p>
         <h2>3. Allgemeine Hinweise und Pflicht&shy;informationen</h2>
@@ -120,13 +118,13 @@
           Website ist:
         </p>
         <p>
-          Sch&uuml;lerforschungszentrum Saarlouis<br>
-          St. Nazairer Allee 6<br>
+          Sch&uuml;lerforschungszentrum Saarlouis<br />
+          St. Nazairer Allee 6<br />
           66740 Saarlouis
         </p>
 
         <p>
-          Telefon: 06831 444-460<br>
+          Telefon: 06831 444-460<br />
           E-Mail: info@sfz-sls.de
         </p>
         <p>
@@ -341,7 +339,7 @@
 <script>
 export default {
   head: {
-    title: 'Datenschutz'
-  }
-}
+    title: "Datenschutz",
+  },
+};
 </script>
