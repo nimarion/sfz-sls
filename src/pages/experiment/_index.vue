@@ -112,7 +112,19 @@
 <script>
 import { SnackbarProgrammatic as Snackbar } from "buefy";
 import data from "~/assets/experiments.json";
+import WebGame from "~/components/experiments/WebGame.vue";
+import ChimpGame from "~/components/experiments/ChimpGame.vue";
+import PuzzleGame from "~/components/experiments/PuzzleGame.vue";
+import SolitaireGame from "~/components/experiments/SolitaireGame.vue";
+import WageGame from "~/components/experiments/WageGame.vue";
 export default {
+  components: {
+    WebGame,
+    ChimpGame,
+    PuzzleGame,
+    SolitaireGame,
+    WageGame,
+  },
   data() {
     return {
       activeStep: 0,
