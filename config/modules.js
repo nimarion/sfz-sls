@@ -8,7 +8,6 @@ const modules = [
       materialDesignIcons: false,
     },
   ],
-  ["@nuxtjs/sitemap"],
   ["@nuxtjs/pwa"],
 ];
 
