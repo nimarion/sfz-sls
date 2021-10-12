@@ -6,9 +6,7 @@
   >
     <div class="hero-body has-text-centered">
       <div class="content container box">
-        <p class="title">
-          Unser Vorstand
-        </p>
+        <p class="title">Unser Vorstand</p>
 
         <div class="section">
           <div class="row columns is-multiline">
@@ -32,18 +30,15 @@
     </div>
   </section>
 </template>
-<script lang="ts">
-import Vue from 'vue'
-export default Vue.extend({
-  data () {
+<script>
+export default {
+  data() {
     return {
-      boardMembers: []
-    }
+      boardMembers: [],
+    };
   },
-  async fetch () {
-    this.boardMembers = await fetch(
-      '/vorstand.json'
-    ).then(res => res.json())
-  }
-})
+  async fetch() {
+    this.boardMembers = await fetch("/vorstand.json").then((res) => res.json());
+  },
+};
 </script>

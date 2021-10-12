@@ -17,9 +17,7 @@
           <b-field grouped group-multiline>
             <div class="control">
               <b-taglist attached>
-                <b-tag type="is-dark">
-                  Ab Klasse
-                </b-tag>
+                <b-tag type="is-dark"> Ab Klasse </b-tag>
                 <b-tag type="is-info">
                   {{ minClass }}
                 </b-tag>
@@ -28,9 +26,7 @@
 
             <div class="control">
               <b-taglist attached>
-                <b-tag type="is-dark">
-                  Dauer
-                </b-tag>
+                <b-tag type="is-dark"> Dauer </b-tag>
                 <b-tag type="is-info">
                   {{
                     duration == 1 ? duration + " Stunde" : duration + " Stunden"
@@ -40,9 +36,7 @@
             </div>
             <div v-if="maxParticipants > 0 && !isElearning" class="control">
               <b-taglist attached>
-                <b-tag type="is-dark">
-                  Maximale Teilnehmer
-                </b-tag>
+                <b-tag type="is-dark"> Maximale Teilnehmer </b-tag>
                 <b-tag type="is-info">
                   {{ maxParticipants }}
                 </b-tag>
@@ -62,7 +56,7 @@
           {{ desc }}
         </p>
         <video v-else controls>
-          <source :src="video" type="video/mp4">
+          <source :src="video" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </section>
@@ -77,8 +71,8 @@
             Workshop starten
           </b-button>
 
-          <br>
-          <br>
+          <br />
+          <br />
         </div>
         <div v-if="!isElearning" class="content container">
           <b-button
@@ -94,47 +88,80 @@
     </div>
   </b-modal>
 </template>
-
-<script lang="ts">
-import { Component, Prop, Vue } from 'nuxt-property-decorator'
-
-@Component
-export default class WorkshopModal extends Vue {
-  @Prop({ required: true }) readonly name!: string;
-  @Prop({ required: true }) readonly desc!: string;
-  @Prop({ required: true }) readonly img!: string;
-  @Prop({ required: true }) readonly duration!: number;
-  @Prop({ required: true }) readonly schoolSubject!: string;
-  @Prop({ required: true }) readonly minClass!: number;
-  @Prop({ required: true }) readonly maxParticipants!: number;
-  @Prop({ required: true }) readonly isElearning!: string;
-  @Prop({ required: true }) readonly lab!: string;
-  @Prop({ required: false }) readonly video!: string;
-
-  isActive: boolean = true;
-  address: string = 'info@sfz-sls.de';
-  body: string =
-    'Hallo!%20%0D%0AIch%20m%C3%B6chte%20gerne%20f%C3%BCr%20meine%20Klasse%20den%20' +
-    this.name +
-    '-Workshop%20buchen.%20%0D%0ADatum%3A%20%0D%0AZeit%3A%20%0D%0ASchule%3A%20%0D%0AKlasse%3A%20%0D%0AAnzahl%20der%20SuS%3A';
-
-  workshopLink: string = '/workshop/' + this.name;
-
-  public closeModel (): void {
-    this.$emit('onChange', 'hi from child')
-  }
-
-  public openMailClient (): void {
-    window.open(
-      'mailto:' +
-        this.address +
-        '?subject=' +
+<script>
+export default {
+  props: {
+    name: {
+      type: String,
+      default: undefined,
+    },
+    desc: {
+      type: String,
+      default: undefined,
+    },
+    img: {
+      type: String,
+      default: undefined,
+    },
+    duration: {
+      type: Number,
+      default: undefined,
+    },
+    schoolSubject: {
+      type: String,
+      default: undefined,
+    },
+    minClass: {
+      type: Number,
+      default: undefined,
+    },
+    maxParticipants: {
+      type: Number,
+      default: undefined,
+    },
+    isElearning: {
+      type: String,
+      default: undefined,
+    },
+    lab: {
+      type: String,
+      default: undefined,
+    },
+    video: {
+      type: String,
+      default: undefined,
+    },
+  },
+  data() {
+    return {
+      isActive: true,
+      address: "info@sfz-sls.de",
+      body:
+        "Hallo!%20%0D%0AIch%20m%C3%B6chte%20gerne%20f%C3%BCr%20meine%20Klasse%20den%20" +
         this.name +
-        '-Kurs&body=' +
-        this.body
-    )
-  }
-}
+        "-Workshop%20buchen.%20%0D%0ADatum%3A%20%0D%0AZeit%3A%20%0D%0ASchule%3A%20%0D%0AKlasse%3A%20%0D%0AAnzahl%20der%20SuS%3A",
+
+      workshopLink: "/workshop/" + this.name,
+    };
+  },
+
+  methods: {
+    closeModel() {
+      this.$emit("onChange", "hi from child");
+    },
+
+    openMailClient() {
+      window.open(
+        "mailto:" +
+          this.address +
+          "?subject=" +
+          this.name +
+          "-Kurs&body=" +
+          this.body
+      );
+    },
+  },
+};
 </script>
 
 <style>

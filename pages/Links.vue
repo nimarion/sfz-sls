@@ -1,34 +1,27 @@
 <template>
   <link-list name="Links" :links="links" />
 </template>
-<script lang="ts">
-import Vue from 'vue'
-import LinkList from '~/components/LinkList.vue'
-export default Vue.extend({
-  components: {
-    LinkList
-  },
-  data () {
+<script>
+export default {
+  data() {
     return {
-      links: []
-    }
+      links: [],
+    };
   },
-  async fetch () {
-    this.links = await fetch(
-      '/links.json'
-    ).then(res => res.json())
+  async fetch() {
+    this.links = await fetch("/links.json").then((res) => res.json());
   },
-  head () {
+  head() {
     return {
-      title: 'Links & Downloads',
+      title: "Links & Downloads",
       meta: [
         {
-          hid: 'description',
-          name: 'description',
-          content: 'Hier findest du interessante Links'
-        }
-      ]
-    }
-  }
-})
+          hid: "description",
+          name: "description",
+          content: "Hier findest du interessante Links",
+        },
+      ],
+    };
+  },
+};
 </script>

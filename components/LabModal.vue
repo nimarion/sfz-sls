@@ -31,33 +31,42 @@
   </b-modal>
 </template>
 
-<script lang="ts">
-import { Component, Prop, Vue } from 'nuxt-property-decorator'
-
-@Component
-export default class LabModal extends Vue {
-  @Prop({ required: true }) readonly name!: string;
-  @Prop({ required: true }) readonly desc!: string;
-  @Prop({ required: false }) readonly website!: string;
-
-  isActive: boolean = true;
-
-  mounted () {
+<script>
+export default {
+  props: {
+    name: {
+      type: String,
+      default: undefined,
+    },
+    desc: {
+      type: String,
+      default: undefined,
+    },
+    website: {
+      type: String,
+      default: undefined,
+    },
+  },
+  data() {
+    return {
+      isActive: true,
+    };
+  },
+  mounted() {
     if (this.website == null) {
-      const element = document.getElementsByClassName(
-        'modal-card-body'
-      )[0] as HTMLElement
-      element.style.borderBottomLeftRadius = '5px'
-      element.style.borderBottomRightRadius = '5px'
+      const element = document.getElementsByClassName("modal-card-body")[0];
+      element.style.borderBottomLeftRadius = "5px";
+      element.style.borderBottomRightRadius = "5px";
     }
-  }
+  },
+  methods: {
+    closeModel() {
+      this.$emit("onChange", "hi from child");
+    },
 
-  public closeModel (): void {
-    this.$emit('onChange', 'hi from child')
-  }
-
-  public openWebsite (): void {
-    window.open(this.website)
-  }
-}
+    openWebsite() {
+      window.open(this.website);
+    },
+  },
+};
 </script>

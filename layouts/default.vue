@@ -6,20 +6,6 @@
   </div>
   <Drawing v-else />
 </template>
-<script lang="ts">
-import Vue from 'vue'
-import Footer from '~/components/Footer.vue'
-import Navbar from '~/components/Navbar.vue'
-import Drawing from '~/components/Drawing.vue'
-export default Vue.extend({
-  components: {
-    Footer,
-    Navbar,
-    Drawing
-  }
-})
-</script>
-
 <style>
 #app {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,

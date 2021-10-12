@@ -6,48 +6,37 @@
     >
       <div class="hero-header">
         <div class="container has-text-centered" style="top: 20px">
-          <p id="title" class="title">
-            Workshops für Schulklassen und -kurse
-          </p>
+          <p id="title" class="title">Workshops für Schulklassen und -kurse</p>
         </div>
-        <br>
-        <br>
-        <WorkshopFilter
-          :workshops="workshops"
-          :is-elearning="false"
-        />
+        <br />
+        <br />
+        <WorkshopFilter :workshops="workshops" :is-elearning="false" />
       </div>
     </section>
   </content>
 </template>
-<script lang="ts">
-import Vue from 'vue'
-import WorkshopFilter from '~/components/WorkshopFilter.vue'
-export default Vue.extend({
-  components: {
-    WorkshopFilter
-  },
-  data () {
+<script>
+export default {
+  data() {
     return {
-      workshops: []
-    }
+      workshops: [],
+    };
   },
-  async fetch () {
-    this.workshops = await fetch(
-      '/workshops.json'
-    ).then(res => res.json())
+  async fetch() {
+    this.workshops = await fetch("/workshops.json").then((res) => res.json());
   },
-  head () {
+  head() {
     return {
-      title: 'Workshops',
+      title: "Workshops",
       meta: [
         {
-          hid: 'description',
-          name: 'description',
-          content: 'Unser Workshop Angebot am Schülerforschungszentrum Saarlouis'
-        }
-      ]
-    }
-  }
-})
+          hid: "description",
+          name: "description",
+          content:
+            "Unser Workshop Angebot am Schülerforschungszentrum Saarlouis",
+        },
+      ],
+    };
+  },
+};
 </script>

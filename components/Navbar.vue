@@ -11,12 +11,8 @@
     </template>
 
     <template slot="end">
-      <b-navbar-item tag="nuxt-link" to="/forschung">
-        Forschung
-      </b-navbar-item>
-      <b-navbar-item tag="nuxt-link" to="/workshop">
-        Workshops
-      </b-navbar-item>
+      <b-navbar-item tag="nuxt-link" to="/forschung"> Forschung </b-navbar-item>
+      <b-navbar-item tag="nuxt-link" to="/workshop"> Workshops </b-navbar-item>
       <b-navbar-item tag="nuxt-link" to="/e-learning">
         E-Learning
       </b-navbar-item>
@@ -54,9 +50,7 @@
           Förderverein
         </b-navbar-item>
 
-        <b-navbar-item tag="nuxt-link" to="/team">
-          Team
-        </b-navbar-item>
+        <b-navbar-item tag="nuxt-link" to="/team"> Team </b-navbar-item>
         <b-navbar-item tag="nuxt-link" to="/links">
           Links &#38; Downloads
         </b-navbar-item>
@@ -67,9 +61,7 @@
           Förderverein
         </b-navbar-item>
 
-        <b-navbar-item tag="nuxt-link" to="/team">
-          Team
-        </b-navbar-item>
+        <b-navbar-item tag="nuxt-link" to="/team"> Team </b-navbar-item>
         <b-navbar-item tag="nuxt-link" to="/links">
           Links &#38; Downloads
         </b-navbar-item>
@@ -84,24 +76,25 @@
     </template>
   </b-navbar>
 </template>
-<script lang="ts">
-import Vue from 'vue'
-import data from '~/assets/experiments.json'
-export default Vue.extend({
-  data () {
+
+<script>
+import data from "~/assets/experiments.json";
+
+export default {
+  data() {
     return {
-      experiments: data
-    }
+      experiments: data,
+    };
   },
   computed: {
-    getExperiments () {
-      return data.filter(item => item.experiment)
+    getExperiments() {
+      return data.filter((item) => item.experiment);
     },
-    getGames () {
-      return data.filter(item => !item.experiment)
-    }
-  }
-})
+    getGames() {
+      return data.filter((item) => !item.experiment);
+    },
+  },
+};
 </script>
 
 <style>

@@ -3,9 +3,7 @@
     <section id="hero-background" class="hero">
       <div class="hero-body">
         <div class="container has-text-centered">
-          <p id="title" class="title">
-            Unser Team
-          </p>
+          <p id="title" class="title">Unser Team</p>
         </div>
       </div>
       <div class="container">
@@ -39,30 +37,27 @@
     </section>
   </content>
 </template>
-<script lang="ts">
-import Vue from 'vue'
-export default Vue.extend({
-  data () {
+<script>
+export default {
+  data() {
     return {
-      employees: []
-    }
+      employees: [],
+    };
   },
-  async fetch () {
-    this.employees = await fetch(
-      '/employees.json'
-    ).then(res => res.json())
+  async fetch() {
+    this.employees = await fetch("/employees.json").then((res) => res.json());
   },
-  head () {
+  head() {
     return {
-      title: 'Team',
+      title: "Team",
       meta: [
         {
-          hid: 'description',
-          name: 'description',
-          content: 'Unser Team am Schülerforschungszentrum Saarlouis'
-        }
-      ]
-    }
-  }
-})
+          hid: "description",
+          name: "description",
+          content: "Unser Team am Schülerforschungszentrum Saarlouis",
+        },
+      ],
+    };
+  },
+};
 </script>

@@ -6,11 +6,9 @@
     >
       <div class="hero-header">
         <div class="container has-text-centered" style="top: 20px">
-          <p id="title" class="title">
-            Schülerlabore
-          </p>
+          <p id="title" class="title">Schülerlabore</p>
         </div>
-        <br>
+        <br />
         <card-list :data="labs" @openModal="openLabModal" />
       </div>
       <lab-modal
@@ -23,41 +21,31 @@
     </section>
   </content>
 </template>
-<script lang="ts">
-import Vue from 'vue'
-import LabModal from '~/components/LabModal.vue'
-import CardList from '~/components/CardList.vue'
-import { Lab } from '~/interfaces/Lab'
-export default Vue.extend({
-  components: {
-    LabModal,
-    CardList
-  },
-  data () {
+<script>
+export default {
+  data() {
     return {
       clickedLab: null,
       isImageModalActive: false,
-      labs: []
-    }
+      labs: [],
+    };
   },
-  async fetch () {
-    this.labs = await fetch(
-      '/labs.json'
-    ).then(res => res.json())
+  async fetch() {
+    this.labs = await fetch("/labs.json").then((res) => res.json());
   },
-  head () {
+  head() {
     return {
-      title: 'Schülerlabore'
-    }
+      title: "Schülerlabore",
+    };
   },
   methods: {
-    openLabModal (item: Lab): void {
-      this.clickedLab = item
-      this.isImageModalActive = true
+    openLabModal(item) {
+      this.clickedLab = item;
+      this.isImageModalActive = true;
     },
-    closeEvent (): void {
-      this.isImageModalActive = false
-    }
-  }
-})
+    closeEvent() {
+      this.isImageModalActive = false;
+    },
+  },
+};
 </script>

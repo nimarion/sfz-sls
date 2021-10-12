@@ -4,9 +4,7 @@
       <div class="columns is-vcentered">
         <div class="column is-6 is-narrow">
           <div class="container">
-            <h1 class="title is-size-1">
-              404
-            </h1>
+            <h1 class="title is-size-1">404</h1>
             <h1 v-if="isWorkshop" class="subtitle">
               Der Workshop {{ workshopName }} existiert nicht
             </h1>
@@ -29,42 +27,39 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { NuxtError } from '@nuxt/types'
-import { Component, Prop, Vue } from 'nuxt-property-decorator'
-
-@Component
-export default class Error extends Vue {
-  @Prop({ required: true }) readonly error!: NuxtError;
-
-  layout () {
+<script>
+export default {
+  layout() {
     if (
-      window.location.pathname.startsWith('/workshops/') &&
-      window.location.pathname.split('/')[2].length > 0
+      window.location.pathname.startsWith("/workshops/") &&
+      window.location.pathname.split("/")[2].length > 0
     ) {
-      return 'error-layout'
+      return "error-layout";
     }
-    return 'default'
-  }
-
-  get isWorkshop (): boolean {
-    return (
-      window.location.pathname.startsWith('/workshops/') &&
-      window.location.pathname.split('/')[2].length > 0
-    )
-  }
-
-  get isNews (): boolean {
-    return window.location.pathname.startsWith('/news/')
-  }
-
-  get workshopName (): string {
-    return decodeURIComponent(window.location.pathname.split('/')[2])
-  }
-
-  get siteName (): string {
-    return decodeURIComponent(window.location.pathname)
-  }
-}
+    return "default";
+  },
+  props: {
+    error: {
+      type: Object,
+      default: () => {},
+    },
+  },
+  computed: {
+    isWorkshop() {
+      return (
+        window.location.pathname.startsWith("/workshops/") &&
+        window.location.pathname.split("/")[2].length > 0
+      );
+    },
+    isNews() {
+      return window.location.pathname.startsWith("/news/");
+    },
+    workshopName() {
+      return decodeURIComponent(window.location.pathname.split("/")[2]);
+    },
+    siteName() {
+      return decodeURIComponent(window.location.pathname);
+    },
+  },
+};
 </script>

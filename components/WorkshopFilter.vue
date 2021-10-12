@@ -94,9 +94,7 @@
       </div>
     </b-sidebar>
 
-    <b-button @click="open = true">
-      Workshops filtern
-    </b-button>
+    <b-button @click="open = true"> Workshops filtern </b-button>
     <div class="hero-body">
       <!--Cards-->
       <div class="container">
@@ -109,7 +107,9 @@
               v-for="item in requestedWorkshops"
               :key="item.name"
               class="column is-4"
-              :href="isElearning ? 'https://sfz-sls.de/workshop/' + item.name: ' '"
+              :href="
+                isElearning ? 'https://sfz-sls.de/workshop/' + item.name : ' '
+              "
               @click="openWorkshopModal(item)"
             >
               <div class="card large">
@@ -162,133 +162,135 @@
     />
   </section>
 </template>
-
-<script lang="ts">
-import { Component, Prop, Vue, Watch } from 'nuxt-property-decorator'
-import WorkshopModal from '../components/WorkshopModal.vue'
-import { Workshop } from '~/interfaces/Workshop'
-
-@Component({
-  components: {
-    WorkshopModal
-  }
-})
-export default class WorkshopFilter extends Vue {
-  @Prop({ required: true }) readonly workshops!: Array<Workshop>;
-  @Prop({ required: true }) readonly isElearning!: Boolean;
-
-  selectedSchoolSubjects: Array<string> = [];
-  selectedLabs: Array<string> = [];
-  seletecClassLevel: Number = 12;
-  selectedParticipants: Number = 0;
-  selectedTimeRange: Array<number> = [1, 1];
-  open: boolean = false;
-  requestedWorkshops: Array<Workshop> = [];
-  schoolSubject: Array<string> = [];
-  labs: Array<string> = [];
-  isImageModalActive: Boolean = false;
-  clickedWorkshop: Workshop = null;
-  maxDuration: Number = 1;
-
-  @Watch('workshops')
-  workshopsChanged (newValue: Array<Workshop>, oldValue: Array<Workshop>) {
-    if (oldValue.length === 0 && newValue.length !== 0) {
-      this.requestedWorkshops.push.apply(
-        this.requestedWorkshops,
-        this.workshops
-      )
-      this.loadFilterProps()
-    }
-  }
-
-  @Watch('selectedSchoolSubjects')
-  selectedSchoolSubjectsChanged () {
-    this.loadRequestedWorkshops()
-  }
-
-  @Watch('seletecClassLevel')
-  seletecClassLevelChanged () {
-    this.loadRequestedWorkshops()
-  }
-
-  @Watch('selectedTimeRange')
-  selectedTimeRangeChanged () {
-    this.loadRequestedWorkshops()
-  }
-
-  @Watch('selectedParticipants')
-  selectedParticipantsChanged () {
-    this.loadRequestedWorkshops()
-  }
-
-  @Watch('selectedLabs')
-  selectedLabsChanged () {
-    this.loadRequestedWorkshops()
-  }
-
-  created () {
-    this.requestedWorkshops.push.apply(this.requestedWorkshops, this.workshops)
-    this.loadFilterProps()
-  }
-
-  public loadFilterProps (): void {
-    this.maxDuration = Math.max.apply(
-      Math,
-      this.workshops.map(function (item) {
-        return item.duration
-      })
-    )
-    this.schoolSubject = [
-      ...new Set(this.workshops.flatMap(item => item.schoolSubject))
-    ]
-    this.labs = [...new Set(this.workshops.flatMap(item => item.lab))]
-  }
-
-  public loadRequestedWorkshops (): void {
-    this.requestedWorkshops.length = 0
-    for (let i = 0; i < this.workshops.length; i++) {
-      const workshop = this.workshops[i]
-
-      const isSubject =
-        this.selectedSchoolSubjects.length === 0
-          ? true
-          : this.selectedSchoolSubjects.some(item =>
-            workshop.schoolSubject.includes(item)
-          )
-      const isClassLevel = workshop.minClass <= this.seletecClassLevel
-
-      const isParticipants =
-        this.selectedParticipants <= workshop.maxParticipants ||
-        this.selectedParticipants === 0 ||
-        workshop.maxParticipants === 0
-
-      const isLab =
-        this.selectedLabs.length === 0
-          ? true
-          : this.selectedLabs.some(item => item === workshop.lab)
-
-      const isDuration =
-        this.isElearning ||
-        (this.selectedTimeRange[0] === 1 && this.selectedTimeRange[1] === 1) ||
-        (workshop.duration - this.selectedTimeRange[0]) *
-          (workshop.duration - this.selectedTimeRange[1]) <=
-          0
-
-      if (isSubject && isClassLevel && isDuration && isParticipants && isLab) {
-        this.requestedWorkshops.push(workshop)
+<script>
+export default {
+  props: {
+    workshops: {
+      type: Array,
+      default: () => [],
+    },
+    isElearning: {
+      type: Boolean,
+    },
+  },
+  data() {
+    return {
+      selectedSchoolSubjects: [],
+      selectedLabs: [],
+      seletecClassLevel: 12,
+      selectedParticipants: 0,
+      selectedTimeRange: [1, 1],
+      open: false,
+      requestedWorkshops: [],
+      schoolSubject: [],
+      labs: [],
+      isImageModalActive: false,
+      clickedWorkshop: null,
+      maxDuration: 1,
+    };
+  },
+  watch: {
+    workshops(newValue, oldValue) {
+      if (oldValue.length === 0 && newValue.length !== 0) {
+        this.requestedWorkshops.push.apply(
+          this.requestedWorkshops,
+          this.workshops
+        );
+        this.loadFilterProps();
       }
-    }
-  }
+    },
 
-  public openWorkshopModal (item: Workshop): void {
-    this.clickedWorkshop = item
-    this.isImageModalActive = true
-  }
+    selectedSchoolSubjects() {
+      this.loadRequestedWorkshops();
+    },
 
-  public closeEvent (): void {
-    this.isImageModalActive = false
-  }
-}
+    seletecClassLevel() {
+      this.loadRequestedWorkshops();
+    },
+
+    selectedTimeRange() {
+      this.loadRequestedWorkshops();
+    },
+
+    selectedParticipants() {
+      this.loadRequestedWorkshops();
+    },
+
+    selectedLabs() {
+      this.loadRequestedWorkshops();
+    },
+  },
+  created() {
+    this.requestedWorkshops.push.apply(this.requestedWorkshops, this.workshops);
+    this.loadFilterProps();
+  },
+  methods: {
+    loadFilterProps() {
+      this.maxDuration = Math.max.apply(
+        Math,
+        this.workshops.map(function (item) {
+          return item.duration;
+        })
+      );
+      this.schoolSubject = [
+        ...new Set(this.workshops.flatMap((item) => item.schoolSubject)),
+      ];
+      this.labs = [...new Set(this.workshops.flatMap((item) => item.lab))];
+    },
+
+    loadRequestedWorkshops() {
+      this.requestedWorkshops.length = 0;
+      for (let i = 0; i < this.workshops.length; i++) {
+        const workshop = this.workshops[i];
+
+        const isSubject =
+          this.selectedSchoolSubjects.length === 0
+            ? true
+            : this.selectedSchoolSubjects.some((item) =>
+                workshop.schoolSubject.includes(item)
+              );
+        const isClassLevel = workshop.minClass <= this.seletecClassLevel;
+
+        const isParticipants =
+          this.selectedParticipants <= workshop.maxParticipants ||
+          this.selectedParticipants === 0 ||
+          workshop.maxParticipants === 0;
+
+        const isLab =
+          this.selectedLabs.length === 0
+            ? true
+            : this.selectedLabs.includes(workshop.lab);
+
+        const isDuration =
+          this.isElearning ||
+          (this.selectedTimeRange[0] === 1 &&
+            this.selectedTimeRange[1] === 1) ||
+          (workshop.duration - this.selectedTimeRange[0]) *
+            (workshop.duration - this.selectedTimeRange[1]) <=
+            0;
+
+        if (
+          isSubject &&
+          isClassLevel &&
+          isDuration &&
+          isParticipants &&
+          isLab
+        ) {
+          this.requestedWorkshops.push(workshop);
+        }
+      }
+    },
+
+    openWorkshopModal(item) {
+      this.clickedWorkshop = item;
+      this.isImageModalActive = true;
+    },
+
+    closeEvent() {
+      this.isImageModalActive = false;
+    },
+  },
+};
 </script>
 
 <style>

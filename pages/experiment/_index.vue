@@ -13,9 +13,7 @@
         <div style="text-align: left">
           <div class="columns is-vcentered">
             <div class="column is-offset-1">
-              <p class="title">
-                Du brauchst:
-              </p>
+              <p class="title">Du brauchst:</p>
               <li v-for="item in currentExperiment.materials" :key="item">
                 {{ item }}
               </li>
@@ -40,9 +38,7 @@
         <div style="text-align: left">
           <div class="columns is-vcentered">
             <div class="column is-offset-1">
-              <p class="title">
-                Durchführung:
-              </p>
+              <p class="title">Durchführung:</p>
               <li v-for="item in currentExperiment.implementation" :key="item">
                 {{ item }}
               </li>
@@ -83,7 +79,7 @@
               class="column"
               @click="setAnswer(item)"
             >
-              <img :src="item.img" width="200px">
+              <img :src="item.img" width="200px" />
               <p>{{ item.answer }}</p>
             </div>
           </div>
@@ -113,65 +109,48 @@
     </b-steps>
   </section>
 </template>
-<script lang="ts">
-import Vue from 'vue'
-import { SnackbarProgrammatic as Snackbar } from 'buefy'
-import data from '~/assets/experiments.json'
-
-/** Games */
-import WebGame from '~/components/experiments/WebGame.vue'
-import ChimpGame from '~/components/experiments/ChimpGame.vue'
-import PuzzleGame from '~/components/experiments/PuzzleGame.vue'
-import SolitaireGame from '~/components/experiments/SolitaireGame.vue'
-import WageGame from '~/components/experiments/WageGame.vue'
-import { Answer } from '~/interfaces/Experiment'
-
-export default Vue.extend({
-  components: {
-    WebGame,
-    ChimpGame,
-    PuzzleGame,
-    SolitaireGame,
-    WageGame
-  },
-  data () {
+<script>
+import { SnackbarProgrammatic as Snackbar } from "buefy";
+import data from "~/assets/experiments.json";
+export default {
+  data() {
     return {
       activeStep: 0,
       experiments: data,
       clickedAnswer: null,
       currentExperiment: data.filter(
-        item =>
+        (item) =>
           item.name.toLowerCase() === this.$route.params.index.toLowerCase()
-      )[0]
-    }
+      )[0],
+    };
   },
-  created () {
+  created() {
     if (parseInt(this.$route.params.index) >= this.experiments.length) {
       this.$nuxt.error({
-        message: '',
-        statusCode: 404
-      })
+        message: "",
+        statusCode: 404,
+      });
     }
   },
   methods: {
-    setAnswer (item: Answer): void {
-      this.clickedAnswer = item
+    setAnswer(item) {
+      this.clickedAnswer = item;
     },
-    checkAnswer (): void {
+    checkAnswer() {
       if (this.clickedAnswer == null) {
         Snackbar.open({
-          position: 'is-top',
-          message: 'Du hast noch keine Antwort ausgewählt'
-        })
+          position: "is-top",
+          message: "Du hast noch keine Antwort ausgewählt",
+        });
       } else {
         Snackbar.open({
-          position: 'is-top',
+          position: "is-top",
           message: this.clickedAnswer.solution
-            ? 'Die Antwort ist richtig!'
-            : 'Die Antwort ist falsch'
-        })
+            ? "Die Antwort ist richtig!"
+            : "Die Antwort ist falsch",
+        });
       }
-    }
-  }
-})
+    },
+  },
+};
 </script>

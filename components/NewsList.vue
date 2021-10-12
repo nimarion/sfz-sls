@@ -24,30 +24,30 @@
     </div>
   </section>
 </template>
-<script lang="ts">
-import Vue from 'vue'
-import { News } from '~/interfaces/News'
-export default Vue.extend({
-  data () {
+<script>
+export default {
+  data() {
     return {
-      news: []
-    }
+      news: [],
+    };
   },
-  async fetch () {
+  async fetch() {
     const ms = Date.now();
-    this.news = await fetch("/news/news.json" + "?dummy="+ms).then((res) => res.json());
+    this.news = await fetch("/news/news.json" + "?dummy=" + ms).then((res) =>
+      res.json()
+    );
   },
   methods: {
-    getNewsLink (item: News): string {
+    getNewsLink(item) {
       return (
-        'news/' +
-      `${item.date}`.split(' ')[2] +
-      '/' +
-      encodeURIComponent(`${item.title}`)
-      )
-    }
-  }
-})
+        "news/" +
+        `${item.date}`.split(" ")[2] +
+        "/" +
+        encodeURIComponent(`${item.title}`)
+      );
+    },
+  },
+};
 </script>
 
 <style scoped>

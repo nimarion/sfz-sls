@@ -39,52 +39,40 @@
     </div>
   </div>
 </template>
-<script lang="ts">
-import Vue from 'vue'
-import snarkdown from 'snarkdown'
-import { News } from '~/interfaces/News'
 
-export default Vue.extend({
-  async asyncData (context: any) {
-    const articles = await fetch('/news/news.json?time=' + new Date().getTime())
-      .then(response => response.json())
-      .then(data =>
-        data.filter((element: News) => element.title === context.params.title)
-      )
+<script>
+import snarkdown from "snarkdown";
+
+export default {
+  async asyncData(context) {
+    const articles = await fetch("/news/news.json?time=" + new Date().getTime())
+      .then((response) => response.json())
+      .then((data) =>
+        data.filter((element) => element.title === context.params.title)
+      );
     if (articles.length === 0) {
       context.error({
-        message: 'Der Artikel ' + context.params.title + ' existiert nicht',
-        statusCode: 404
-      })
-      return
+        message: "Der Artikel " + context.params.title + " existiert nicht",
+        statusCode: 404,
+      });
+      return;
     }
-    const date = articles[0].date
-    const author = articles[0].author
-    const image = location.origin + articles[0].image
+    const date = articles[0].date;
+    const author = articles[0].author;
+    const image = location.origin + articles[0].image;
     const htmlContent = await fetch(
-      window.location.origin + '/news/' + articles[0].markdown
+      window.location.origin + "/news/" + articles[0].markdown
     )
-      .then(response => response.text())
-      .then(data => snarkdown(data))
-    return { date, author, image, htmlContent }
+      .then((response) => response.text())
+      .then((data) => snarkdown(data));
+    return { date, author, image, htmlContent };
   },
-  head () {
+  head() {
     return {
       title: this.$route.params.title,
-      script: [
-        {
-          innerHTML: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'NewsArticle',
-            headline: this.$route.params.title,
-            image: [(this as any).image]
-          }),
-          type: 'application/ld+json'
-        }
-      ]
-    }
-  }
-})
+    };
+  },
+};
 </script>
 
 <style>
