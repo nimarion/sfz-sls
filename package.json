@@ -8,7 +8,7 @@
     "lint": "eslint --ext .vue ."
   },
   "dependencies": {
-    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@nuxtjs/fontawesome": "^1.1.2",
     "axios": "^0.21.1",
     "nuxt": "^2.14.12",
