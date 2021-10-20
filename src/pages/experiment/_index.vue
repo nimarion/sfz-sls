@@ -117,6 +117,11 @@ import ChimpGame from "~/components/experiments/ChimpGame.vue";
 import PuzzleGame from "~/components/experiments/PuzzleGame.vue";
 import SolitaireGame from "~/components/experiments/SolitaireGame.vue";
 import WageGame from "~/components/experiments/WageGame.vue";
+import JuniperGame from "~/components/experiments/JuniperGame.vue";
+import InteresectionGame from "~/components/experiments/InteresectionGame.vue";
+import BuchstabensalatGame from "~/components/experiments/BuchstabensalatGame.vue";
+import DripsGame from "~/components/experiments/DripsGame.vue";
+
 export default {
   components: {
     WebGame,
@@ -124,6 +129,10 @@ export default {
     PuzzleGame,
     SolitaireGame,
     WageGame,
+    JuniperGame,
+    InteresectionGame,
+    BuchstabensalatGame,
+    DripsGame,
   },
   data() {
     return {
