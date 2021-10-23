@@ -2,7 +2,11 @@
   <section>
     <b-sidebar v-model="open" type="is-light" :fullheight="true">
       <div class="p-1">
-        <b-image :src="require('~/assets/undraw_select_option.svg')" />
+        <lottie
+          style="height: unset; width: unset"
+          :options="lottieOptions"
+          @animCreated="handleAnimation"
+        />
         <!-- Klassenstufe -->
         <b-field label="Klassenstufe">
           <b-slider
@@ -163,7 +167,12 @@
   </section>
 </template>
 <script>
+import lottie from "vue-lottie/src/lottie.vue";
+import * as animationData from "~/assets/lottie/select.json";
 export default {
+  components: {
+    lottie,
+  },
   props: {
     workshops: {
       type: Array,
@@ -187,6 +196,8 @@ export default {
       isImageModalActive: false,
       clickedWorkshop: null,
       maxDuration: 1,
+      anim: null, // for saving the reference to the animation
+      lottieOptions: { animationData: animationData.default },
     };
   },
   watch: {
@@ -237,7 +248,9 @@ export default {
       ];
       this.labs = [...new Set(this.workshops.flatMap((item) => item.lab))];
     },
-
+    handleAnimation(anim) {
+      this.anim = anim;
+    },
     loadRequestedWorkshops() {
       this.requestedWorkshops.length = 0;
       for (let i = 0; i < this.workshops.length; i++) {

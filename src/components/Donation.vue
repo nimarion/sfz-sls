@@ -33,10 +33,34 @@
             </div>
           </div>
           <div class="column is-6">
-            <b-image :src="require('~/assets/undraw_science.svg')" />
+            <lottie
+              style="height: unset; width: unset"
+              :options="lottieOptions"
+              @animCreated="handleAnimation"
+            />
           </div>
         </div>
       </div>
     </div>
   </section>
 </template>
+<script>
+import lottie from "vue-lottie/src/lottie.vue";
+import * as animationData from "~/assets/lottie/student.json";
+export default {
+  components: {
+    lottie,
+  },
+  data() {
+    return {
+      anim: null, // for saving the reference to the animation
+      lottieOptions: { animationData: animationData.default },
+    };
+  },
+  methods: {
+    handleAnimation(anim) {
+      this.anim = anim;
+    },
+  },
+};
+</script>
