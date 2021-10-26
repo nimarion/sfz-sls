@@ -9,6 +9,12 @@
           trainierter Schimpanse schafft ein Spielfeld mit den Zahlen von 1 bis
           9 in 90% der Fälle
         </p>
+        <br />
+        <p class="title">Aktueller Highscore: {{ highscore }} von 5 Punkte!</p>
+        <br />
+        <b-button type="is-success" outlined @click="reload">
+          Level neuladen
+        </b-button>
       </div>
       <div class="column is-two-thirds">
         <div id="memory-container" />
@@ -20,6 +26,11 @@
 import Phaser from "phaser";
 
 export default {
+  data() {
+    return {
+      game: null,
+    };
+  },
   mounted() {
     // Use these parameters to scale the game
     const boardSizeInt = 600;
@@ -165,7 +176,13 @@ export default {
       // Called once to load necessary assets etc.
       preload() {}
 
-      reset(random = true) {
+      reset(random = true, beginning = true) {
+        if (this.resetting) {
+          return;
+        }
+        if (beginning) {
+          this.level = 0;
+        }
         for (var i = 0; i < this.hoverpoints.length; i++)
           this.hoverpoints[i].destroy();
         this.hoverpoints = [];
@@ -194,14 +211,21 @@ export default {
         this.lastAddedPoints = 0;
 
         this.createCenterPiece(random);
+        this.countText.setText(
+          "Aktuelle Stückzahl: " + this.centerpieces.length
+        );
+        this.correct_text.setText("");
+        this.click_allowed = true;
       }
 
-      retry() {
-        this.reset(false);
+      retry(random = false) {
+        this.reset(random, false);
       }
 
       // Called once to initialize the game
       create() {
+        this.click_allowed = false;
+        this.resetting = true;
         this.centerpieces = [];
         this.oldCenterpieces = [];
         this.hoverpoints = [];
@@ -215,6 +239,7 @@ export default {
         this.lastAddedPoints = 0;
         this.r = [0, 0, 0];
         this.score = 0;
+        this.level = 0;
         // this.wantedFaces = 3;
         this.countText = this.add
           .text(boardSizeInt, 0, "Aktuelle Stückzahl: 1", {
@@ -229,6 +254,10 @@ export default {
         this.polygonsText = this.add
           .text(boardSizeInt, boardSizeInt, "", { font: "32px Arial" })
           .setOrigin(1, 1)
+          .setDepth(5);
+        this.correct_text = this.add
+          .text(boardSizeInt / 2, 55, "", { font: "32px Arial" })
+          .setOrigin(0.5, 0)
           .setDepth(5);
 
         this.add
@@ -248,13 +277,15 @@ export default {
 
         this.input.on("pointermove", this.onMouseMove, this);
         this.input.on("pointerdown", this.onMouseDown, this);
+        this.resetting = false;
+        this.click_allowed = true;
       }
 
       createCenterPiece(random = true) {
         if (random) {
-          if (this.score < 2) {
+          if (this.level < 2) {
             this.r = easy[randRange(0, easy.length)];
-          } else if (this.score < 4) {
+          } else if (this.level < 4) {
             this.r = normal[randRange(0, normal.length)];
           } else {
             this.r = hard[randRange(0, hard.length)];
@@ -278,19 +309,16 @@ export default {
           this.r[1] == this.lines.length &&
           this.r[2] == this.centerpieces.length
         ) {
-          this.score = Math.min(5, this.score + 1);
-          this.correct_text = this.add
-            .text(boardSizeInt / 2, 55, "Korrekt!", { font: "32px Arial" })
-            .setOrigin(0.5, 0)
-            .setDepth(5);
+          this.click_allowed = false;
+          this.level = Math.min(5, this.level + 1);
+          this.score = Math.max(this.level, this.score);
+          this.correct_text.setText("Korrekt!");
+          this.resetting = true;
           this.time.delayedCall(
             1500,
             function () {
-              this.correct_text.destroy();
-              this.reset(true);
-              this.countText.setText(
-                "Aktuelle Stückzahl: " + this.centerpieces.length
-              );
+              this.resetting = false;
+              this.reset(true, false);
             },
             [],
             this
@@ -299,6 +327,9 @@ export default {
       }
 
       onMouseDown(pointer, targets) {
+        if (!this.click_allowed) {
+          return;
+        }
         // Create new hoverpoint
         var xy = this.nearestGridPos(pointer.x, pointer.y);
 
@@ -645,7 +676,17 @@ export default {
     };
 
     // Create the game, and that's it.
-    var gameInt = new Phaser.Game(configInt);
+    this.game = new Phaser.Game(configInt);
+  },
+  methods: {
+    reload() {
+      this.game.scene.scenes[0].retry();
+    },
+  },
+  computed: {
+    highscore() {
+      return 0;
+    },
   },
 };
 </script>

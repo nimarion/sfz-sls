@@ -9,6 +9,12 @@
           trainierter Schimpanse schafft ein Spielfeld mit den Zahlen von 1 bis
           9 in 90% der Fälle
         </p>
+        <br />
+        <p class="title">Aktueller Highscore: {{ highscore }} von 5 Punkte!</p>
+        <br />
+        <b-button type="is-success" outlined @click="reload">
+          Level neuladen
+        </b-button>
       </div>
       <div class="column is-two-thirds">
         <div id="salat-container" />
@@ -20,6 +26,11 @@
 import Phaser from "phaser";
 
 export default {
+  data() {
+    return {
+      game: null,
+    };
+  },
   mounted() {
     // Use these parameters to scale the game
     const boardSizeSalat = 600;
@@ -46,6 +57,7 @@ export default {
 
       clear() {
         this.selected_xy = null;
+        this.correct_text.setText("");
         if (this.selected_rect != null) this.selected_rect.destroy();
         this.selected_rect = null;
         if (this.grid != null) this.grid.destroy();
@@ -54,18 +66,30 @@ export default {
         this.labels = [];
       }
 
-      reset(onlyOneLevel = false) {
+      reset(onlyOneLevel = false, retry = false) {
+        if (this.resetting) {
+          return;
+        }
         this.clear();
         this.solved = false;
-        if (onlyOneLevel) {
-          this.level = Math.max(0, this.level - 1);
-        } else {
-          this.level = 0;
+        if (!retry) {
+          if (onlyOneLevel) {
+            this.level = Math.max(0, this.level - 1);
+          } else {
+            this.level = 0;
+          }
         }
         this.setLevelParams();
         this.makegrid();
-        this.input.on("pointerdown", this.onMouseDown, this);
-        this.time.delayedCall(1000, this.timeCounter, [], this);
+        this.allow_clicking = true;
+        if (!this.time_running) {
+          this.time.delayedCall(1000, this.timeCounter, [], this);
+          this.time_running = true;
+        }
+      }
+
+      retry() {
+        this.reset(true, true);
       }
 
       next() {
@@ -76,12 +100,16 @@ export default {
         this.setLevelParams();
         this.makegrid();
 
-        this.input.on("pointerdown", this.onMouseDown, this);
-        this.time.delayedCall(1000, this.timeCounter, [], this);
+        this.allow_clicking = true;
+        if (!this.time_running) {
+          this.time.delayedCall(1000, this.timeCounter, [], this);
+          this.time_running = true;
+        }
       }
 
       timeCounter() {
         if (this.solved) {
+          this.time_running = false;
           return;
         }
         this.time_left = this.time_left - 1000;
@@ -92,34 +120,43 @@ export default {
         }
 
         if (this.time_left <= 0) {
+          this.time_running = false;
+          this.resetting = true;
           this.clear();
-          this.input.off("pointerdown", this.onMouseDown, this);
-          this.correct_text = this.add
-            .text(boardSizeSalat / 2, boardSizeSalat / 2, "Zeit abgelaufen!", {
-              font: "48px Arial",
-            })
-            .setOrigin(0.5, 0.5);
+          this.solved = true;
+          this.allow_clicking = false;
+          this.correct_text.setText("Zeit abgelaufen!");
           this.time.delayedCall(
             3000,
             function () {
-              this.correct_text.destroy();
-              this.reset(true);
+              this.correct_text.setText("");
+              this.resetting = false;
+              this.retry();
             },
             [],
             this
           );
         } else {
           this.time.delayedCall(1000, this.timeCounter, [], this);
+          this.time_running = true;
         }
       }
 
       // Called once to initialize the game
       create() {
+        this.allow_clicking = true;
+        this.resetting = true;
+        this.time_running = false;
         this.selected_rect = null;
         this.time_text = this.add
           .text(boardSizeSalat, 0, 0, { font: "32px Arial" })
           .setOrigin(1, 0)
           .setDepth(15);
+        this.correct_text = this.add
+          .text(boardSizeSalat / 2, boardSizeSalat / 2, "", {
+            font: "48px Arial",
+          })
+          .setOrigin(0.5, 0.5);
         this.labels = [];
         this.score = 0;
         this.level = 0;
@@ -129,6 +166,8 @@ export default {
 
         this.input.on("pointerdown", this.onMouseDown, this);
         this.time.delayedCall(1000, this.timeCounter, [], this);
+        this.time_running = true;
+        this.resetting = false;
       }
 
       setLevelParams() {
@@ -228,7 +267,7 @@ export default {
             ];
             break;
         }
-        this.time_text.setText(this.time_left / 1000);
+        this.time_text.setText(this.time_left / 1000).setColor("white");
       }
 
       gen_pairs() {
@@ -305,6 +344,9 @@ export default {
       }
 
       onMouseDown(pointer, target) {
+        if (!this.allow_clicking) {
+          return;
+        }
         var x_y = this.clickToIdx(pointer.x, pointer.y);
         // console.log(this.getLabelByIdx(x_y.x, x_y.y));
         // console.log(this.score);
@@ -325,7 +367,7 @@ export default {
           this.selected_rect.destroy();
           this.selected_rect = null;
         } else {
-          this.input.off("pointerdown", this.onMouseDown, this);
+          this.allow_clicking = false;
           // Choosing second rect
           var lab1 = this.getLabelByIdx(x_y.x, x_y.y);
           var lab2 = this.getLabelByIdx(this.selected_xy.x, this.selected_xy.y);
@@ -336,16 +378,14 @@ export default {
           ) {
             // Wrong pair correctly chosen
             this.clear();
+            this.resetting = true;
             this.solved = true;
-            this.correct_text = this.add
-              .text(boardSizeSalat / 2, boardSizeSalat / 2, "Richtig!", {
-                font: "48px Arial",
-              })
-              .setOrigin(0.5, 0.5);
+            this.correct_text.setText("Richtig!");
             this.time.delayedCall(
               3000,
               function () {
-                this.correct_text.destroy();
+                this.correct_text.setText("");
+                this.resetting = false;
                 this.next();
               },
               [],
@@ -354,17 +394,15 @@ export default {
           } else {
             // Wrong selection, restart from zero
             this.clear();
+            this.resetting = true;
             this.solved = true;
-            this.correct_text = this.add
-              .text(boardSizeSalat / 2, boardSizeSalat / 2, "Falsch!", {
-                font: "48px Arial",
-              })
-              .setOrigin(0.5, 0.5);
+            this.correct_text.setText("Falsch!");
             this.time.delayedCall(
               3000,
               function () {
-                this.correct_text.destroy();
-                this.reset(true);
+                this.correct_text.setText("");
+                this.resetting = false;
+                this.retry();
               },
               [],
               this
@@ -386,7 +424,7 @@ export default {
       }
 
       tryLevel(n) {
-        this.input.off("pointerdown", this.onMouseDown, this);
+        this.allow_clicking = false;
         this.clear();
         this.level = n - 2;
         this.next();
@@ -412,7 +450,17 @@ export default {
     };
 
     // Create the game, and that's it.
-    var gameSalat = new Phaser.Game(configSalat);
+    this.game = new Phaser.Game(configSalat);
+  },
+  methods: {
+    reload() {
+      this.game.scene.scenes[0].retry();
+    },
+  },
+  computed: {
+    highscore() {
+      return 0;
+    },
   },
 };
 </script>

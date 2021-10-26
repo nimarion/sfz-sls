@@ -121,6 +121,7 @@ import JuniperGame from "~/components/experiments/JuniperGame.vue";
 import InteresectionGame from "~/components/experiments/InteresectionGame.vue";
 import BuchstabensalatGame from "~/components/experiments/BuchstabensalatGame.vue";
 import DripsGame from "~/components/experiments/DripsGame.vue";
+import MemoryGame from "~/components/experiments/MemoryGame.vue";
 
 export default {
   components: {
@@ -133,6 +134,7 @@ export default {
     InteresectionGame,
     BuchstabensalatGame,
     DripsGame,
+    MemoryGame,
   },
   data() {
     return {

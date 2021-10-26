@@ -9,6 +9,12 @@
           trainierter Schimpanse schafft ein Spielfeld mit den Zahlen von 1 bis
           9 in 90% der Fälle
         </p>
+        <br />
+        <p class="title">Aktueller Highscore: {{ highscore }} von 5 Punkte!</p>
+        <br />
+        <b-button type="is-success" outlined @click="reload">
+          Level neuladen
+        </b-button>
       </div>
       <div class="column is-two-thirds">
         <div id="drips-container" />
@@ -20,6 +26,11 @@
 import Phaser from "phaser";
 
 export default {
+  data() {
+    return {
+      game: null,
+    };
+  },
   mounted() {
     // Use these parameters to scale the game
     const boardSizeDrips = 600;
@@ -70,6 +81,7 @@ export default {
             this.board_arr[i][j].destroy();
           }
         }
+        this.notification_text.setText("");
         this.board_arr = [];
 
         this.levelSwapped = true;
@@ -544,7 +556,7 @@ export default {
     };
 
     // Create the game, and that's it.
-    var gameDrips = new Phaser.Game(configDrips);
+    this.game = new Phaser.Game(configDrips);
   },
 };
 </script>

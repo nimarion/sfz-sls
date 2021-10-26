@@ -229,29 +229,5 @@
         "experiment": false,
         "component": "WageGame",
         "implementationVideo": "experiments/waage.mp4"
-    },
-    {
-        "name": "Juniper",
-        "experiment": false,
-        "component": "JuniperGame",
-        "implementationVideo": "experiments/waage.mp4"
-    },
-    {
-        "name": "Intersection",
-        "experiment": false,
-        "component": "InteresectionGame",
-        "implementationVideo": "experiments/waage.mp4"
-    },
-    {
-        "name": "Buchstabensalat",
-        "experiment": false,
-        "component": "BuchstabensalatGame",
-        "implementationVideo": "experiments/waage.mp4"
-    },
-    {
-        "name": "Drips",
-        "experiment": false,
-        "component": "DripsGame",
-        "implementationVideo": "experiments/waage.mp4"
     }
 ]

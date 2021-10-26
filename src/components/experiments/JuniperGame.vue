@@ -9,6 +9,12 @@
           trainierter Schimpanse schafft ein Spielfeld mit den Zahlen von 1 bis
           9 in 90% der Fälle
         </p>
+        <br />
+        <p class="title">Aktueller Highscore: {{ highscore }} von 5 Punkte!</p>
+        <br />
+        <b-button type="is-success" outlined @click="reload">
+          Level neuladen
+        </b-button>
       </div>
       <div class="column is-two-thirds">
         <div id="juniper-container" />
@@ -20,7 +26,14 @@
 import Phaser from "phaser";
 
 export default {
+  data() {
+    return {
+      game: null,
+      score: 10,
+    };
+  },
   mounted() {
+    // Use these parameters for scaling the board
     const boardSizeJuniper = 600; // Board size
 
     const backgroundColorJuniper = 0x444444; // Background Color
@@ -41,10 +54,14 @@ export default {
 
       // Resets/ Initializes the game
       reset() {
+        if (this.resetting) {
+          return;
+        }
         for (const [key, val] of this.rectangles) val.destroy();
         for (var i = 0; i < this.textnums.length; i++)
           this.textnums[i].destroy();
 
+        this.winText.setText("");
         this.rectangles = new Map();
 
         this.player = 0;
@@ -55,13 +72,18 @@ export default {
         this.lastNumber = -1;
 
         this.drawBoard();
+        this.allow_clicking = true;
       }
 
       retry() {
+        if (this.resetting) {
+          return;
+        }
         for (const [key, val] of this.rectangles) val.destroy();
         for (var i = 0; i < this.textnums.length; i++)
           this.textnums[i].destroy();
 
+        this.winText.setText("");
         this.rectangles = new Map();
 
         this.player = 0;
@@ -70,6 +92,7 @@ export default {
         this.lastNumber = -1;
 
         this.drawBoard();
+        this.allow_clicking = true;
       }
 
       drawBoard() {
@@ -111,10 +134,10 @@ export default {
       }
 
       onMouseDown(pointer, targets) {
-        if (targets.length == 0) {
+        if (targets.length == 0 || !this.allow_clicking) {
           return;
         }
-        this.input.off("pointerdown", this.onMouseDown, this);
+        this.allow_clicking = false;
         var k = -1;
         for (const [key, val] of this.rectangles) {
           if (val == targets[0]) {
@@ -198,6 +221,9 @@ export default {
           this.time.delayedCall(
             2000,
             function () {
+              if (this.player == 0) {
+                return;
+              }
               this.textnums[this.lastNumber - 1].destroy();
               this.lastrect.destroy();
               this.lastrect = this.rectangles.get(rdmNum + this.maxSqrtNum);
@@ -207,57 +233,46 @@ export default {
               this.player = (this.player + 1) % 2;
               if (this.getPossibleMoves() == 0) {
                 // console.log("Player " + (this.player + 1) + " won.");
-                var winText = this.add
-                  .text(
-                    boardSizeJuniper / 2,
-                    scaling * 30,
-                    "Leider verloren!\nProbier es noch einmal!",
-                    { fontSize: scaling * 20 + "px", align: "center" }
-                  )
-                  .setOrigin(0.5);
+                this.winText.setText(
+                  "Leider verloren!\nProbier es noch einmal!"
+                );
+                this.resetting = true;
                 this.time.delayedCall(
                   5000,
                   function () {
-                    winText.destroy();
+                    this.winText.setText("");
+                    this.resetting = false;
                     this.retry();
-                    this.input.on("pointerdown", this.onMouseDown, this);
+                    this.allow_clicking = true;
                   },
                   [],
                   this
                 );
               } else {
-                this.input.on("pointerdown", this.onMouseDown, this);
+                this.allow_clicking = true;
               }
             },
             [],
             this
           );
         } else {
-          this.input.on("pointerdown", this.onMouseDown, this);
+          this.allow_clicking = true;
         }
       }
 
+      // TODO: RETRY/RESET DURING AI TURN THROWS ERROR
+
       next() {
-        var winText;
         if (this.maxSqrtNum == 10) {
-          winText = this.add
-            .text(
-              boardSizeJuniper / 2,
-              scaling * 30,
-              "Glückwunsch! Du hast den letzten Level geschafft!\nDu kannst es jetzt gerne nochmal probieren.",
-              { fontSize: scaling * 20 + "px", align: "center" }
-            )
-            .setOrigin(0.5);
+          this.winText.setText(
+            "Glückwunsch! Du hast den letzten Level geschafft!\nDu kannst es jetzt gerne nochmal probieren."
+          );
         } else {
-          winText = this.add
-            .text(
-              boardSizeJuniper / 2,
-              scaling * 30,
-              "Du hast gewonnen!\nGleich geht's zum nächsten Level!",
-              { fontSize: scaling * 20 + "px", align: "center" }
-            )
-            .setOrigin(0.5);
+          this.winText.setText(
+            "Du hast gewonnen!\nGleich geht's zum nächsten Level!"
+          );
         }
+        this.resetting = true;
         this.time.delayedCall(
           5000,
           function () {
@@ -293,9 +308,10 @@ export default {
             }
             this.lastNumber = -1;
 
-            winText.destroy();
+            this.winText.setText("");
             this.drawBoard();
-            this.input.on("pointerdown", this.onMouseDown, this);
+            this.allow_clicking = true;
+            this.resetting = false;
           },
           [],
           this
@@ -305,8 +321,18 @@ export default {
       preload() {}
       // Called once to initialize the game
       create() {
+        this.score = 0;
+        this.resetting = true;
+        this.allow_clicking = false;
         this.textnums = [];
         this.rectangles = new Map();
+        this.winText = this.add
+          .text(boardSizeJuniper / 2, scaling * 30, "", {
+            fontSize: scaling * 20 + "px",
+            align: "center",
+          })
+          .setOrigin(0.5);
+        this.resetting = false;
         this.reset();
         this.input.on("pointerdown", this.onMouseDown, this);
       }
@@ -352,7 +378,17 @@ export default {
     };
 
     // Create the game, and that's it.
-    var gameJuniper = new Phaser.Game(configJuniper);
+    this.game = new Phaser.Game(configJuniper);
+  },
+  methods: {
+    reload() {
+      this.game.scene.scenes[0].retry();
+    },
+  },
+  computed: {
+    highscore() {
+      return 0;
+    },
   },
 };
 </script>
