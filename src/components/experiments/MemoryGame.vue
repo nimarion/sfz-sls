@@ -34,7 +34,7 @@ export default {
   },
   mounted() {
     // Use these parameters to scale the game
-    const boardSizeMem = 800;
+    const boardSizeMem = 600;
 
     // Color & sprite definitions
     const cardbackPathMem = require("~/assets/experiments/memory/cardback.png"); // Piece sprite
