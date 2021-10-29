@@ -19,6 +19,13 @@
       <b-navbar-item tag="nuxt-link" to="/schülerlabore">
         Schülerlabore
       </b-navbar-item>
+      <b-navbar-item
+        v-if="getRemainingTime() < 0"
+        tag="nuxt-link"
+        to="/forschertag"
+      >
+        Forschertag
+      </b-navbar-item>
 
       <!--<b-navbar-dropdown class="is-hidden-mobile" label="Forschertag">
         <b-navbar-item>
@@ -84,6 +91,7 @@ export default {
   data() {
     return {
       experiments: data,
+      date: "Oct 29, 2021 18:00:00",
     };
   },
   computed: {
@@ -92,6 +100,15 @@ export default {
     },
     getGames() {
       return data.filter((item) => !item.experiment);
+    },
+  },
+  methods: {
+    getRemainingTime() {
+      const countDownDate = new Date(this.date).getTime();
+      const now = new Date().getTime();
+
+      // Find the distance between now and the count down date
+      return countDownDate - now;
     },
   },
 };
