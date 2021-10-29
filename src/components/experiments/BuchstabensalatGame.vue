@@ -93,7 +93,9 @@ export default {
       }
 
       next() {
-        this.score = Math.max(this.score, Math.min(5, this.level + 1));
+        this.score = this.setScore(
+          Math.max(this.score, Math.min(5, this.level + 1))
+        );
         this.level = Math.min(5, this.level + 1);
         this.solved = false;
 
@@ -158,7 +160,7 @@ export default {
           })
           .setOrigin(0.5, 0.5);
         this.labels = [];
-        this.score = 0;
+        this.score = this.setScore(0);
         this.level = 0;
 
         this.setLevelParams();
@@ -430,9 +432,11 @@ export default {
         this.next();
       }
 
-      // Called regularly for a continuous game.
-      // Not necessary for Peg Solitaire, since we're only acting once the user acts.
-      update() {}
+      setScore(score) {
+        localStorage.setItem("buchstabensalat", score);
+        this.score = score;
+        return score;
+      }
     }
 
     // Game config
@@ -459,7 +463,7 @@ export default {
   },
   computed: {
     highscore() {
-      return 0;
+      return localStorage.getItem("buchstabensalat");
     },
   },
 };

@@ -29,7 +29,6 @@ export default {
   data() {
     return {
       game: null,
-      score: 10,
     };
   },
   mounted() {
@@ -67,7 +66,7 @@ export default {
         this.player = 0;
         this.numbers = [];
         this.textnums = [];
-        this.score = 0;
+        this.score = this.setScore(0);
         this.maxSqrtNum = 3;
         this.lastNumber = -1;
 
@@ -288,22 +287,22 @@ export default {
             switch (this.maxSqrtNum) {
               case 3:
                 this.maxSqrtNum = 4;
-                this.score = Math.max(1, this.score);
+                this.score = this.setScore(Math.max(1, this.score));
                 break;
               case 4:
                 this.maxSqrtNum = 5;
-                this.score = Math.max(2, this.score);
+                this.score = this.setScore(Math.max(2, this.score));
                 break;
               case 5:
                 this.maxSqrtNum = 6;
-                this.score = Math.max(3, this.score);
+                this.score = this.setScore(Math.max(3, this.score));
                 break;
               case 6:
                 this.maxSqrtNum = 10;
-                this.score = Math.max(4, this.score);
+                this.score = this.setScore(Math.max(4, this.score));
                 break;
               case 10:
-                this.score = Math.max(5, this.score);
+                this.score = this.setScore(Math.max(5, this.score));
                 break;
             }
             this.lastNumber = -1;
@@ -321,7 +320,7 @@ export default {
       preload() {}
       // Called once to initialize the game
       create() {
-        this.score = 0;
+        this.score = this.setScore(0);
         this.resetting = true;
         this.allow_clicking = false;
         this.textnums = [];
@@ -361,6 +360,12 @@ export default {
       pointerOut() {
         document.body.style.cursor = "default";
       }
+
+      setScore(score) {
+        localStorage.setItem("juniper", score);
+        this.score = score;
+        return score;
+      }
     }
 
     // Game config
@@ -387,7 +392,7 @@ export default {
   },
   computed: {
     highscore() {
-      return 0;
+      return localStorage.getItem("juniper");
     },
   },
 };

@@ -238,7 +238,7 @@ export default {
         this.lastPoint = null;
         this.lastAddedPoints = 0;
         this.r = [0, 0, 0];
-        this.score = 0;
+        this.score = this.setScore(0);
         this.level = 0;
         // this.wantedFaces = 3;
         this.countText = this.add
@@ -311,7 +311,7 @@ export default {
         ) {
           this.click_allowed = false;
           this.level = Math.min(5, this.level + 1);
-          this.score = Math.max(this.level, this.score);
+          this.score = this.setScore(Math.max(this.level, this.score));
           this.correct_text.setText("Korrekt!");
           this.resetting = true;
           this.time.delayedCall(
@@ -608,6 +608,12 @@ export default {
         return all_correct;
       }
 
+      setScore(score) {
+        localStorage.setItem("intersection", score);
+        this.score = score;
+        return score;
+      }
+
       /* This was written for automatically testing a polygon and its possible cut configurations. This code is working but far too slow and not calculatign everything yet
     cutXTimes(x) {
         if (x > 0) {
@@ -685,7 +691,7 @@ export default {
   },
   computed: {
     highscore() {
-      return 0;
+      return localStorage.getItem("intersection");
     },
   },
 };

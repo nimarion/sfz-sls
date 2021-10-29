@@ -129,7 +129,7 @@ export default {
         this.rectangles = new Map();
         this.textnums = [];
         this.splines = [];
-        this.score = 0;
+        this.score = this.setScore(0);
         this.reset();
         this.input.on("pointerdown", this.start, this);
         this.input.on("pointerdown", this.onMouseDown, this);
@@ -395,7 +395,9 @@ export default {
           2000,
           function () {
             this.numOfPairs = Math.max(0, Math.min(8, this.numOfPairs + 1));
-            this.score = Math.max(this.score, Math.min(5, this.numOfPairs - 2));
+            this.score = this.setScore(
+              Math.max(this.score, Math.min(5, this.numOfPairs - 2))
+            );
             this.pairsDone = 0;
             this.state = 0;
             this.startTime = -1;
@@ -473,6 +475,12 @@ export default {
         );
       }
 
+      setScore(score) {
+        localStorage.setItem("memory", score);
+        this.score = score;
+        return score;
+      }
+
       gridFromRect(r) {
         return Math.round(
           ((r - effectiveGridMin) * this.gridSize) /
@@ -506,7 +514,7 @@ export default {
   },
   computed: {
     highscore() {
-      return 0;
+      return localStorage.getItem("memory");
     },
   },
 };

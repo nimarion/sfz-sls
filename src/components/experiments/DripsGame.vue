@@ -97,7 +97,9 @@ export default {
       }
 
       next() {
-        this.score = Math.max(this.score, Math.min(this.level + 1, 5));
+        this.score = this.setScore(
+          Math.max(this.score, Math.min(this.level + 1, 5))
+        );
         this.level = Math.min(this.level + 1, 4);
 
         this.retry();
@@ -285,7 +287,7 @@ export default {
         this.board_arr = [];
         this.levelSwapped = true;
         this.level = 0;
-        this.score = 0;
+        this.score = this.setScore(0);
         this.turn = 1; // 0 = player, else ai
         this.pl_turn = this.add
           .rectangle(0, 0, boardSizeDrips / 2, info_h, waitingColorDrips)
@@ -537,8 +539,11 @@ export default {
         return { x: x_idx, y: y_idx };
       }
 
-      // Called regularly for a continuous game.
-      update() {}
+      setScore(score) {
+        localStorage.setItem("drips", score);
+        this.score = score;
+        return score;
+      }
     }
 
     // Game config
@@ -557,6 +562,16 @@ export default {
 
     // Create the game, and that's it.
     this.game = new Phaser.Game(configDrips);
+  },
+  methods: {
+    reload() {
+      this.game.scene.scenes[0].retry();
+    },
+  },
+  computed: {
+    highscore() {
+      return localStorage.getItem("drips");
+    },
   },
 };
 </script>

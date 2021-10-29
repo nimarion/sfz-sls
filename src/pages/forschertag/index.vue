@@ -66,9 +66,9 @@
                         </div>
                         <div class="content">
                           {{
-                            getPoints(item.name) == 0
+                            getPoints(item.name.toLowerCase()) == 0
                               ? "Noch nicht bearbeitet"
-                              : getPoints(item.name) + " Punkte"
+                              : getPoints(item.name.toLowerCase()) + " Punkte"
                           }}
                         </div>
                       </div>
@@ -111,7 +111,8 @@ export default {
       this.anim = anim;
     },
     getPoints(name) {
-      return 0;
+      const points = localStorage.getItem(name);
+      return points === null || points === "0" ? 0 : points;
     },
   },
 };
