@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Teelicht",
+        "experiment": true,
+        "image": "background.jpg"
+    },
+    {
+        "image": "background.jpg",
+        "name": "Juniper",
+        "experiment": false
+    },
+    {
+        "image": "background.jpg",
+        "name": "Intersection",
+        "experiment": false
+    },
+    {
+        "image": "background.jpg",
+        "name": "Buchstabensalat",
+        "experiment": false
+    },
+    {
+        "image": "background.jpg",
+        "name": "Drips",
+        "experiment": false
+    },
+    {
+        "image": "background.jpg",
+        "name": "Memory",
+        "experiment": false
+    }
+]

@@ -20,7 +20,7 @@
         Schülerlabore
       </b-navbar-item>
 
-      <b-navbar-dropdown class="is-hidden-mobile" label="Forschertag">
+      <!--<b-navbar-dropdown class="is-hidden-mobile" label="Forschertag">
         <b-navbar-item>
           <strong>Experimente</strong>
         </b-navbar-item>
@@ -43,7 +43,7 @@
         >
           {{ item.name }}
         </b-navbar-item>
-      </b-navbar-dropdown>
+      </b-navbar-dropdown>-->
 
       <b-navbar-dropdown class="is-hidden-mobile" label="Mehr">
         <b-navbar-item tag="nuxt-link" to="/förderverein">
