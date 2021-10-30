@@ -13,7 +13,7 @@
         <p class="title">Aktueller Highscore: {{ highscore }} von 5 Punkte!</p>
         <br />
         <b-button type="is-success" outlined @click="reload">
-          Level neuladen
+          Level neu laden
         </b-button>
       </div>
       <div class="column is-two-thirds">

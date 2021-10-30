@@ -14,7 +14,7 @@
         <p class="title">Aktueller Highscore: {{ highscore }} von 5 Punkte!</p>
         <br />
         <b-button type="is-success" outlined @click="reload">
-          Level neuladen
+          Level neu laden
         </b-button>
       </div>
       <div class="column is-two-thirds">
@@ -129,7 +129,7 @@ export default {
         this.rectangles = new Map();
         this.textnums = [];
         this.splines = [];
-        this.score = this.setScore(0);
+        this.score = 2;
         this.reset();
         this.input.on("pointerdown", this.start, this);
         this.input.on("pointerdown", this.onMouseDown, this);

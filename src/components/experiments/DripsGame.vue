@@ -13,7 +13,7 @@
         <p class="title">Aktueller Highscore: {{ highscore }} von 5 Punkte!</p>
         <br />
         <b-button type="is-success" outlined @click="reload">
-          Level neuladen
+          Level neu laden
         </b-button>
       </div>
       <div class="column is-two-thirds">
@@ -87,8 +87,8 @@ export default {
         this.levelSwapped = true;
         this.turn = 1;
 
-        this.playerText.setText("Player start");
-        this.aiText.setText("AI start");
+        this.playerText.setText("Spieler start");
+        this.aiText.setText("Computer startet");
         this.ai_turn.fillColor = waitingColorDrips;
         this.pl_turn.fillColor = waitingColorDrips;
 
@@ -307,13 +307,13 @@ export default {
           .setOrigin(0);
 
         this.playerText = this.add
-          .text(boardSizeDrips / 4, info_h / 2, "Player start", {
+          .text(boardSizeDrips / 4, info_h / 2, "Spieler startet", {
             font: "32px Arial",
           })
           .setOrigin(0.5)
           .setDepth(1);
         this.aiText = this.add
-          .text((boardSizeDrips * 3) / 4, info_h / 2, "AI start", {
+          .text((boardSizeDrips * 3) / 4, info_h / 2, "Computer startet", {
             font: "32px Arial",
           })
           .setOrigin(0.5)
