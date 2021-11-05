@@ -433,7 +433,10 @@ export default {
       }
 
       setScore(score) {
-        localStorage.setItem("buchstabensalat", score);
+        const currentScore = localStorage.getItem("buchstabensalat") || 0;
+        if (score > currentScore) {
+          localStorage.setItem("buchstabensalat", score);
+        }
         this.score = score;
         return score;
       }
@@ -463,7 +466,7 @@ export default {
   },
   computed: {
     highscore() {
-      return localStorage.getItem("buchstabensalat");
+      return localStorage.getItem("buchstabensalat") || 0;
     },
   },
 };

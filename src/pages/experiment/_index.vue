@@ -77,6 +77,7 @@
               v-for="item in currentExperiment.answers"
               :key="item.answer"
               class="column"
+              :class="{ 'selected-answer': clickedAnswer == item }"
               @click="setAnswer(item)"
             >
               <img :src="item.img" width="200px" />
@@ -177,3 +178,10 @@ export default {
   },
 };
 </script>
+<style>
+.selected-answer {
+  border-style: groove;
+  border-radius: 5px;
+  border-color: blue;
+}
+</style>

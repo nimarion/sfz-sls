@@ -362,7 +362,10 @@ export default {
       }
 
       setScore(score) {
-        localStorage.setItem("juniper", score);
+        const currentScore = localStorage.getItem("juniper") || 0;
+        if (score > currentScore) {
+          localStorage.setItem("juniper", score);
+        }
         this.score = score;
         return score;
       }
@@ -392,7 +395,7 @@ export default {
   },
   computed: {
     highscore() {
-      return localStorage.getItem("juniper");
+      return localStorage.getItem("juniper") || 0;
     },
   },
 };

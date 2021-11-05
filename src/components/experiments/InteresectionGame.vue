@@ -609,7 +609,10 @@ export default {
       }
 
       setScore(score) {
-        localStorage.setItem("intersection", score);
+        const currentScore = localStorage.getItem("intersection") || 0;
+        if (score > currentScore) {
+          localStorage.setItem("intersection", score);
+        }
         this.score = score;
         return score;
       }
@@ -691,7 +694,7 @@ export default {
   },
   computed: {
     highscore() {
-      return localStorage.getItem("intersection");
+      return localStorage.getItem("intersection") || 0;
     },
   },
 };

@@ -476,7 +476,10 @@ export default {
       }
 
       setScore(score) {
-        localStorage.setItem("memory", score);
+        const currentScore = localStorage.getItem("memory") || 0;
+        if (score > currentScore) {
+          localStorage.setItem("memory", score);
+        }
         this.score = score;
         return score;
       }
@@ -514,7 +517,7 @@ export default {
   },
   computed: {
     highscore() {
-      return localStorage.getItem("memory");
+      return localStorage.getItem("memory") || 0;
     },
   },
 };

@@ -540,7 +540,10 @@ export default {
       }
 
       setScore(score) {
-        localStorage.setItem("drips", score);
+        const currentScore = localStorage.getItem("drips") || 0;
+        if (score > currentScore) {
+          localStorage.setItem("drips", score);
+        }
         this.score = score;
         return score;
       }
@@ -570,7 +573,7 @@ export default {
   },
   computed: {
     highscore() {
-      return localStorage.getItem("drips");
+      return localStorage.getItem("drips") || 0;
     },
   },
 };
