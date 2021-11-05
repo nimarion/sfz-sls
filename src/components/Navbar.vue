@@ -91,7 +91,7 @@ export default {
   data() {
     return {
       experiments: data,
-      date: "Oct 29, 2021 18:00:00",
+      date: "Nov 20, 2021 8:00:00",
     };
   },
   computed: {

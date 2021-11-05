@@ -13,7 +13,7 @@
           <h1 id="title" class="title">
             Ein Universum voller Fragen und Antworten erforschen.
           </h1>
-          <b-button
+          <!--<b-button
             v-if="!countdownFinished"
             id="countdown"
             type="is-primary"
@@ -25,7 +25,7 @@
             type="is-primary"
           >
             Hier gehts zum Forschertag 2021!
-          </b-button>
+          </b-button>-->
         </div>
       </div>
     </section>
@@ -48,7 +48,7 @@ export default {
     };
   },
   created() {
-    const countDownDate = new Date("Oct 29, 2021 18:00:00").getTime();
+    const countDownDate = new Date("Nov 20, 2021 8:00:00").getTime();
     const now = new Date().getTime();
 
     this.countdownFinished = countDownDate - now < 0;
@@ -58,7 +58,7 @@ export default {
       return;
     }
     const x = setInterval(function () {
-      const countDownDate = new Date("Oct 29, 2021 18:00:00").getTime();
+      const countDownDate = new Date("Nov 20, 2021 8:00:00").getTime();
       const now = new Date().getTime();
 
       const distance = countDownDate - now;
