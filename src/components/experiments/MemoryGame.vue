@@ -3,12 +3,14 @@
     <div class="columns is-vcentered">
       <div class="column is-offset-1">
         <p>
-          Die 12 Spielsteine sind zu Beginn falsch sortiert. Sie müssen in die
-          gleiche Reihenfolge wie auf dem unten links stehenden Bild sortiert
-          werden. Zum Sortieren kannst du bis zu vier Steine in einer Reihe
-          übereinander stapeln. Zusätzlich sind zwei Felder oben links und
-          rechts, wo Steine abgelegt werden können. Du kannst immer nur den
-          obersten Stein einer Reihe bewegen. Jeder Zug zählt!
+          In diesem Jahr ist eine der Gründerinnen des Schülerforschungszentrum
+          Saarlouis, Margit Jungmann, in den wohlverdienten Ruhestand gegangen.
+          Als Dank für ihren großen Einsatz widmen wir ihr dieses Spiel! Auf den
+          Karten siehst du Skizzen von Margit Jungmann. Präge dir gut ein,
+          welche Karten zusammenpassen und klicke in das Spielfeld. Nun werden
+          die Karten durcheinandergewirbelt. Klicke dann nacheinander auf die
+          gleichen Karten. Mit jedem Level kommt ein Kartenpärchen dazu. Für
+          jedes geschaffte Level erhältst du einen Punkt.
         </p>
         <br />
         <p class="title">Aktueller Highscore: {{ highscore }} von 5 Punkte!</p>

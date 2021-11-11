@@ -1,32 +1,51 @@
-[
-    {
-        "name": "Teelicht",
+[{
+        "name": "Wollfaden auf Eis",
         "experiment": true,
-        "image": "background.jpg"
+        "image": "experiments/forschertag2021/Vorschaubilder/wollfaden.jpg"
     },
     {
-        "image": "background.jpg",
-        "name": "Juniper",
-        "experiment": false
-    },
-    {
-        "image": "background.jpg",
-        "name": "Intersection",
-        "experiment": false
-    },
-    {
-        "image": "background.jpg",
+        "image": "experiments/forschertag2021/Vorschaubilder/buchstabensalat.jpg",
         "name": "Buchstabensalat",
         "experiment": false
     },
     {
-        "image": "background.jpg",
-        "name": "Drips",
+        "name": "Ruß am Löffel",
+        "experiment": true,
+        "image": "experiments/forschertag2021/Vorschaubilder/ketchup.jpg"
+    },
+    {
+        "image": "experiments/forschertag2021/Vorschaubilder/mjm.jpg",
+        "name": "Margit Jungmann Memory",
         "experiment": false
     },
     {
-        "image": "background.jpg",
-        "name": "Memory",
+        "name": "Kohlendioxid-Erzeugung",
+        "experiment": true,
+        "image": "experiments/forschertag2021/Vorschaubilder/co2.jpg"
+    },
+    {
+        "image": "experiments/forschertag2021/Vorschaubilder/juniper.jpg",
+        "name": "Juniper Green",
+        "experiment": false
+    },
+    {
+        "name": "Eis in Salzwasser",
+        "experiment": true,
+        "image": "experiments/forschertag2021/Vorschaubilder/eiswasser.jpg"
+    },
+    {
+        "image": "experiments/forschertag2021/Vorschaubilder/zerteile.jpg",
+        "name": "Zerteile",
+        "experiment": false
+    },
+    {
+        "name": "Waagerechter Wurf",
+        "experiment": true,
+        "image": "experiments/forschertag2021/Vorschaubilder/muenze.jpg"
+    },
+    {
+        "image": "experiments/forschertag2021/Vorschaubilder/drips.jpg",
+        "name": "Drips",
         "experiment": false
     }
 ]

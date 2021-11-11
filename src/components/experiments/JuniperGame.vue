@@ -3,11 +3,16 @@
     <div class="columns is-vcentered">
       <div class="column is-offset-1">
         <p>
-          Ziel ist es, alle Zahlen von 1 an in der richtigen Reihenfolge
-          nacheinander anzuklicken. Nachdem du die 1 angeklickt hast, werden
-          aber die anderen Zahlen durch weiße Rechtecke verdeckt. Ein
-          trainierter Schimpanse schafft ein Spielfeld mit den Zahlen von 1 bis
-          9 in 90% der Fälle
+          Eigentlich ist Juniper Green eine Stadt in Schottland, welche jedoch
+          Namensgeber des folgenden Spiels ist. Ziel dieses Spiels ist, als
+          letzter Spieler noch eine Zahl vom Feld nehmen zu dürfen. Allerdings
+          darf man nur solche Zahlen wegnehmen, die ein Vielfaches der zuletzt
+          gezogenen Zahl sind, oder durch die man die zuletzt gezogene Zahl
+          teilen kann. Bei jedem Level darfst du die erste Zahl aussuchen.
+          Allerdings musst du eine gerade Zahl wegnehmen. Dann zieht der
+          Computer. Wenn du es schaffst, dass für den Computer kein Vielfaches
+          und kein Teiler der Zahl mehr übrigbleibt, hast du das Level gewonnen.
+          Für jedes geschaffte Level erhältst du einen Punkt.
         </p>
         <br />
         <p class="title">Aktueller Highscore: {{ highscore }} von 5 Punkte!</p>

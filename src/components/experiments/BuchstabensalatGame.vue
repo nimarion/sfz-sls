@@ -3,11 +3,12 @@
     <div class="columns is-vcentered">
       <div class="column is-offset-1">
         <p>
-          Ziel ist es, alle Zahlen von 1 an in der richtigen Reihenfolge
-          nacheinander anzuklicken. Nachdem du die 1 angeklickt hast, werden
-          aber die anderen Zahlen durch weiße Rechtecke verdeckt. Ein
-          trainierter Schimpanse schafft ein Spielfeld mit den Zahlen von 1 bis
-          9 in 90% der Fälle
+          Fast alle Buchstaben im Bild kommen doppelt vor, zwei davon allerdings
+          nicht. Finde die beiden einzeln vorkommenden Buchstaben. Klicke sie
+          nacheinander an. Wie viel Zeit dir zur Verfügung steht, wird rechts
+          oben angezeigt. Nach jedem geschafften Level wird es schwerer: mal
+          hast du weniger Zeit, mal werden mehr Buchstaben eingeblendet. Für
+          jedes geschaffte Level erhältst du einen Punkt!
         </p>
         <br />
         <p class="title">Aktueller Highscore: {{ highscore }} von 5 Punkte!</p>

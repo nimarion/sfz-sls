@@ -64,7 +64,7 @@
                             </p>
                           </div>
                         </div>
-                        <div class="content">
+                        <div v-if="!item.experiment" class="content">
                           {{
                             getPoints(item.name.toLowerCase()) == 0
                               ? "Noch nicht bearbeitet"

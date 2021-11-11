@@ -3,11 +3,17 @@
     <div class="columns is-vcentered">
       <div class="column is-offset-1">
         <p>
-          Ziel ist es, alle Zahlen von 1 an in der richtigen Reihenfolge
-          nacheinander anzuklicken. Nachdem du die 1 angeklickt hast, werden
-          aber die anderen Zahlen durch weiße Rechtecke verdeckt. Ein
-          trainierter Schimpanse schafft ein Spielfeld mit den Zahlen von 1 bis
-          9 in 90% der Fälle
+          Beim Spiel Drips gewinnt derjenige, der den letzten Stein vom
+          Spielfeld nimmt. Man darf aber immer nur Steine aus einer Spalte
+          nehmen. Zunächst musst du entscheiden, ob du anfängst oder der
+          Computer. Durch einen Klick auf einen Stein nimmst du ihn weg, dann
+          spielt der Computer. Wenn mehrere Steine in einer Spalte liegen,
+          kannst du einen, mehrere oder alle Steine wegnehmen. Klickst du auf
+          den untersten Stein der Spalte, wird nur der weggenommen. Klickst du
+          auf den obersten, werden alle weggenommen. Klickst du auf einen Stein
+          dazwischen, werden dieser Stein und alle darunter weggenommen. Mit
+          jedem Level kommen mehr Steine in den Spalten dazu. Für jeden
+          gewonnenen Level erhältst du einen Punkt.
         </p>
         <br />
         <p class="title">Aktueller Highscore: {{ highscore }} von 5 Punkte!</p>

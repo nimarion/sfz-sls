@@ -1,5 +1,4 @@
-[
-    {
+[{
         "name": "Teelicht",
         "experiment": true,
         "materials": [
@@ -16,8 +15,7 @@
             "Stülpe das Glas über das Teelicht.",
             "Beobachte, was passiert!"
         ],
-        "answers": [
-            {
+        "answers": [{
                 "answer": "Die Kerze erlischt, der Wasserstand im Glas steigt.",
                 "img": "experiments/Kerze_Loesung2.png",
                 "solution": true
@@ -54,8 +52,7 @@
             "Reibe den Luftballon oder das Lineal an deinem Pullover oder an deinen Haaren.",
             "Halte den Ballon dann in die Nähe des Wasserstrahls."
         ],
-        "answers": [
-            {
+        "answers": [{
                 "answer": "Der Wasserstrahl verändert sich nicht.",
                 "img": "experiments/Wasser_Loesung1.png",
                 "solution": false
@@ -93,8 +90,7 @@
             "Gib einen Tropfen Spülmittel direkt hinter das Schiffchen.",
             "Beobachte, was passiert!"
         ],
-        "answers": [
-            {
+        "answers": [{
                 "answer": "Das Boot bewegt sich gar nicht.",
                 "img": "experiments/Schiffchen_Loesung1.png",
                 "solution": false
@@ -135,8 +131,7 @@
             "Beobachte die Flamme der Kerze!",
             "Wiederhole das Experiment mit dem Zylinder."
         ],
-        "answers": [
-            {
+        "answers": [{
                 "answer": "Die Flamme lässt sich bei beiden Hindernissen nicht ausblasen.",
                 "img": "experiments/Wind_Loesung1.png",
                 "solution": false
@@ -174,15 +169,14 @@
             "Erwärme nun die Flasche mit deinen Händen oder mit einem Föhn.",
             "Beobachte die Münze genau!"
         ],
-        "answers": [
-            {
+        "answers": [{
                 "answer": "Die Münze bleibt unbewegt liegen.",
-                "img": "experiments/Muenze_Loesung1.png",
+                "img": "experiments/Muenze_Loesung2.png",
                 "solution": false
             },
             {
                 "answer": "Die Münze klappert auf der Flaschenöffnung",
-                "img": "experiments/Muenze_Loesung2.png",
+                "img": "experiments/Muenze_Loesung1.png",
                 "solution": true
             },
             {
@@ -199,6 +193,210 @@
         "materialVideo": "experiments/Muenze_Materialien.mp4",
         "implementationVideo": "experiments/Muenze_Durchfuehrung.mp4",
         "solutionVideo": "experiments/Muenze_Aufloesung.mp4"
+    },
+    {
+        "name": "Wollfaden auf Eis",
+        "experiment": true,
+        "materials": [
+            "Ein Glas mit Wasser",
+            "Einen Eiswürfel",
+            "Salz",
+            "Einen Wollfaden"
+        ],
+        "implementation": [
+            "Lege den Eiswürfel in das Wasser im Glas",
+            "Platziere den Wollfaden auf dem Eiswürfel und streue etwas Salz darüber",
+            "Warte mindestens 30 Sekunden und ziehe dann vorsichtig den Faden aus dem Glas"
+        ],
+        "answers": [{
+                "answer": "",
+                "img": "experiments/forschertag2021/Ergebnisbilder/faden1.png",
+                "solution": true
+            },
+            {
+                "answer": "",
+                "img": "experiments/forschertag2021/Ergebnisbilder/faden2.png",
+                "solution": false
+            },
+            {
+                "answer": "",
+                "img": "experiments/forschertag2021/Ergebnisbilder/faden3.png",
+                "solution": false
+            },
+            {
+                "answer": "",
+                "img": "experiments/forschertag2021/Ergebnisbilder/faden4.png",
+                "solution": false
+            }
+        ],
+        "materialVideo": "experiments/forschertag2021/Experimente/Wollfaden Materialien.mp4",
+        "implementationVideo": "experiments/forschertag2021/Experimente/Wollfaden Durchführung.mp4",
+        "solutionVideo": "experiments/forschertag2021/Experimente/Wollfaden Ergebnis.mp4"
+    },
+    {
+        "name": "Ruß am Löffel",
+        "experiment": true,
+        "materials": [
+            "Eine Kerze",
+            "Ein Feuerzeug",
+            "Zwei Teelöffel",
+            "Ein Teller",
+            "Ketchup"
+        ],
+        "implementation": [
+            "Zünde die Kerze an und beruße einen Löffel vollständig auf der Unterseite",
+            "Lass ihn abkühlen",
+            "Gib dann etwas Ketchup über den blanken Löffel und dann über den berußten Löffel",
+            "Vergleiche die beiden Ergebnisse!"
+        ],
+        "answers": [{
+                "answer": "",
+                "img": "experiments/forschertag2021/Ergebnisbilder/loeffel4.png",
+                "solution": false
+            },
+            {
+                "answer": "",
+                "img": "experiments/forschertag2021/Ergebnisbilder/loeffel3.png",
+                "solution": false
+            },
+            {
+                "answer": "",
+                "img": "experiments/forschertag2021/Ergebnisbilder/loeffel1.png",
+                "solution": true
+            },
+            {
+                "answer": "",
+                "img": "experiments/forschertag2021/Ergebnisbilder/loeffel2.png",
+                "solution": false
+            }
+        ],
+        "materialVideo": "experiments/forschertag2021/Experimente/Berußter Löffel Materialien.mp4",
+        "implementationVideo": "experiments/forschertag2021/Experimente/Berußter Löffel Durchführung.mp4",
+        "solutionVideo": "experiments/forschertag2021/Experimente/Berußter Löffel Ergebnis.mp4"
+    },
+    {
+        "name": "Kohlendioxid-Erzeugung",
+        "experiment": true,
+        "materials": [
+            "Ein Glas",
+            "Essig",
+            "Streichhölzer oder ein Feuerzeug",
+            "Eine Kerze",
+            "Backpulver"
+        ],
+        "implementation": [
+            "Schütte das Backpulver in ein Glas",
+            "Zünde die Kerze an",
+            "Schütte etwas Essig in das Glas",
+            "Warte 30 Sekunden",
+            "Nähere das Glas der Kerze und kippe es etwas seitlich um",
+            "Es soll keine Flüssigkeit in die Kerze laufen!",
+            "Beobachte, was passiert!"
+        ],
+        "answers": [{
+                "answer": "",
+                "img": "experiments/forschertag2021/Ergebnisbilder/co2_3.png",
+                "solution": false
+            },
+            {
+                "answer": "",
+                "img": "experiments/forschertag2021/Ergebnisbilder/co2_1.png",
+                "solution": true
+            },
+            {
+                "answer": "",
+                "img": "experiments/forschertag2021/Ergebnisbilder/co2_4.png",
+                "solution": false
+            },
+            {
+                "answer": "",
+                "img": "experiments/forschertag2021/Ergebnisbilder/co2_2.png",
+                "solution": false
+            }
+        ],
+        "materialVideo": "experiments/forschertag2021/Experimente/Co2 Materialien.mp4",
+        "implementationVideo": "experiments/forschertag2021/Experimente/Co2 Durchführung.mp4",
+        "solutionVideo": "experiments/forschertag2021/Experimente/Co2 Ergebnis.mp4"
+    },
+    {
+        "name": "Eis in Salzwasser",
+        "experiment": true,
+        "materials": [
+            "2 Gläser",
+            "Salz",
+            "2 Eiswürfel",
+            "Wasser"
+        ],
+        "implementation": [
+            "Gib gleich viel Wasser in beide Gläser",
+            "Gib dann in ein Glas mehrere Löffel Salz und rühre um",
+            "Lege dann in jedes Glas einen Eiswürfel",
+            "Warte ab und beobachte!"
+        ],
+        "answers": [{
+                "answer": "",
+                "img": "experiments/forschertag2021/Ergebnisbilder/eiswasser1.png",
+                "solution": true
+            },
+            {
+                "answer": "",
+                "img": "experiments/forschertag2021/Ergebnisbilder/eiswasser4.png",
+                "solution": false
+            },
+            {
+                "answer": "",
+                "img": "experiments/forschertag2021/Ergebnisbilder/eiswasser3.png",
+                "solution": false
+            },
+            {
+                "answer": "",
+                "img": "experiments/forschertag2021/Ergebnisbilder/eiswasser2.png",
+                "solution": false
+            }
+        ],
+        "materialVideo": "experiments/forschertag2021/Experimente/Eis In Salzwasser Materialien.mp4",
+        "implementationVideo": "experiments/forschertag2021/Experimente/Eis In Salzwasser Durchführung.mp4",
+        "solutionVideo": "experiments/forschertag2021/Experimente/Eis In Salzwasser Ergebnis.mp4"
+    },
+    {
+        "name": "Waagerechter Wurf",
+        "experiment": true,
+        "materials": [
+            "Zwei Münzen",
+            "Ein Lineal",
+            "Einen Löffel"
+        ],
+        "implementation": [
+            "Platziere das Lineal mit etwas Abstand zu einer Tischkante, wobei ein Teil des Lineals über den Tisch hinausragt",
+            "Platziere dann eine Münze auf dem Teil des Lineals, der über den Tisch ragt",
+            "Platziere die zweite Münze neben dem Lineal dicht an die Tischkante",
+            "Drücke nun das Lineal mit einem Finger in der Mitte nach unten und schlage mit dem Löffel auf den überstehenden Linealteil, aber nicht direkt neben der Münze!",
+            "Beobachte und achte auf die entstehenden Geräusche"
+        ],
+        "answers": [{
+                "answer": "",
+                "img": "experiments/forschertag2021/Ergebnisbilder/muenze4.png",
+                "solution": false
+            },
+            {
+                "answer": "",
+                "img": "experiments/forschertag2021/Ergebnisbilder/muenze3.png",
+                "solution": false
+            },
+            {
+                "answer": "",
+                "img": "experiments/forschertag2021/Ergebnisbilder/muenze2.png",
+                "solution": false
+            },
+            {
+                "answer": "",
+                "img": "experiments/forschertag2021/Ergebnisbilder/muenze1.png",
+                "solution": true
+            }
+        ],
+        "materialVideo": "experiments/forschertag2021/Experimente/Waagerechter Wurf Materialien.mp4",
+        "implementationVideo": "experiments/forschertag2021/Experimente/Waagerechter Wurf Durchführung.mp4",
+        "solutionVideo": "experiments/forschertag2021/Experimente/Waagerechter Wurf Ergebnis.mp4"
     },
     {
         "name": "Spinne ein Netz",
@@ -231,33 +429,33 @@
         "implementationVideo": "experiments/waage.mp4"
     },
     {
-        "name": "Juniper",
+        "name": "Juniper Green",
         "experiment": false,
         "component": "JuniperGame",
-        "implementationVideo": "experiments/waage.mp4"
+        "implementationVideo": "experiments/forschertag2021/Spielvideos/Juniper.mp4"
     },
     {
-        "name": "Intersection",
+        "name": "Zerteile",
         "experiment": false,
         "component": "InteresectionGame",
-        "implementationVideo": "experiments/waage.mp4"
+        "implementationVideo": "experiments/forschertag2021/Spielvideos/zerteile.mp4"
     },
     {
         "name": "Buchstabensalat",
         "experiment": false,
         "component": "BuchstabensalatGame",
-        "implementationVideo": "experiments/waage.mp4"
+        "implementationVideo": "experiments/forschertag2021/Spielvideos/buchstaben.mp4"
     },
     {
         "name": "Drips",
         "experiment": false,
         "component": "DripsGame",
-        "implementationVideo": "experiments/waage.mp4"
+        "implementationVideo": "experiments/forschertag2021/Spielvideos/drips.mp4"
     },
     {
-        "name": "Memory",
+        "name": "Margit Jungmann Memory",
         "experiment": false,
         "component": "MemoryGame",
-        "implementationVideo": "experiments/waage.mp4"
+        "implementationVideo": "experiments/forschertag2021/Spielvideos/mjm.mp4"
     }
 ]

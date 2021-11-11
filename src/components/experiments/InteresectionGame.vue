@@ -3,11 +3,15 @@
     <div class="columns is-vcentered">
       <div class="column is-offset-1">
         <p>
-          Ziel ist es, alle Zahlen von 1 an in der richtigen Reihenfolge
-          nacheinander anzuklicken. Nachdem du die 1 angeklickt hast, werden
-          aber die anderen Zahlen durch weiße Rechtecke verdeckt. Ein
-          trainierter Schimpanse schafft ein Spielfeld mit den Zahlen von 1 bis
-          9 in 90% der Fälle
+          In jedem Level wird eine Figur angezeigt, die in eine bestimmte Anzahl
+          an Stücken geteilt werden soll. Ein Schnitt wird erzeugt, indem du
+          nacheinander auf zwei Rasterpunkte außerhalb der Figur klickst. Die
+          Anzahl der Schnitte, die dir zur Verfügung stehen, steht unten links.
+          Die Anzahl der Stücke, in die du die Figur schneiden sollst, steht
+          unten rechts. Oben rechts steht, wie viele Stücke aktuell vorhanden
+          sind. Falls die von dir ausgesuchten Schnitte nicht passen sollte,
+          klicke auf „Level neu laden“ neben dem Spielfeld. Für jedes geschafft
+          Level erhältst du einen Punkt.
         </p>
         <br />
         <p class="title">Aktueller Highscore: {{ highscore }} von 5 Punkte!</p>
