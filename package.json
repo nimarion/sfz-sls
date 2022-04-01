@@ -22,7 +22,7 @@
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@nuxtjs/fontawesome": "^1.1.2",
-    "axios": "^0.22.0",
+    "axios": "^0.26.1",
     "nuxt": "^2.15.8",
     "nuxt-buefy": "^0.4.10",
     "phaser": "^3.55.2",
